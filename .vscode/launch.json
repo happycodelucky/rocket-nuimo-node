@@ -7,8 +7,8 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Main.js",
-            "program": "${workspaceRoot}/dist/test",
+            "name": "Example",
+            "program": "${workspaceRoot}/dist/examples/index.js",
             "cwd": "${workspaceRoot}",
             "sourceMaps": true,
             "showAsyncStacks": true,
