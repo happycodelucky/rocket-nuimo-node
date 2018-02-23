@@ -1,0 +1,19 @@
+{
+  "name": "nuimo-connect",
+  "version": "0.2.0",
+  "description": "Typescript connection module for Nuimo by Senic",
+  "main": "./dist/index.js",
+  "author": "Paul Bates (paul.bates@rocoder.io)",
+  "license": "MIT",
+  "dependencies": {
+    "@types/debug": "^0.0.30",
+    "@types/noble": "^0.0.34",
+    "@types/node": "^8.0.57",
+    "@types/weak": "^1.0.0",
+    "debug": "^3.1.0",
+    "noble": "https://github.com/PolideaInternal/noble.git#macos_highsierra",
+    "r2": "^2.0.0",
+    "tslib": "^1.8.1",
+    "weak": "^1.0.1"
+  }
+}
