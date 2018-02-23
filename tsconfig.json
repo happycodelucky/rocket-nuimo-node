@@ -9,13 +9,14 @@
         "module": "commonjs",
         "outDir": "dist",
         "sourceMap": true,
+        "inlineSourceMap": true,
         "watch": true
     },
     "compileOnSave": true,
     
     "include": [
         "index.ts",
-        "test.ts",
+        "examples/**/*.ts",
         "src/**/*.ts"
     ],
     "exclude":[
