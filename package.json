@@ -12,7 +12,7 @@
     "@types/weak": "^1.0.0",
     "debug": "^3.1.0",
     "noble": "https://github.com/PolideaInternal/noble.git#macos_highsierra",
-    "tslib": "^1.8.1",
+    "tslib": "^1.9.0",
     "weak": "^1.0.1"
   },
   "devDependencies": {
