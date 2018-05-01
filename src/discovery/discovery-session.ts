@@ -1,10 +1,6 @@
-/**
- * @module nuimo-connect
- */
-
 import * as createDebugLogger from 'debug'
 import { EventEmitter } from 'events'
-import { setTimeout } from 'timers';
+import { setTimeout } from 'timers'
 
 import { DeviceDiscoveryManager, DeviceDiscoveryState } from './discovery'
 import { NuimoDevice } from '../device/nuimo-device'
@@ -30,42 +26,42 @@ export interface DeviceDiscoverySessionOptions {
 
 /**
  * A single discovery session, keeping the vending manager monitor for Nuimo devices
- * 
+ *
  * Do not create a session manually, instead use DeviceDiscoveryManager to start discovery
  */
 export class DeviceDiscoverySession extends EventEmitter {
     /**
      * Vending device manager
      */
-    private _deviceManager: DeviceDiscoveryManager
+    private deviceManager: DeviceDiscoveryManager
     /**
      * Options supplied when starting a new discovery
      */
-    private _discoveryOptions: DeviceDiscoverySessionOptions
+    private discoveryOptions: DeviceDiscoverySessionOptions
     /**
      * Timeout timer when a timeout was specified
      */
-    private _timeoutTimer?: NodeJS.Timer
+    private timeoutTimer?: NodeJS.Timer
     /**
      * Mutable internal discovery state
      */
-    private _discoveryState: DeviceDiscoveryState
+    private sessionDiscoveryState: DeviceDiscoveryState
     /**
      * Internal map of discovered devices, and devices to ignore when seen subsequent times
      */
-    private _discoveredDevices: Map<string, NuimoDevice> = new Map()    
+    private sessionDiscoveredDevicesMap: Map<string, NuimoDevice> = new Map()
     /**
      * Promise for first call to waitForFirstDevice
      */
-    private _waitForDevicePromise?: Promise<NuimoDevice>
+    private waitForDevicePromise?: Promise<NuimoDevice>
     /**
      * Callback for found device
-     */    
-    private _waitForDeviceResolveCallback?: (device: NuimoDevice) => void
+     */
+    private waitForDeviceResolveCallback?: (device: NuimoDevice) => void
     /**
      * Callback for timeouts or other rejections
-     */    
-    private _waitForDeviceRejectCallback?: (error: Error) => void    
+     */
+    private waitForDeviceRejectCallback?: (error: Error) => void
 
     /**
      * @param manager - vending manager
@@ -74,17 +70,17 @@ export class DeviceDiscoverySession extends EventEmitter {
     constructor(manager: DeviceDiscoveryManager, options?: DeviceDiscoverySessionOptions) {
         super()
 
-        this._deviceManager = manager
-        this._discoveryOptions = Object.assign({}, options)
+        this.deviceManager = manager
+        this.discoveryOptions = {...options}
 
         // Replicate the discovery state
-        this._discoveryState = manager.discoveryState
+        this.sessionDiscoveryState = manager.discoveryState
 
         // Initialize a timeout
-        const timeout = this._discoveryOptions.timeout;
+        const timeout = this.discoveryOptions.timeout;
         if (timeout && timeout > 0) {
             if (options instanceof Object) {
-                this._timeoutTimer = setTimeout(this._handleSessionTimeout.bind(this), timeout * 1000)
+                this.timeoutTimer = setTimeout(this.handleSessionTimeout.bind(this), timeout * 1000)
             }
         }
     }
@@ -97,11 +93,11 @@ export class DeviceDiscoverySession extends EventEmitter {
      * Discovery state for the session
      */
     get discoveryState(): DeviceDiscoveryState {
-        const managerState = this._deviceManager.discoveryState
+        const managerState = this.deviceManager.discoveryState
         if (managerState === DeviceDiscoveryState.Discovering) {
-            return this._discoveryState
+            return this.sessionDiscoveryState
         }
-        
+
         return managerState
     }
 
@@ -109,7 +105,7 @@ export class DeviceDiscoverySession extends EventEmitter {
      * All discovered devices by the device manager
      */
     get discoveredDevices(): NuimoDevice[] {
-        return Array.from<NuimoDevice>(this._discoveredDevices.values())
+        return [...this.sessionDiscoveredDevicesMap.values()]
     }
 
     //
@@ -125,51 +121,52 @@ export class DeviceDiscoverySession extends EventEmitter {
 
     /**
      * Waits for a single device, or until time out (if defined)
-     * 
+     *
      * @param [autoStop=true] - causes the session to be stopped when a device is returned
-     * 
+     *
      * @throw {NuimoDeviceError} when timing out
      */
     async waitForFirstDevice(autoStop: boolean = true): Promise<NuimoDevice> {
-        if (this._waitForDevicePromise) {
-            return this._waitForDevicePromise
+        if (this.waitForDevicePromise) {
+            return this.waitForDevicePromise
         }
 
         // Check if there is already a device, if so return it immediately
-        if (this._discoveredDevices.size > 0) {
-            const iterator = this._discoveredDevices.values().next()
+        if (this.sessionDiscoveredDevicesMap.size > 0) {
+            const iterator = this.sessionDiscoveredDevicesMap.values().next()
             if (iterator.value) {
-                this._waitForDevicePromise = Promise.resolve(iterator.value)
-                return this._waitForDevicePromise
+                this.waitForDevicePromise = Promise.resolve(iterator.value)
+
+                return this.waitForDevicePromise
             }
         }
 
         // Need to wait for a device to be discovered
         const self = this
-        const lisenters = new Map<string, (...args) => void>()
+        const lisenters = new Map<string, (...args: any[]) => void>()
         // Function called when a device is discovered
         function onWaitDeviceDiscovered(device: NuimoDevice) {
-            if (self._waitForDeviceResolveCallback) {
-                self._waitForDeviceResolveCallback(device)
+            if (self.waitForDeviceResolveCallback) {
+                self.waitForDeviceResolveCallback(device)
 
                 // stop discovery if we should auto-stop
                 if (autoStop) {
                     self.stopDiscovery(false)
-                }                 
+                }
             }
-            self._waitForDeviceResolveCallback = undefined
-            self._waitForDeviceRejectCallback = undefined
+            self.waitForDeviceResolveCallback = undefined
+            self.waitForDeviceRejectCallback = undefined
             lisenters.forEach((value, key) => {
                 self.removeListener(key, value)
             })
         }
         // Function called when the session times out
         function onWaitTimeout() {
-            if (self._waitForDeviceRejectCallback) {
-                self._waitForDeviceRejectCallback(new Error('Timeout'))
+            if (self.waitForDeviceRejectCallback) {
+                self.waitForDeviceRejectCallback(new Error('Timeout'))
             }
-            self._waitForDeviceResolveCallback = undefined
-            self._waitForDeviceRejectCallback = undefined
+            self.waitForDeviceResolveCallback = undefined
+            self.waitForDeviceRejectCallback = undefined
             lisenters.forEach((value, key) => {
                 self.removeListener(key, value)
             })
@@ -181,12 +178,12 @@ export class DeviceDiscoverySession extends EventEmitter {
         this.once('timeout', onWaitTimeout)
         lisenters.set('timeout', onWaitTimeout)
 
-        this._waitForDevicePromise = new Promise<NuimoDevice>((resolve, reject) => {
-            self._waitForDeviceResolveCallback = resolve
-            self._waitForDeviceRejectCallback = reject
+        this.waitForDevicePromise = new Promise<NuimoDevice>((resolve, reject) => {
+            self.waitForDeviceResolveCallback = resolve
+            self.waitForDeviceRejectCallback = reject
         })
 
-        return this._waitForDevicePromise
+        return this.waitForDevicePromise
     }
 
     //
@@ -198,27 +195,27 @@ export class DeviceDiscoverySession extends EventEmitter {
      * @internal
      */
     startDiscovery() {
-        if (this._deviceManager.discoveryState !== DeviceDiscoveryState.Discovering) {
-            return 
+        if (this.deviceManager.discoveryState !== DeviceDiscoveryState.Discovering) {
+            return
         }
 
-        this._discoveryState = DeviceDiscoveryState.Discovering
-    }    
+        this.sessionDiscoveryState = DeviceDiscoveryState.Discovering
+    }
 
     /**
      * Stops discovery for this session
      * @internal
-     * 
+     *
      * @param timeout - `true` if stopping is because of a timeout
      */
     stopDiscovery(timeout: boolean) {
         if (this.discoveryState !== DeviceDiscoveryState.AwaitingDiscovering) {
-            this._discoveryState = DeviceDiscoveryState.AwaitingDiscovering
-            this._deviceManager.stopDiscoverySession(this)
+            this.sessionDiscoveryState = DeviceDiscoveryState.AwaitingDiscovering
+            this.deviceManager.stopDiscoverySession(this)
 
-            if (this._timeoutTimer) {
-                clearTimeout(this._timeoutTimer)
-                this._timeoutTimer = undefined
+            if (this.timeoutTimer) {
+                clearTimeout(this.timeoutTimer)
+                this.timeoutTimer = undefined
             }
 
             // Emit timeout event
@@ -229,7 +226,7 @@ export class DeviceDiscoverySession extends EventEmitter {
     /**
      * Called from the vending manager when a device has been discovered
      * @internal
-     * 
+     *
      * @param device - Nuimo device
      * @param newDevice - true if the device has never been seen before
      */
@@ -241,12 +238,12 @@ export class DeviceDiscoverySession extends EventEmitter {
         }
 
         // If the device has already been seen, ignore it
-        if (this._discoveredDevices.has(device.id)) {
+        if (this.sessionDiscoveredDevicesMap.has(device.id)) {
             return
         }
-        this._discoveredDevices.set(device.id, device)
+        this.sessionDiscoveredDevicesMap.set(device.id, device)
 
-        const whitelisted = this._discoveryOptions.deviceIds
+        const whitelisted = this.discoveryOptions.deviceIds
         if (whitelisted) {
             if (whitelisted.includes(device.id)) {
                 this.emit('device', device)
@@ -262,17 +259,16 @@ export class DeviceDiscoverySession extends EventEmitter {
 
     /**
      * Called when the session times out
-     * @private
      */
-    private _handleSessionTimeout() {
+    private handleSessionTimeout() {
         debug('discovery session timed out')
 
         // Emit timeout event
         this.emit('timeout', this)
 
-        this._timeoutTimer = undefined
+        this.timeoutTimer = undefined
         this.stopDiscovery(true)
 
-        this._deviceManager.stopDiscoverySession(this)
+        this.deviceManager.stopDiscoverySession(this)
     }
 }

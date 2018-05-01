@@ -25,10 +25,10 @@ export enum LEDBitmapCompositeMode {
  * A LED bitmap object for use with Nuimo devices
  */
 export class LEDBitmap {
-    public readonly buffer: Buffer;
+    readonly buffer: Buffer;
 
     /**
-     * @param {Buffer} buffer - raw buffer for device LED bitmap
+     * @param buffer - raw buffer for device LED bitmap
      */
     private constructor(buffer: Buffer) {
         if (!(buffer instanceof Buffer)) {
@@ -44,12 +44,12 @@ export class LEDBitmap {
     /**
      * Creates a LEDBitmap from an array of characters.
      * Non-whitespace characters are treated as the on state for each LED in that row
-     * 
+     *
      * @param bitmapString - array of strings representing each row (should be 9x9 string)
-     * 
+     *
      * @return LEDBitmap for use with a Nuimo device
      */
-    public static fromBitmapString(bitmapString: Array<string>): LEDBitmap {
+    static fromBitmapString(bitmapString: Array<string>): LEDBitmap {
         if (!Array.isArray(bitmapString)) {
             throw new TypeError('fromBitmapString(bitmapString) should be an instance of Array<string>')
         }
@@ -57,13 +57,13 @@ export class LEDBitmap {
         let byte = 0
         let byteIndex = 0
         let bitPosition = 0
-        let byteBuffer = new Buffer(BITMAP_BYTES)
+        const byteBuffer = new Buffer(BITMAP_BYTES)
 
         // Iterate through the character bits
         for (const row of bitmapString) {
             for (const character of row.padEnd(MATRIX_WIDTH)) {
                 const c = character.charCodeAt(0)
-    
+
                 // Check for non-whitespace characters
                 if (c >= 0x21 && c !== 0x7F) {
                     byte |= 0b1 << bitPosition
@@ -83,16 +83,16 @@ export class LEDBitmap {
 
     /**
      * Composites the current bitmap with another and returns a new bitmap
-     * 
+     *
      * @param bitmap - bitmap to composite with
      * @param mode - composite mode
-     * 
+     *
      * @return composited bitmap
      */
-    public compositeWith(bitmap: LEDBitmap, mode: LEDBitmapCompositeMode = LEDBitmapCompositeMode.Multiple): LEDBitmap {
+    compositeWith(bitmap: LEDBitmap, mode: LEDBitmapCompositeMode = LEDBitmapCompositeMode.Multiple): LEDBitmap {
         const buffer = new Buffer(this.buffer)
         for (let i = 0; i < BITMAP_BYTES; i++) {
-            switch(mode) {
+            switch (mode) {
                 case LEDBitmapCompositeMode.Difference:
                     buffer[i] ^= bitmap.buffer[i]
                     break
@@ -103,7 +103,7 @@ export class LEDBitmap {
                     buffer[i] &= bitmap.buffer[i]
                     break
             }
-            
+
         }
 
         return new LEDBitmap(buffer)
@@ -116,7 +116,7 @@ export class LEDBitmap {
     /**
      * Converts a Uint16 array buffer into a bitmap. This allows bitmaps to be specified as bit patterns consisting on
      * 9 bits.
-     * 
+     *
      * @param bitmap - UInt16 buffer bitmap, with each 2xbyte pair representing a single line
      */
     private static _convertBitmapTobuffer(bitmap: Uint16Array) {
@@ -124,16 +124,16 @@ export class LEDBitmap {
         let rolloverBits = 0
         let rolloverValue = 0
         let index = 0
-    
+
         const valueMask = (Math.pow(2, MATRIX_WIDTH) - 1);
         const items = [...bitmap, 0]
-        while(items.length) {
+        while (items.length) {
             if (rolloverBits > 0) {
                 let nextRolloverBits = (MATRIX_WIDTH - 8) + rolloverBits
                 if (rolloverBits < 8) {
                     let value: number = <number> items.shift() & valueMask
                     buffer[index] = (rolloverValue | (value >> nextRolloverBits)) & 0xFF
-    
+
                     // Set next rollover
                     rolloverValue = (value << (8 - nextRolloverBits)) & 0xFF
                     rolloverBits = nextRolloverBits;
@@ -142,7 +142,7 @@ export class LEDBitmap {
                     buffer[index] = rolloverValue >> (8 - rolloverBits)
                     rolloverBits -= 8
                     rolloverValue = (rolloverValue << 8) & 0xFF
-                }   
+                }
             } else {
                 // Prime
                 let value: number = <number> items.shift() & valueMask
@@ -150,9 +150,9 @@ export class LEDBitmap {
                 buffer[index] = value >> rolloverBits
                 rolloverValue = (value << 7) & 0xFF
             }
-            index += 1    
+            index += 1
         }
-    
+
         return buffer;
     }
 }

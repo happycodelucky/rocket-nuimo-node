@@ -1,7 +1,3 @@
-/**
- * @module nuimo-connect
- */
-
 import { NuimoError } from './nuimo-error'
 
 /**
@@ -24,11 +20,11 @@ export class DeviceCommunicationError extends NuimoError {
     /**
      * Device error code
      */
-    public readonly code: DeviceCommunicationErrorCode
+    readonly code: DeviceCommunicationErrorCode
     /**
      * Device identifier
      */
-    public readonly id: string
+    readonly id: string
 
     /**
      * @param code - connection error code
@@ -53,31 +49,27 @@ export class DeviceCommunicationError extends NuimoError {
  * @param message - optional error mesage
  */
 function deviceCommunicatioErrorMessage(code: DeviceCommunicationErrorCode, id: string, message?: string) {
-    switch(code) {
+    switch (code) {
         case DeviceCommunicationErrorCode.Bluetooth:
             if (message) {
                 return `Bluetooth error on device ${id}: ${message}`
             }
-            return `Unknown bluetooth error on device ${id}`
 
+            return `Unknown bluetooth error on device ${id}`
         case DeviceCommunicationErrorCode.ConnectionTimeout:
             if (message) {
                 return `Connection timeout on device ${id}: ${message}`
             }
-            return `Connection timeout on device ${id}`
 
+            return `Connection timeout on device ${id}`
         case DeviceCommunicationErrorCode.Disconnected:
             return `Device ${id} disconnected`
-
         case DeviceCommunicationErrorCode.NotAvailable:
             return `Device ${id} is not available`
-
         case DeviceCommunicationErrorCode.NotConnectable:
             return `Device ${id} cannot be connected to`
-
         case DeviceCommunicationErrorCode.NotReady:
             return `Communication with device ${id} is not yet ready`
-
         case DeviceCommunicationErrorCode.Unknown:
             return `Unknown error on device ${id}`
     }

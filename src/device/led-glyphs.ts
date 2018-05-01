@@ -1,7 +1,3 @@
-/**
- * @module numio-connect
- */
-
 import { LEDBitmap } from './led-bitmap'
 
 /**

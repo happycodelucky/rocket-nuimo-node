@@ -1,8 +1,4 @@
 /**
- * @module nuimo-connect
- */
-
-/**
  * Generic error message for all Nuimo errors
  */
 export class NuimoError extends Error {

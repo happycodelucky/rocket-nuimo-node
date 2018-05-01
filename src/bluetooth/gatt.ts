@@ -1,6 +1,4 @@
 /**
- * @module nuimo-connect
- * 
  * GATT profile constants
  */
 
@@ -25,21 +23,21 @@ export enum DeviceService {
  * Battery status service characteristics
  */
 export enum BatteryStatusServiceCharacteristic {
-    BatteryLevel        = '2a19'
+    BatteryLevel        = '2a19',
 }
 
 /**
  * LED service characteristics
  */
 export enum LEDServiceCharacteristic {
-    LEDMatrix           = 'f29b1524cb1940f3be5c7241ecb82fd1'
+    LEDMatrix           = 'f29b1524cb1940f3be5c7241ecb82fd1',
 }
 
 /**
  * Nuimo service characteristics
  */
 export enum NuimoServiceCharacteristic {
-    ButtonClick         = 'f29b1529cb1940f3be5c7241ecb82fd2',    
+    ButtonClick         = 'f29b1529cb1940f3be5c7241ecb82fd2',
     Fly                 = 'f29b1526cb1940f3be5c7241ecb82fd2',
     Rotation            = 'f29b1528cb1940f3be5c7241ecb82fd2',
     TouchOrSwipe        = 'f29b1527cb1940f3be5c7241ecb82fd2',
