@@ -2,11 +2,11 @@
  * @module numio-connect
  */
 
-export * from './lib/device/led-glyphs'
-export { DeviceCommunicationError, DeviceCommunicationErrorCode } from './lib/errors/device-communication-error'
-export { DeviceConnectedState, DisplayBitmapOptions, NuimoDevice } from './lib/device/nuimo-device'
-export { DeviceDiscoveryManager, DeviceDiscoveryState } from './lib/discovery/discovery'
-export { DeviceDiscoverySession, DeviceDiscoverySessionOptions } from './lib/discovery/discovery-session'
-export { FlyDirection, LEDBitmapTransitionEffect, SwipeDirection, TouchArea } from './lib/device/nuimo-device'
-export { LEDBitmap, LEDBitmapCompositeMode } from './lib/device/led-bitmap'
-export { NuimoError } from './lib/errors/nuimo-error'
+export * from './device/led-glyphs'
+export { DeviceCommunicationError, DeviceCommunicationErrorCode } from './errors/device-communication-error'
+export { DeviceConnectedState, DisplayBitmapOptions, NuimoDevice } from './device/nuimo-device'
+export { DeviceDiscoveryManager, DeviceDiscoveryState } from './discovery/discovery'
+export { DeviceDiscoverySession, DeviceDiscoverySessionOptions } from './discovery/discovery-session'
+export { FlyDirection, LEDBitmapTransitionEffect, SwipeDirection, TouchArea } from './device/nuimo-device'
+export { LEDBitmap, LEDBitmapCompositeMode } from './device/led-bitmap'
+export { NuimoError } from './errors/nuimo-error'
