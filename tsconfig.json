@@ -13,7 +13,6 @@
         "watch": true
     },
     "compileOnSave": true,
-    
     "include": [
         "index.ts",
         "examples/**/*.ts",
