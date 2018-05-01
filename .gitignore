@@ -147,5 +147,8 @@ Thumbs.db
 ######################
 node_modules
 
-# Test / Automation test results
-dist/test
+# Generared sources
+dev
+dist
+dts
+lib
