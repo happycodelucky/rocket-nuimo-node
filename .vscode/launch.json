@@ -7,14 +7,26 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Example",
-            "program": "${workspaceRoot}/dist/examples/index.js",
+            "name": "01 Device Info Example",
+            "program": "${workspaceRoot}/dev/examples/01-device-info/example-device-info.js",
             "cwd": "${workspaceRoot}",
             "sourceMaps": true,
             "showAsyncStacks": true,
-            "smartStep": true,            
+            "smartStep": false,
             "env": {
-                "NODE_ENV": "local",
+                "DEBUG": "nuimo*",
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "02 Rotation Example",
+            "program": "${workspaceRoot}/dev/examples/02-rotation/example-rotation.js",
+            "cwd": "${workspaceRoot}",
+            "sourceMaps": true,
+            "showAsyncStacks": true,
+            "smartStep": false,
+            "env": {
                 "DEBUG": "nuimo*",
             }
         }
