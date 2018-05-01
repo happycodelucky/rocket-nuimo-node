@@ -1,22 +1,26 @@
 {
     "compilerOptions": {
-        "allowJs": true,
-        "strictNullChecks": true,
         "alwaysStrict": true,
-        "experimentalDecorators": true,
-        "importHelpers": true,
-        "target": "es2017",
-        "module": "commonjs",
-        "outDir": "dist",
-        "sourceMap": true,
+        "importHelpers": false,
         "inlineSourceMap": true,
-        "watch": true
+        "inlineSources": true,
+        "module": "commonjs",
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "outDir": "dev",
+        "pretty": true,
+        "removeComments": true,
+        "strict": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "stripInternal": true,
+        "target": "es2017",
+        "traceResolution": false,
+        "types": ["mocha", "node"],
     },
     "compileOnSave": true,
     "include": [
-        "index.ts",
-        "examples/**/*.ts",
-        "src/**/*.ts"
+        "src/**/*"
     ],
     "exclude":[
         "node_modules"
