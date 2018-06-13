@@ -9,7 +9,6 @@ const MATRIX_HEIGHT = 9
 const MATRIX_WIDTH  = 9
 
 // Mask for bitmap row values
-const BITMAP_ROW_MASK = Math.pow(2, MATRIX_WIDTH) - 1
 const BITMAP_BYTES = Math.ceil((MATRIX_HEIGHT * MATRIX_WIDTH) / 8)
 
 /**
@@ -109,50 +108,50 @@ export class LEDBitmap {
         return new LEDBitmap(buffer)
     }
 
-    //
-    // Private functions
-    //
+    // //
+    // // Private functions
+    // //
 
-    /**
-     * Converts a Uint16 array buffer into a bitmap. This allows bitmaps to be specified as bit patterns consisting on
-     * 9 bits.
-     *
-     * @param bitmap - UInt16 buffer bitmap, with each 2xbyte pair representing a single line
-     */
-    private static _convertBitmapTobuffer(bitmap: Uint16Array) {
-        const buffer: Uint8Array = new Uint8Array(BITMAP_BYTES);
-        let rolloverBits = 0
-        let rolloverValue = 0
-        let index = 0
+    // /**
+    //  * Converts a Uint16 array buffer into a bitmap. This allows bitmaps to be specified as bit patterns consisting on
+    //  * 9 bits.
+    //  *
+    //  * @param bitmap - UInt16 buffer bitmap, with each 2xbyte pair representing a single line
+    //  */
+    // private static _convertBitmapTobuffer(bitmap: Uint16Array) {
+    //     const buffer: Uint8Array = new Uint8Array(BITMAP_BYTES);
+    //     let rolloverBits = 0
+    //     let rolloverValue = 0
+    //     let index = 0
 
-        const valueMask = (Math.pow(2, MATRIX_WIDTH) - 1);
-        const items = [...bitmap, 0]
-        while (items.length) {
-            if (rolloverBits > 0) {
-                let nextRolloverBits = (MATRIX_WIDTH - 8) + rolloverBits
-                if (rolloverBits < 8) {
-                    let value: number = <number> items.shift() & valueMask
-                    buffer[index] = (rolloverValue | (value >> nextRolloverBits)) & 0xFF
+    //     const valueMask = (Math.pow(2, MATRIX_WIDTH) - 1);
+    //     const items = [...bitmap, 0]
+    //     while (items.length) {
+    //         if (rolloverBits > 0) {
+    //             let nextRolloverBits = (MATRIX_WIDTH - 8) + rolloverBits
+    //             if (rolloverBits < 8) {
+    //                 let value: number = <number> items.shift() & valueMask
+    //                 buffer[index] = (rolloverValue | (value >> nextRolloverBits)) & 0xFF
 
-                    // Set next rollover
-                    rolloverValue = (value << (8 - nextRolloverBits)) & 0xFF
-                    rolloverBits = nextRolloverBits;
-                } else {
-                    // There's enough bits not to pull another row
-                    buffer[index] = rolloverValue >> (8 - rolloverBits)
-                    rolloverBits -= 8
-                    rolloverValue = (rolloverValue << 8) & 0xFF
-                }
-            } else {
-                // Prime
-                let value: number = <number> items.shift() & valueMask
-                rolloverBits = MATRIX_WIDTH - 8
-                buffer[index] = value >> rolloverBits
-                rolloverValue = (value << 7) & 0xFF
-            }
-            index += 1
-        }
+    //                 // Set next rollover
+    //                 rolloverValue = (value << (8 - nextRolloverBits)) & 0xFF
+    //                 rolloverBits = nextRolloverBits;
+    //             } else {
+    //                 // There's enough bits not to pull another row
+    //                 buffer[index] = rolloverValue >> (8 - rolloverBits)
+    //                 rolloverBits -= 8
+    //                 rolloverValue = (rolloverValue << 8) & 0xFF
+    //             }
+    //         } else {
+    //             // Prime
+    //             let value: number = <number> items.shift() & valueMask
+    //             rolloverBits = MATRIX_WIDTH - 8
+    //             buffer[index] = value >> rolloverBits
+    //             rolloverValue = (value << 7) & 0xFF
+    //         }
+    //         index += 1
+    //     }
 
-        return buffer;
-    }
+    //     return buffer;
+    // }
 }

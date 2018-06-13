@@ -1,4 +1,4 @@
-import { DeviceDiscoveryManager, NuimoDevice, LEDBitmap, LEDBitmapTransitionEffect } from '../../'
+import { DeviceDiscoveryManager } from '../../discovery/discovery'
 
 // Connection timeout 30 seconds
 const CONNECT_TIMEOUT = 30 * 60

@@ -1,4 +1,4 @@
-import { DeviceDiscoveryManager, NuimoDevice, LEDBitmap, LEDBitmapTransitionEffect } from '../../'
+import { DeviceDiscoveryManager, LEDBitmap, LEDBitmapTransitionEffect, NuimoDevice } from '../../index'
 
 // Connection timeout 30 seconds
 const CONNECT_TIMEOUT = 30 * 60
@@ -49,6 +49,7 @@ function handleRotation(delta: number, rotation: number) {
         currentRotation = calculatedRotation
         console.log(`Rotation at: ${currentRotation + 1}`)
 
+        // @ts-ignore
         const device: NuimoDevice = this as NuimoDevice
         const bitmap: string[] = []
         bitmap[0] = ''.padEnd(Math.min(currentRotation, 9), '*')
