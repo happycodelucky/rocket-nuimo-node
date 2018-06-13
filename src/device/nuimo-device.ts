@@ -13,7 +13,7 @@ import { DeviceService } from '../bluetooth/gatt'
 import { LEDBitmap } from './led-bitmap'
 import { LEDServiceCharacteristic } from '../bluetooth/gatt'
 import { NuimoServiceCharacteristic } from '../bluetooth/gatt'
-import { NuimoError } from '..';
+import { NuimoError } from '../errors/nuimo-error';
 
 // Create debug logger
 const debug = createDebugLogger('nuimo/device')
@@ -113,9 +113,6 @@ const DEVICE_CONNECT_TIMEOUT = 30 // 30 seconds
 // Number of points to accumulate one rotation
 const DEVICE_ROTATION_STEPS = 2666.66
 
-// LED transition effect mask
-const LED_TRANSITION_EFFECT_MASK = 0b0010000
-
 /**
  * Handler function for characteristic notify BLE subscriptions
  */
@@ -159,7 +156,7 @@ export class NuimoDevice extends EventEmitter {
     /**
      * Pending connection promise
      */
-    private _pendingConnection: Promise<boolean>
+    private _pendingConnection?: Promise<boolean>
     /**
      * LED characteristic to write to
      */
@@ -191,7 +188,7 @@ export class NuimoDevice extends EventEmitter {
         if (peripheral.advertisement.localName !== 'Nuimo') {
             throw new TypeError('NuimoDevice(peripheral) does not represent a Nuimo device')
         }
-        this.peripheral = peripheral
+        this._peripheral = peripheral
     }
 
     //
@@ -450,7 +447,7 @@ export class NuimoDevice extends EventEmitter {
         debug(`Connecting to device ${this.id}`)
 
         if (this.connectedState !== DeviceConnectedState.Disconnected) {
-            return this._pendingConnection
+            return this._pendingConnection!
         }
 
         const peripheral = this.peripheral
@@ -511,7 +508,6 @@ export class NuimoDevice extends EventEmitter {
 
                 // Begin service discovery...
                 const services = await new Promise<Service[]>((resolve, reject) => {
-                    const services = [ DeviceService.BatteryStatus, DeviceService.LED, DeviceService.Nuimo ]
                     peripheral.discoverServices([], async (err, services) => {
                         if (err) {
                             reject(new Error(err))
