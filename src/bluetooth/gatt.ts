@@ -8,6 +8,7 @@
 
 /**
  * Services available on Nuimo devices
+ * @internal
  */
 export enum DeviceService {
     BatteryStatus       = '180f',
@@ -21,6 +22,7 @@ export enum DeviceService {
 
 /**
  * Battery status service characteristics
+ * @internal
  */
 export enum BatteryStatusServiceCharacteristic {
     BatteryLevel        = '2a19',
@@ -28,6 +30,7 @@ export enum BatteryStatusServiceCharacteristic {
 
 /**
  * LED service characteristics
+ * @internal
  */
 export enum LEDServiceCharacteristic {
     LEDMatrix           = 'f29b1524cb1940f3be5c7241ecb82fd1',
@@ -35,6 +38,7 @@ export enum LEDServiceCharacteristic {
 
 /**
  * Nuimo service characteristics
+ * @internal
  */
 export enum NuimoServiceCharacteristic {
     ButtonClick         = 'f29b1529cb1940f3be5c7241ecb82fd2',
@@ -49,6 +53,7 @@ export enum NuimoServiceCharacteristic {
 
 /**
  * Button click characteristic data values
+ * @internal
  */
 export enum ButtonClickCharacteristicData {
     Released            = 0,
@@ -57,6 +62,7 @@ export enum ButtonClickCharacteristicData {
 
 /**
  * Fly characteristic data values
+ * @internal
  */
 export enum FlyCharacteristicData {
     Left                = 0,
@@ -66,6 +72,7 @@ export enum FlyCharacteristicData {
 
 /**
  * Touch/Swipe characteristic data values
+ * @internal
  */
 export enum TouchOrSwipeCharacteristicData {
     SwipeLeft           = 0,

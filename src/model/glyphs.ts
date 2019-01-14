@@ -1,10 +1,10 @@
-import { LEDBitmap } from './led-bitmap'
+import { Glyph } from './glyph'
 
 /**
- * Digit bitmap
+ * Digit glyphs
  */
-export const digitBitmaps = [
-    LEDBitmap.fromBitmapString([
+export const digitGlyphs = [
+    Glyph.fromString([
         '         ',
         '   ***   ',
         '  *   *  ',
@@ -15,7 +15,7 @@ export const digitBitmaps = [
         '   ***   ',
         '         ',
     ]),
-    LEDBitmap.fromBitmapString([
+    Glyph.fromString([
         '         ',
         '    *    ',
         '   **    ',
@@ -26,7 +26,7 @@ export const digitBitmaps = [
         '   ***   ',
         '         ',
     ]),
-    LEDBitmap.fromBitmapString([
+    Glyph.fromString([
         '         ',
         '   ***   ',
         '  *   *  ',
@@ -37,7 +37,7 @@ export const digitBitmaps = [
         '  *****  ',
         '         ',
     ]),
-    LEDBitmap.fromBitmapString([
+    Glyph.fromString([
         '         ',
         '   ***   ',
         '  *   *  ',
@@ -48,7 +48,7 @@ export const digitBitmaps = [
         '   ***   ',
         '         ',
     ]),
-    LEDBitmap.fromBitmapString([
+    Glyph.fromString([
         '         ',
         '     *   ',
         '    **   ',
@@ -59,7 +59,7 @@ export const digitBitmaps = [
         '     *   ',
         '         ',
     ]),
-    LEDBitmap.fromBitmapString([
+    Glyph.fromString([
         '         ',
         '   ****  ',
         '  *      ',
@@ -70,7 +70,7 @@ export const digitBitmaps = [
         '   ***   ',
         '         ',
     ]),
-    LEDBitmap.fromBitmapString([
+    Glyph.fromString([
         '         ',
         '   ***   ',
         '  *   *  ',
@@ -81,7 +81,7 @@ export const digitBitmaps = [
         '   ***   ',
         '         ',
     ]),
-    LEDBitmap.fromBitmapString([
+    Glyph.fromString([
         '         ',
         '  ****   ',
         '      *  ',
@@ -92,7 +92,7 @@ export const digitBitmaps = [
         '    *    ',
         '         ',
     ]),
-    LEDBitmap.fromBitmapString([
+    Glyph.fromString([
         '         ',
         '   ***   ',
         '  *   *  ',
@@ -103,7 +103,7 @@ export const digitBitmaps = [
         '   ***   ',
         '         ',
     ]),
-    LEDBitmap.fromBitmapString([
+    Glyph.fromString([
         '         ',
         '   ***   ',
         '  *   *  ',
@@ -113,13 +113,13 @@ export const digitBitmaps = [
         '  *   *  ',
         '   ***   ',
         '         ',
-    ])
+    ]),
 ]
 
 /**
- * Right arrow bitmap
+ * Right arrow glyph
  */
-export const rightBitmap = LEDBitmap.fromBitmapString([
+export const rightGlyph = Glyph.fromString([
     '         ',
     '  * *    ',
     '   * *   ',
@@ -132,9 +132,9 @@ export const rightBitmap = LEDBitmap.fromBitmapString([
 ])
 
 /**
- * Left arrow bitmpa
+ * Left arrow glyphs
  */
-export const leftBitmap = LEDBitmap.fromBitmapString([
+export const leftGlyph = Glyph.fromString([
     '         ',
     '    * *  ',
     '   * *   ',
@@ -147,9 +147,9 @@ export const leftBitmap = LEDBitmap.fromBitmapString([
 ])
 
 /**
- * Error bitmap
+ * Error glyph
  */
-export const errorBitmap = LEDBitmap.fromBitmapString([
+export const errorGlyph = Glyph.fromString([
     '         ',
     '         ',
     '  *   *  ',
@@ -162,9 +162,9 @@ export const errorBitmap = LEDBitmap.fromBitmapString([
 ])
 
 /**
- * Link icon (infinity) bitmap
+ * Link icon (infinity) glyph
  */
-export const linkBitmap = LEDBitmap.fromBitmapString([
+export const linkGlyph = Glyph.fromString([
     '         ',
     ' **   ** ',
     '*  * *  *',
@@ -177,9 +177,9 @@ export const linkBitmap = LEDBitmap.fromBitmapString([
 ])
 
 /**
- * Play bitmap icon
+ * Play icon glyph
  */
-export const playBitmap = LEDBitmap.fromBitmapString([
+export const playGlyph = Glyph.fromString([
     '         ',
     '   *     ',
     '   **    ',
@@ -192,9 +192,9 @@ export const playBitmap = LEDBitmap.fromBitmapString([
 ])
 
 /**
- * Stop icon bitmap
+ * Stop icon glyph
  */
-export const stopBitmap = LEDBitmap.fromBitmapString([
+export const stopGlyph = Glyph.fromString([
     '         ',
     ' ******* ',
     ' ******* ',
@@ -207,9 +207,9 @@ export const stopBitmap = LEDBitmap.fromBitmapString([
 ])
 
 /**
- * Pause icon bitmap
+ * Pause icon glyph
  */
-export const pauseBitmap = LEDBitmap.fromBitmapString([
+export const pauseGlyph = Glyph.fromString([
     '         ',
     '  ** **  ',
     '  ** **  ',
@@ -222,9 +222,9 @@ export const pauseBitmap = LEDBitmap.fromBitmapString([
 ])
 
 /**
- * Empty bitmap
+ * Empty glyph
  */
-export const emptyBitmap = LEDBitmap.fromBitmapString([
+export const emptyGlyph = Glyph.fromString([
     '         ',
     '         ',
     '         ',
@@ -237,9 +237,9 @@ export const emptyBitmap = LEDBitmap.fromBitmapString([
 ])
 
 /**
- * Filled bitmap
+ * Filled glyph
  */
-export const bitmapFilled = LEDBitmap.fromBitmapString([
+export const filledGlyph = Glyph.fromString([
     '*********',
     '*********',
     '*********',

@@ -3,7 +3,7 @@ import { NuimoError } from './nuimo-error'
 /**
  * Error code for connection class errors for a device
  */
-export enum DeviceCommunicationErrorCode {
+export enum NuimoDeviceCommunicationErrorCode {
     Unknown             = 'unknown',
     NotAvailable        = 'notAvailable',
     NotConnectable      = 'notConnectable',
@@ -16,11 +16,11 @@ export enum DeviceCommunicationErrorCode {
 /**
  * Class of error related to device communication errors with a known device
  */
-export class DeviceCommunicationError extends NuimoError {
+export class NuimoDeviceCommunicationError extends NuimoError {
     /**
      * Device error code
      */
-    readonly code: DeviceCommunicationErrorCode
+    readonly code: NuimoDeviceCommunicationErrorCode
     /**
      * Device identifier
      */
@@ -30,8 +30,8 @@ export class DeviceCommunicationError extends NuimoError {
      * @param code - connection error code
      * @param id - device ID for the connection error
      */
-    constructor(code: DeviceCommunicationErrorCode, id: string, message?: string) {
-        super(deviceCommunicatioErrorMessage(code, id, message), 'DeviceCommunicationErrorCode')
+    constructor(code: NuimoDeviceCommunicationErrorCode, id: string, message?: string) {
+        super(deviceCommunicatioErrorMessage(code, id, message), 'NuimoDeviceCommunicationErrorCode')
 
         this.code = code
         this.id = id
@@ -48,29 +48,29 @@ export class DeviceCommunicationError extends NuimoError {
  * @param id - device ID for the connection error
  * @param message - optional error mesage
  */
-function deviceCommunicatioErrorMessage(code: DeviceCommunicationErrorCode, id: string, message?: string) {
+function deviceCommunicatioErrorMessage(code: NuimoDeviceCommunicationErrorCode, id: string, message?: string) {
     switch (code) {
-        case DeviceCommunicationErrorCode.Bluetooth:
+        case NuimoDeviceCommunicationErrorCode.Bluetooth:
             if (message) {
                 return `Bluetooth error on device ${id}: ${message}`
             }
 
             return `Unknown bluetooth error on device ${id}`
-        case DeviceCommunicationErrorCode.ConnectionTimeout:
+        case NuimoDeviceCommunicationErrorCode.ConnectionTimeout:
             if (message) {
                 return `Connection timeout on device ${id}: ${message}`
             }
 
             return `Connection timeout on device ${id}`
-        case DeviceCommunicationErrorCode.Disconnected:
+        case NuimoDeviceCommunicationErrorCode.Disconnected:
             return `Device ${id} disconnected`
-        case DeviceCommunicationErrorCode.NotAvailable:
+        case NuimoDeviceCommunicationErrorCode.NotAvailable:
             return `Device ${id} is not available`
-        case DeviceCommunicationErrorCode.NotConnectable:
+        case NuimoDeviceCommunicationErrorCode.NotConnectable:
             return `Device ${id} cannot be connected to`
-        case DeviceCommunicationErrorCode.NotReady:
+        case NuimoDeviceCommunicationErrorCode.NotReady:
             return `Communication with device ${id} is not yet ready`
-        case DeviceCommunicationErrorCode.Unknown:
+        case NuimoDeviceCommunicationErrorCode.Unknown:
             return `Unknown error on device ${id}`
     }
 }

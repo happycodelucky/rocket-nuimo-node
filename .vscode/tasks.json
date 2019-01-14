@@ -6,7 +6,7 @@
         {
             "label": "Nuimo Developer Build",
             "type": "typescript",
-            "tsconfig": "tsconfig.json",
+            "tsconfig": "src/tsconfig.json",
             "isBackground": true,
             "problemMatcher": [
                 "$tsc-watch"

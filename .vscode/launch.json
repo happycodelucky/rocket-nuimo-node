@@ -20,15 +20,17 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "02 Rotation Example",
-            "program": "${workspaceRoot}/dev/examples/02-rotation/example-rotation.js",
-            "cwd": "${workspaceRoot}",
-            "sourceMaps": true,
-            "showAsyncStacks": true,
-            "smartStep": false,
+            "name": "LED Display",
+            "program": "${workspaceFolder}/node_modules/.bin/ts-node",
+            "args": [
+                "./examples/05-display/example-display.ts"
+            ],
             "env": {
                 "DEBUG": "nuimo*",
-            }
+            },
+            "sourceMaps": true,
+            "showAsyncStacks": true,
+            "smartStep": true
         }
     ]
 }

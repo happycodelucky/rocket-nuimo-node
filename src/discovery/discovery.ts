@@ -5,45 +5,38 @@
 import * as createDebugLogger from 'debug'
 import * as noble from 'noble'
 import * as weak from 'weak'
+
 import { EventEmitter } from 'events'
 import { Peripheral } from 'noble'
 
 import { DeviceDiscoverySession, DeviceDiscoverySessionOptions } from './discovery-session'
-import { NuimoDevice } from '../device/nuimo-device'
+import { DeviceDiscoveryState } from './device-discovery-state'
+import { NuimoDevice } from '../model/nuimo-device'
+import { NuimoError } from '../errors/nuimo-error'
+import { NuimoPeripheral } from '../device/nuimo-peripheral';
 
-const debug = createDebugLogger('nuimo:discovery')
-
-/**
- * Discovery states for device discovery
- */
-export enum DeviceDiscoveryState {
-    Initial                 = 0x0,
-    BluetoothUnavailable    = 0x1,
-    AwaitingDiscovering     = 0x10,
-    Discovering             = 0x11,
-}
+const debug = createDebugLogger('nuimo/discovery')
+const debugBluetooth = createDebugLogger('nuimo/bluetooth')
 
 /**
  * A device manager is the main entry for connecting to Nuimo devices. It offers device discovery and
- *
- * Events:
- * - started
- * - stopped
- * - device
  */
 export class DeviceDiscoveryManager extends EventEmitter {
     /**
      * Device discovery state
      */
     private managerDiscoveryState: DeviceDiscoveryState = DeviceDiscoveryState.Initial
+
     /**
      * Active discovery sessions
      */
     private activeSessions: Set<DeviceDiscoverySession> = new Set()
+
     /**
      * All devices discovered, index by device ID
      */
     private discoveredDevicesMap: Map<string, NuimoDevice> = new Map()
+
     /**
      * Indiciates if a discovery should be performed when the BT radio is powered on
      */
@@ -89,7 +82,6 @@ export class DeviceDiscoveryManager extends EventEmitter {
      * Start a new discovery session to discover Nuimo devices
      *
      * @param options - discovery session options
-     *
      * @return Session object initialized based on options and to observe discovery events on
      */
     startDiscoverySession(options?: DeviceDiscoverySessionOptions): DeviceDiscoverySession {
@@ -98,29 +90,30 @@ export class DeviceDiscoveryManager extends EventEmitter {
             // TODO: Should we account for BT initialization for timeouts?
             this.initializeBluetooth()
 
-            const self = this
             noble.on('discover', async (peripheral: Peripheral) => {
                 const isNuimoDevice = (peripheral.advertisement.localName === 'Nuimo')
                 if (isNuimoDevice) {
                     debug(`Nuimo device found ${peripheral.uuid}`)
 
                     // Create a new device or pull the one from the cache
-                    const existingDevice = self.discoveredDevicesMap.get(peripheral.uuid)
+                    const existingDevice = this.discoveredDevicesMap.get(peripheral.uuid)
 
-                    const device = existingDevice || new NuimoDevice(peripheral)
-                    device.peripheral = peripheral
+                    const device = existingDevice || new NuimoDevice(new NuimoPeripheral(peripheral))
+                    if (existingDevice) {
+                        device.peripheral.peripheral = peripheral
+                    }
 
                     // Cache device using a weak reference
                     if (!existingDevice) {
                         const uuid = peripheral.uuid
                         weak(device, () => {
-                            const weakDevice = self.discoveredDevicesMap.get(uuid)
+                            const weakDevice = this.discoveredDevicesMap.get(uuid)
                             if (weak.isDead(weakDevice!) || weak.isNearDeath(weakDevice!)) {
-                                self.discoveredDevicesMap.delete(uuid)
+                                this.discoveredDevicesMap.delete(uuid)
                             }
                         })
 
-                        self.discoveredDevicesMap.set(peripheral.uuid, device)
+                        this.discoveredDevicesMap.set(peripheral.uuid, device)
 
                         // TODO: Auto-reconnect handling
                         // // Listen for connect/disconnect
@@ -132,7 +125,7 @@ export class DeviceDiscoveryManager extends EventEmitter {
                     }
 
                     // Emit event
-                    self.emit('device', device, !!existingDevice)
+                    this.emit('device', device, !!existingDevice)
 
                     // Allow each session to handle the device as appropriate
                     this.activeSessions.forEach((session) => {
@@ -155,6 +148,7 @@ export class DeviceDiscoveryManager extends EventEmitter {
             return discoverySession
         }
 
+        // Start discovery
         this.discoverDevices()
 
         return discoverySession
@@ -172,7 +166,7 @@ export class DeviceDiscoveryManager extends EventEmitter {
         }
 
         // If there are no more session, end discovery
-        if (this.activeSessions.size === 0 && this.managerDiscoveryState !== DeviceDiscoveryState.AwaitingDiscovering) {
+        if (this.activeSessions.size === 0 && this.managerDiscoveryState !== DeviceDiscoveryState.Ready) {
             this.stopDiscovery()
         }
     }
@@ -182,7 +176,7 @@ export class DeviceDiscoveryManager extends EventEmitter {
      */
     stopDiscovery() {
         // If discovery has already been stopped, there is nothing to do
-        if (this.managerDiscoveryState === DeviceDiscoveryState.AwaitingDiscovering) {
+        if (this.managerDiscoveryState === DeviceDiscoveryState.Ready) {
             return
         }
 
@@ -191,7 +185,7 @@ export class DeviceDiscoveryManager extends EventEmitter {
 
         // Only if in discovery mode should the state change
         if (this.managerDiscoveryState >= DeviceDiscoveryState.Discovering) {
-            this.managerDiscoveryState = DeviceDiscoveryState.AwaitingDiscovering
+            this.managerDiscoveryState = DeviceDiscoveryState.Ready
         }
 
         // Stop discovery on each session, removing it from the session pool
@@ -208,7 +202,7 @@ export class DeviceDiscoveryManager extends EventEmitter {
     //
 
     /**
-     * Initialized bluetooth on the host hardware, ensuring it's powered on
+     * Initializes bluetooth on the host hardware, ensuring it's powered on before initiating discovery
      */
     private initializeBluetooth() {
         // Only initialized if the discovery was never started
@@ -216,35 +210,36 @@ export class DeviceDiscoveryManager extends EventEmitter {
             return
         }
 
-        debug('[bluetooth] waiting for poweredOn state')
+        debug('Waiting for poweredOn state')
         this.managerDiscoveryState = DeviceDiscoveryState.BluetoothUnavailable
 
-        const self = this
-        function onPowerStateChange(state: string) {
-            debug(`[bluetooth] ${state}`)
+        const onPowerStateChange = (state: string) => {
+            debugBluetooth(`Bluetooth state: ${state}`)
 
             const poweredOn = state === 'poweredOn'
             if (poweredOn) {
                 debug('Bluetooth powered on')
+                debugBluetooth('Bluetooth powered on')
                 // Awaiting discovery
-                self.managerDiscoveryState = DeviceDiscoveryState.AwaitingDiscovering
-                if (self.discoverWhenPoweredOnRequested) {
-                    self.discoverDevices()
+                this.managerDiscoveryState = DeviceDiscoveryState.Ready
+                if (this.discoverWhenPoweredOnRequested) {
+                    this.discoverDevices()
                 }
             } else {
                 debug('Bluetooth powered off')
+                debugBluetooth('Bluetooth powered off')
                 // Radio has been powered off
-                const wasInDiscovery = self.managerDiscoveryState === DeviceDiscoveryState.Discovering
+                const wasInDiscovery = this.managerDiscoveryState === DeviceDiscoveryState.Discovering
 
                 // Stop all discovery
-                self.stopDiscovery()
+                this.stopDiscovery()
 
                 // If discovery was in progress, then request discovery again when BT is available
                 if (wasInDiscovery) {
-                    debug('was in discovery, will auto-resume on onPoweredOn')
+                    debug('Was in Discovering, will auto-resume on onPoweredOn')
 
-                    self.managerDiscoveryState = DeviceDiscoveryState.BluetoothUnavailable
-                    self.discoverWhenPoweredOnRequested = true
+                    this.managerDiscoveryState = DeviceDiscoveryState.BluetoothUnavailable
+                    this.discoverWhenPoweredOnRequested = true
                 }
 
                 // // Allow each session to handle the device as appropriate
@@ -253,7 +248,7 @@ export class DeviceDiscoveryManager extends EventEmitter {
                 // })
 
                 // Disconnect all devices and reconnect when BT is available again
-                self.discoveredDevices.forEach(device => {
+                this.discoveredDevices.forEach(device => {
                     device.disconnect()
                 })
             }
@@ -272,7 +267,7 @@ export class DeviceDiscoveryManager extends EventEmitter {
      * Kicks off device discovery
      */
     private discoverDevices() {
-        if (this.managerDiscoveryState !== DeviceDiscoveryState.AwaitingDiscovering) {
+        if (this.managerDiscoveryState !== DeviceDiscoveryState.Ready) {
             return
         }
 
@@ -284,4 +279,30 @@ export class DeviceDiscoveryManager extends EventEmitter {
 
         this.emit('started')
     }
+}
+
+//
+// Event interface
+//
+
+export interface DeviceDiscoveryManager extends EventEmitter {
+    addListener(event: 'device', listener: (device: NuimoDevice, newDevice: boolean) => void): this
+    addListener(event: 'error', listener: (device: NuimoError) => void): this
+    addListener(event: 'started' | 'stopped', listener: () => void): this
+
+    emit(event: 'device', device: NuimoDevice, newDevice: boolean): boolean
+    emit(event: 'error', error: NuimoError): boolean
+    emit(event: 'started' | 'stopped'): boolean
+
+    on(event: 'device', listener: (device: NuimoDevice, newDevice: boolean) => void): this
+    on(event: 'error', listener: (error: Error) => void): this
+    on(event: 'started' | 'stopped', listener: () => void): this
+
+    prependListener(event: 'device', listener: (device: NuimoDevice, newDevice: boolean) => void): this
+    prependListener(event: 'error', listener: (error: NuimoError) => void): this
+    prependListener(event: 'started' | 'stopped', listener: () => void): this
+
+    prependOnceListener(event: 'device', listener: (device: NuimoDevice, newDevice: boolean) => void): this
+    prependOnceListener(event: 'error', listener: (error: NuimoError) => void): this
+    prependOnceListener(event: 'started' | 'stopped', listener: () => void): this
 }
