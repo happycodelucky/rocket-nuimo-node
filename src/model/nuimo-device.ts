@@ -3,10 +3,10 @@ import { EventEmitter } from 'events'
 import { ButtonClickCharacteristicData, FlyCharacteristicData, TouchOrSwipeCharacteristicData } from '../bluetooth/gatt'
 import { Glyph } from './glyph'
 import { NuimoBitmap } from '../device/nuimo-bitmap'
-import { NuimoError } from '../../dts/errors/nuimo-error'
 import { NuimoPeripheral } from '../device/nuimo-peripheral'
 import { SwipeGestureDirection } from './swipe-gesture-direction'
 import { TouchGestureArea } from './touch-gesture-area'
+import { NuimoOnErrorCallback, NuimoOnEventCallback } from '../callbacks/callbacks'
 
 /**
  * Display transition when displaying a glyph
@@ -24,7 +24,7 @@ export enum DisplayTransition {
 }
 
 /**
- *
+ * Options used when calling displayGlyph
  */
 export interface DisplayGlyphOptions {
     /**
@@ -46,36 +46,47 @@ export interface DisplayGlyphOptions {
     timeoutMs?: number
 }
 
+type HoverEvents = 'hover'
 type RotateEvents = 'rotate' | 'rotateLeft' | 'rotateRight'
 type SelectEvents = 'select' | 'selectUp' | 'selectDown'
 type SwipeEvents = 'swipeUp' | 'swipeLeft' | 'swipeRight' | 'swipeDown'
 type TapEvents = 'touchTop' | 'touchLeft' | 'touchRight' | 'touchBottom'
 type TouchEvents = 'longTouchTop' | 'longTouchLeft' | 'longTouchRight' | 'longTouchBottom'
-type HoverEvents = 'hover' | 'hoverIn' | 'hoverOut'
 
 /**
  * Declaration for events
  */
 export declare interface NuimoDevice {
     on(event: HoverEvents, listener: (proximity: number) => void): this
-    on(event: SelectEvents | TapEvents | TouchEvents, listener: () => void): this
+    on(event: SelectEvents | TapEvents | TouchEvents, listener: NuimoOnEventCallback): this
     on(event: RotateEvents, listener: (delta: number, rotation: number) => void): this
     on(event: SwipeEvents , listener: (touchless: boolean) => void): this
     on(event: 'swipe' , listener: (direction: SwipeGestureDirection, touchless: boolean) => void): this
     on(event: 'touch' | 'longTouch' , listener: (area: TouchGestureArea) => void): this
-    on(event: 'error', listener: (error: NuimoError) => void): this;
+    on(event: 'error', listener: NuimoOnErrorCallback): this;
     on(event: 'batteryLevel', listener: (level: number) => void): this;
+    on(event: 'rssi', listener: (power: number) => void): this;
+
+    once(event: HoverEvents, listener: (proximity: number) => void): this
+    once(event: SelectEvents | TapEvents | TouchEvents, listener: NuimoOnEventCallback): this
+    once(event: RotateEvents, listener: (delta: number, rotation: number) => void): this
+    once(event: SwipeEvents , listener: (touchless: boolean) => void): this
+    once(event: 'swipe' , listener: (direction: SwipeGestureDirection, touchless: boolean) => void): this
+    once(event: 'touch' | 'longTouch' , listener: (area: TouchGestureArea) => void): this
+    once(event: 'error', listener: NuimoOnErrorCallback): this;
+    once(event: 'batteryLevel', listener: (level: number) => void): this;
+    once(event: 'rssi', listener: (power: number) => void): this;
 }
 
 /**
- *
+ * A Nuimo device client for interacting with BT Nuimo peripheral
  */
 export class NuimoDevice extends EventEmitter {
     /**
      * Associated peripheral
      * @internal
      */
-    private nuimoPeripheral: NuimoPeripheral
+    nuimoPeripheral: NuimoPeripheral
 
     /**
      * Brightness level for the Nuimo device display
@@ -90,14 +101,17 @@ export class NuimoDevice extends EventEmitter {
     private internalMinRotation = 0
     /**
      * Maximum rotation (default 1.0)
+     * @internal
      */
     private internalMaxRotation = 1
     /**
      * Rotation level of the device between `minRotation` and `maxRotation`
+     * @internal
      */
     private internalRotation = 0
 
     /**
+     * @internal
      * @param peripheral - bluetooth peripheral representing the Nuimo device
      */
     constructor(peripheral: NuimoPeripheral) {
@@ -110,13 +124,6 @@ export class NuimoDevice extends EventEmitter {
     //
     // Public properties
     //
-
-    /**
-     * Underlying nuimo peripheral
-     */
-    get peripheral(): NuimoPeripheral {
-        return this.nuimoPeripheral
-    }
 
     /**
      * Indicates if there is a connection established to the Nuimo device
@@ -133,10 +140,17 @@ export class NuimoDevice extends EventEmitter {
     }
 
     /**
-     * Nuimo battery level
+     * Nuimo device battery level
      */
     get batteryLevel(): number | undefined {
         return this.nuimoPeripheral.batteryLevel
+    }
+
+    /**
+     * Nuimo device RSSI
+     */
+    get rssi(): number | undefined {
+        return this.nuimoPeripheral.rssi
     }
 
     /**
@@ -148,6 +162,9 @@ export class NuimoDevice extends EventEmitter {
 
     /**
      * Set brightness level of the Nuimo screen
+     *
+     * Note: This will only be reflected when a new glyph is displayed
+     * due to the way Nuimo operates
      *
      * @param brightness - Brightness level between 0.0-1.0
      */
@@ -256,23 +273,25 @@ export class NuimoDevice extends EventEmitter {
      *
      * @param peripheral - peripheral device to bind events to
      */
-    bindToPeripheral(peripheral: NuimoPeripheral) {
+    private bindToPeripheral(peripheral: NuimoPeripheral) {
         peripheral.on('disconnect', () => this.emit('disconnect'))
         peripheral.on('batteryLevel', () => this.emit('batteryLevel', this.batteryLevel))
         peripheral.on('button', this.onButtonClick.bind(this))
-        peripheral.on('swipe', this.onSwipe.bind(this))
-        peripheral.on('touch', this.onTouch.bind(this))
-        peripheral.on('longTouch', this.onLongTouch.bind(this))
-        peripheral.on('rotate', this.onRotate.bind(this))
         peripheral.on('fly', this.onFly.bind(this))
         peripheral.on('hover', this.onHover.bind(this))
+        peripheral.on('longTouch', this.onLongTouch.bind(this))
+        peripheral.on('rotate', this.onRotate.bind(this))
+        peripheral.on('rssi', () => this.emit('rssi', this.rssi))
+        peripheral.on('swipe', this.onSwipe.bind(this))
+        peripheral.on('touch', this.onTouch.bind(this))
     }
 
     //
     // Event handlers
     //
 
-    onButtonClick(state: ButtonClickCharacteristicData) {
+    /** @internal */
+    private onButtonClick(state: ButtonClickCharacteristicData) {
         if (state === ButtonClickCharacteristicData.Released) {
             this.emit('buttonUp')
             this.emit('select')
@@ -281,7 +300,8 @@ export class NuimoDevice extends EventEmitter {
         }
     }
 
-    onSwipe(state: TouchOrSwipeCharacteristicData) {
+    /** @internal */
+    private onSwipe(state: TouchOrSwipeCharacteristicData) {
         if (state === TouchOrSwipeCharacteristicData.SwipeDown) {
             this.emit('swipeDown', false)
             this.emit('swipe', SwipeGestureDirection.Down, false)
@@ -297,7 +317,8 @@ export class NuimoDevice extends EventEmitter {
         }
     }
 
-    onTouch(state: TouchOrSwipeCharacteristicData) {
+    /** @internal */
+    private onTouch(state: TouchOrSwipeCharacteristicData) {
         if (state === TouchOrSwipeCharacteristicData.TouchBottom) {
             this.emit('tapUp')
             this.emit('tap', TouchGestureArea.Bottom)
@@ -313,7 +334,8 @@ export class NuimoDevice extends EventEmitter {
         }
     }
 
-    onLongTouch(state: TouchOrSwipeCharacteristicData) {
+    /** @internal */
+    private onLongTouch(state: TouchOrSwipeCharacteristicData) {
         if (state === TouchOrSwipeCharacteristicData.LongTouchBottom) {
             this.emit('longTouchUp')
             this.emit('longTouch', TouchGestureArea.Bottom)
@@ -329,7 +351,8 @@ export class NuimoDevice extends EventEmitter {
         }
     }
 
-    onRotate(delta: number) {
+    /** @internal */
+    private onRotate(delta: number) {
         const rotation = this.rotation
 
         // Setting rotation is clamped
@@ -346,7 +369,8 @@ export class NuimoDevice extends EventEmitter {
         }
     }
 
-    onFly(state: FlyCharacteristicData) {
+    /** @internal */
+    private onFly(state: FlyCharacteristicData) {
         if (state === FlyCharacteristicData.Left) {
             this.emit('swipeLeft', true)
             this.emit('swipe', SwipeGestureDirection.Left, true)
@@ -356,7 +380,8 @@ export class NuimoDevice extends EventEmitter {
         }
     }
 
-    onHover(proximity: number) {
-        console.log(`Proximity: ${proximity}`)
+    /** @internal */
+    private onHover(proximity: number) {
+        this.emit('hover', proximity)
     }
 }
