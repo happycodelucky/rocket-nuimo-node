@@ -1,4 +1,3 @@
-export * from './hover-gesture-direction'
 export * from './glyph'
 export * from './glyph-alignment'
 export * from './glyphs'
