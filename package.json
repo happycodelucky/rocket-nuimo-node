@@ -1,21 +1,17 @@
 {
-  "name": "nuimo-connect",
-  "version": "0.4.0",
-  "description": "Typescript connection module for Nuimo by Senic",
+  "name": "rocket-nuimo",
+  "version": "0.4.1",
+  "description": "Client package for connecting to Nuimo by Senic",
   "main": "lib/index.js",
   "types": "dts/index.d.ts",
-  "author": "Paul Bates (paul.bates@rocoder.io)",
+  "author": "Paul Bates (paul.bates@gorocode.io)",
   "license": "MIT",
   "dependencies": {
     "check-types": "^7.4",
     "debug": "^3.1",
     "noble": "https://github.com/Timeular/noble-mac",
     "tslib": "^1.9",
-    "weak": "^1.0",
-    "xpc-connection": "sandeepmistry/node-xpc-connection#pull/26/head"
-  },
-  "resolutions": {
-    "xpc-connection": "sandeepmistry/node-xpc-connection#pull/26/head"
+    "weak": "^1.0"
   },
   "devDependencies": {
     "@types/debug": "^0.0.31",
@@ -36,10 +32,10 @@
     "source-map-support": "^0.5.10",
     "ts-node-dev": "^1.0.0-pre.32",
     "tslint": "^5.11",
-    "typescript": "^2.3"
+    "typescript": "^3.2"
   },
   "scripts": {
-    "test": "nyc mocha -r ts-node/register -r test/prepare test/**/*.spec.ts --reporter mochaawesome",
+    "test": "nyc mocha -r ts-node/register -r test/prepare test/**/*.spec.ts",
     "example-device-info": "ts-node --project ./examples/tsconfig.json ./examples/01-device-info/example-device-info.ts"
   }
 }
