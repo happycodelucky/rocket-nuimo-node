@@ -18,7 +18,7 @@ export interface DeviceDiscoverySessionOptions {
     /**
      * Timeout in milliseconds before auto-stopping discovery
      */
-    timeout?: number
+    timeoutMs?: number
 
     /**
      * List of know device IDs to discover
@@ -87,7 +87,7 @@ export class DeviceDiscoverySession extends EventEmitter {
         this.sessionDiscoveryState = manager.discoveryState
 
         // Initialize a timeout
-        const timeout = this.discoveryOptions.timeout
+        const timeout = this.discoveryOptions.timeoutMs
         if (timeout && timeout > 0) {
             if (options instanceof Object) {
                 this.timeoutTimer = setTimeout(this.onSessionTimeout.bind(this), timeout)
