@@ -1,2 +1,3 @@
-# nuimo-connect-node
-Nuimo device discovery, connection manager, and interface control. Written in TypeScript
+# rocket-nuimo
+![Rocket Nuimo][https://github.com/pryomoax/nuimo-connect-node/raw/master/assets/rocket-nuimo.png]
+
