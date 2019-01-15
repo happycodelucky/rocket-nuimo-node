@@ -1,12 +1,4 @@
 /**
- * GATT profile constants
- */
-
-//
-// Services
-//
-
-/**
  * Services available on Nuimo devices
  * @internal
  */
@@ -15,10 +7,6 @@ export enum DeviceService {
     LED                 = 'f29b1523cb1940f3be5c7241ecb82fd1',
     Nuimo               = 'f29b1525cb1940f3be5c7241ecb82fd2',
 }
-
-//
-// Service characteristics
-//
 
 /**
  * Battery status service characteristics
@@ -46,10 +34,6 @@ export enum NuimoServiceCharacteristic {
     Rotation            = 'f29b1528cb1940f3be5c7241ecb82fd2',
     TouchOrSwipe        = 'f29b1527cb1940f3be5c7241ecb82fd2',
 }
-
-//
-// Characteristic values
-//
 
 /**
  * Button click characteristic data values
