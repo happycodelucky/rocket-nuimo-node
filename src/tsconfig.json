@@ -1,7 +1,10 @@
 {
     "extends": "../tsconfig.json",
     "compilerOptions": {
-
+        // Nothing more to add to the defaults
+        "declaration": true,
+        "declarationDir": "../dts",
+        "outDir": "../lib",
     },
     "include": [
         "index.ts"

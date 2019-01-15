@@ -15,7 +15,6 @@
         "noErrorTruncation": true,
         "noImplicitReturns": true,
         "noUnusedLocals": true,
-        "outDir": "lib",
         "pretty": true,
         "removeComments": false,
         "resolveJsonModule": true,
@@ -24,10 +23,7 @@
         "strictNullChecks": true,
         "strictPropertyInitialization": true,
         "stripInternal": true,
-        "target": "es2017",
-
-        "declaration": true,
-        "declarationDir": "dts"
+        "target": "es2017"
     },
     "typeAcquisition": {
         "enable": true,
