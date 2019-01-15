@@ -4,17 +4,15 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Nuimo Developer Build",
+            "label": "Build Node.js (rocket-nuimo)",
             "type": "typescript",
             "tsconfig": "src/tsconfig.json",
             "isBackground": true,
-            "problemMatcher": [
-                "$tsc-watch"
-            ],
+            "problemMatcher":  "$tsc-watch",
             "option": "watch",
             "presentation": {
                 "echo": true,
-                "reveal": "silent",
+                "reveal": "never",
                 "focus": false,
                 "panel": "shared"
             },
