@@ -22,10 +22,15 @@ const DEVICE_CONNECT_TIMEOUT_MS = 30 * 1000 // 30 seconds
 const DEVICE_ROTATION_POINTS = Math.PI * 1000
 
 // Number of points measured for hover proximity
-const DEVICE_HOVER_PROXIMITY_POINTS = 0xFF
+const DEVICE_HOVER_PROXIMITY_POINTS = 250
+
+// Proximity is hard to get exacts, clamp the values to account for missed hi/low ranges
+const DEVICE_HOVER_PROXIMITY_MIN_CLAMP = 2
+const DEVICE_HOVER_PROXIMITY_MAX_CLAMP = 1
 
 /**
  * LED bitmap display options
+ * @internal
  */
 export interface DisplayBitmapOptions {
     /**
@@ -209,7 +214,7 @@ export class NuimoPeripheral extends EventEmitter {
 
                 // Display time (max 25.5 seconds)
                 const displayTime = options.timeoutMs !== undefined
-                    ? Math.max(Math.min(Math.round((options.timeoutMs / 1000)) & 0xFF, 0xFF), 0x0)
+                    ? Math.max(Math.min(Math.round((options.timeoutMs / 100)) & 0xFF, 0xFF), 0x0)
                     : 0xFF
 
                 const matrixLen = bitmap.bytes.length
@@ -282,7 +287,9 @@ export class NuimoPeripheral extends EventEmitter {
         }
 
         if (peripheral !== this.internalPeripheral) {
-        const oldPeripheral = this.internalPeripheral
+            const wasConnected = this.isConnected
+
+            const oldPeripheral = this.internalPeripheral
             if (oldPeripheral) {
                 oldPeripheral.removeAllListeners()
                 oldPeripheral.disconnect()
@@ -291,6 +298,11 @@ export class NuimoPeripheral extends EventEmitter {
             this.internalConnectedState = DeviceConnectedStatus.Disconnected
             this.internalPeripheral = peripheral
             this.ledCharacteristic = undefined
+
+            // If the device was connected, event the disconnect
+            if (wasConnected) {
+                this.emit('disconnect')
+            }
         }
     }
 
@@ -633,7 +645,12 @@ export class NuimoPeripheral extends EventEmitter {
         if (flyEvents.has(data[0])) {
             this.emit('fly', data[0])
         } else if (hoverEvents.has(data[0])) {
-            this.emit('hover', data[1] / DEVICE_HOVER_PROXIMITY_POINTS)
+            const minClamp = DEVICE_HOVER_PROXIMITY_MIN_CLAMP
+            const maxClamp = DEVICE_HOVER_PROXIMITY_POINTS - DEVICE_HOVER_PROXIMITY_MAX_CLAMP
+
+            const proximity = Math.min(Math.max(data[1], minClamp), maxClamp) - minClamp
+            const range = DEVICE_HOVER_PROXIMITY_POINTS - (DEVICE_HOVER_PROXIMITY_MIN_CLAMP + DEVICE_HOVER_PROXIMITY_MAX_CLAMP)
+            this.emit('hover', (proximity / range))
         }
     }
 
