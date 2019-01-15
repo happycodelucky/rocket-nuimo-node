@@ -100,7 +100,7 @@ export class DeviceDiscoveryManager extends EventEmitter {
 
                     const device = existingDevice || new NuimoDevice(new NuimoPeripheral(peripheral))
                     if (existingDevice) {
-                        device.peripheral.peripheral = peripheral
+                        device.nuimoPeripheral.peripheral = peripheral
                     }
 
                     // Cache device using a weak reference
