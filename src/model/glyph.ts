@@ -22,19 +22,18 @@ export class Glyph {
 
     /**
      * Glyph character rows
-     * @internal
      */
     readonly characterRows: ReadonlyArray<string>
 
     /**
      * Glyph height in characters
      */
-    readonly height = LED_DISPLAY_ROWS
+    readonly height: number = LED_DISPLAY_ROWS
 
     /**
      * Glyph width in characters
      */
-    readonly width = LED_DISPLAY_COLS
+    readonly width: number = LED_DISPLAY_COLS
 
     /**
      * @param rows - character rows encoded with `onChar` and `offChar`
