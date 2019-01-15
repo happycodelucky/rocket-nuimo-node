@@ -2,7 +2,7 @@
 
 Welcome to 🚀 Rocket Nuimo, a Node.js client package for Senic's Numio BLE device. 
 
-<center>**⚠️ THIS PACKAGE IS NOT YET PUBLISHED! ⚠️**</center>
+**⚠️ THIS PACKAGE IS NOT YET PUBLISHED! ⚠️**
 
 #Installation
 To install `rocket-nuimo` for use within your project use [yarn](https://yarnpkg.com) or [npm](https://npmjs.com)
