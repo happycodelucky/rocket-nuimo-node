@@ -4,6 +4,8 @@ Welcome to 🚀 Rocket Nuimo, a Node.js client package for Senic's Numio BLE dev
 
 ⚠️ **THIS PACKAGE IS NOT YET PUBLISHED!** ⚠️
 
+----
+
 #Installation
 To install `rocket-nuimo` for use within your project use [yarn](https://yarnpkg.com) or [npm](https://npmjs.com)
 
@@ -11,7 +13,7 @@ To install `rocket-nuimo` for use within your project use [yarn](https://yarnpkg
 $ yarn add `rocket-nuimo`
 ```
 
-##⚠️ macOS Mojave Installation
+## macOS Mojave Installation
 `rocket-numio` uses [noble](https://github.com/noble/noble) under the hood for communicating with to BLE devices. `nobel` running on Mojavé has issues currently and must be worked around.
 
 Whether you are uses `rocket-numio` as a depedency, or running one of the [example](./examples) you will need to make overrides or adjustments when running on macOS.
@@ -37,7 +39,7 @@ $ yarn install
 
 Now when you run your respect `yarn install` or `npm install` it will the package suitable to running on macOS.
 
-##⚠️ Node.js 10+ Installation
+## Node.js 10+ Installation
 
 (If you applied the above macOS fix you can skip this. `noble-mac` does not use `xpc-connection`)
 
