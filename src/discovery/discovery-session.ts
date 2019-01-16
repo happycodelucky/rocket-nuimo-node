@@ -5,8 +5,8 @@ import { setTimeout } from 'timers'
 
 import { DeviceDiscoveryManager } from './discovery'
 import { DeviceDiscoveryState } from './device-discovery-state'
-import { NuimoDevice } from '../model/nuimo-device'
-import { NuimoOnDeviceDiscoveredCallback, NuimoOnDiscoveryDoneCallback, NuimoOnEventCallback } from '../callbacks/callbacks'
+import { NuimoControlDevice } from '../model/nuimo-control-device'
+import { OnDeviceDiscoveredCallback, OnDiscoveryDoneCallback, OnEventCallback } from '../callbacks/callbacks'
 
 // Create debug logger
 const debug = createDebugLogger('nuimo/discovery')
@@ -56,17 +56,17 @@ export class DeviceDiscoverySession extends EventEmitter {
     /**
      * Internal map of discovered devices, and devices to ignore when seen subsequent times
      */
-    private sessionDiscoveredDevicesMap: Map<string, NuimoDevice> = new Map()
+    private sessionDiscoveredDevicesMap: Map<string, NuimoControlDevice> = new Map()
 
     /**
      * Promise for first call to waitForFirstDevice
      */
-    private waitForDevicePromise?: Promise<NuimoDevice>
+    private waitForDevicePromise?: Promise<NuimoControlDevice>
 
     /**
      * Callback for found device
      */
-    private waitForDeviceResolveCallback?: (device: NuimoDevice) => void
+    private waitForDeviceResolveCallback?: (device: NuimoControlDevice) => void
 
     /**
      * Callback for timeouts or other rejections
@@ -114,7 +114,7 @@ export class DeviceDiscoverySession extends EventEmitter {
     /**
      * All discovered devices by the device manager
      */
-    get discoveredDevices(): NuimoDevice[] {
+    get discoveredDevices(): NuimoControlDevice[] {
         return [...this.sessionDiscoveredDevicesMap.values()]
     }
 
@@ -136,7 +136,7 @@ export class DeviceDiscoverySession extends EventEmitter {
      *
      * @throw `NuimoDeviceError` when timing out
      */
-    async waitForFirstDevice(autoStop: boolean = true): Promise<NuimoDevice> {
+    async waitForFirstDevice(autoStop: boolean = true): Promise<NuimoControlDevice> {
         if (this.waitForDevicePromise) {
             return this.waitForDevicePromise
         }
@@ -155,7 +155,7 @@ export class DeviceDiscoverySession extends EventEmitter {
         const self = this
         const lisenters = new Map<string, (...args: any[]) => void>()
         // Function called when a device is discovered
-        function onWaitDeviceDiscovered(device: NuimoDevice) {
+        function onWaitDeviceDiscovered(device: NuimoControlDevice) {
             if (self.waitForDeviceResolveCallback) {
                 self.waitForDeviceResolveCallback(device)
 
@@ -188,7 +188,7 @@ export class DeviceDiscoverySession extends EventEmitter {
         this.once('timeout', onWaitTimeout)
         lisenters.set('timeout', onWaitTimeout)
 
-        this.waitForDevicePromise = new Promise<NuimoDevice>((resolve, reject) => {
+        this.waitForDevicePromise = new Promise<NuimoControlDevice>((resolve, reject) => {
             self.waitForDeviceResolveCallback = resolve
             self.waitForDeviceRejectCallback = reject
         })
@@ -236,7 +236,7 @@ export class DeviceDiscoverySession extends EventEmitter {
      * @param device - Nuimo device
      * @param newDevice - true if the device has never been seen before
      */
-    onDeviceDiscovered(device: NuimoDevice, newDevice: boolean) {
+    onDeviceDiscovered(device: NuimoControlDevice, newDevice: boolean) {
         // Can happen between async calls, a stop is issued whilst we are async processing handling of
         // discovered devices
         if (this.discoveryState !== DeviceDiscoveryState.Discovering) {
@@ -279,148 +279,44 @@ export class DeviceDiscoverySession extends EventEmitter {
 //
 
 export interface DeviceDiscoverySession extends EventEmitter {
-    /**
-     * Alias for `on`
-     * @alias on
-     *
-     * @param event - The name of the event (*'device'*)
-     * @param listener - The callback function
-     */
-    addListener(eventName: 'device', listener: NuimoOnDeviceDiscoveredCallback): this
-    /**
-     * Alias for `on`
-     * @alias on
-     *
-     * @param event - The name of the event (*'timeout'*)
-     * @param listener - The callback function
-     */
-    addListener(eventName: 'timeout', listener: NuimoOnEventCallback): this
-    /**
-     * Alias for `on`
-     * @alias on
-     *
-     * @param event - The name of the event (*'done'*)
-     * @param listener - The callback function
-     */
-    addListener(eventName: 'done', listener: NuimoOnDiscoveryDoneCallback): this
+    addListener(eventName: 'device', listener: OnDeviceDiscoveredCallback): this
+    addListener(eventName: 'timeout', listener: OnEventCallback): this
+    addListener(eventName: 'done', listener: OnDiscoveryDoneCallback): this
 
     /** @internal */
-    emit(eventName: 'device', device: NuimoDevice, newDevice: boolean): boolean
+    emit(eventName: 'device', device: NuimoControlDevice, newDevice: boolean): boolean
     /** @internal */
     emit(eventName: 'timeout'): boolean
     /** @internal */
     emit(eventName: 'done', timedOut: boolean): boolean
 
-    /**
-     * Returns a copy of the array of listeners for the event named eventName
-     *
-     * @param event - The name of the event (*'device'*)
-     *
-     * @return Array of listeners for the event named 'device'
-     */
-    listeners(eventName: 'device'): NuimoOnDeviceDiscoveredCallback[]
-    /**
-     * Returns a copy of the array of listeners for the event named eventName
-     *
-     * @param event - The name of the event (*'timeout'*)
-     *
-     * @return Array of listeners for the event named 'timeout'
-     */
-    listeners(eventName: 'timeout'): NuimoOnEventCallback[]
-    /**
-     * Returns a copy of the array of listeners for the event named eventName
-     *
-     * @param event - The name of the event (*'done'*)
-     *
-     * @return Array of listeners for the event named 'done'
-     */
-    listeners(eventName: 'done'): NuimoOnDiscoveryDoneCallback[]
+    listeners(eventName: 'device'): OnDeviceDiscoveredCallback[]
+    listeners(eventName: 'timeout'): OnEventCallback[]
+    listeners(eventName: 'done'): OnDiscoveryDoneCallback[]
 
-    /**
-     * Adds a device discovery listener function to the end of the `listeners` array
-     *
-     * @param event - The name of the event (*'done'*)
-     * @param listener - Discovery callback listener
-     */
-    on(eventName: 'device', listener: NuimoOnDeviceDiscoveredCallback): this
-    /**
-     * Adds a discovery session timed out listener function to the end of the `listeners` array
-     *
-     * @param event - The name of the event (*'timeout'*)
-     * @param listener - Timeout callback listener
-     */
-    on(eventName: 'timeout', listener: NuimoOnEventCallback): this
-    /**
-     * Adds a discovery session completed listener function to the end of the `listeners` array
-     *
-     * @param event - The name of the event (*'timeout'*)
-     * @param listener - Done callback listener
-     */
-    on(eventName: 'done', listener: NuimoOnDiscoveryDoneCallback): this
+    off(eventName: 'device', listener: OnDeviceDiscoveredCallback): this
+    off(eventName: 'timeout', listener: OnEventCallback): this
+    off(eventName: 'done', listener: OnDiscoveryDoneCallback): this
 
-    /**
-     * Adds a **one-time** device discovery listener callback to the end of the `listeners` array
-     *
-     * @param event - The name of the event (*'device'*)
-     * @param listener - Discovery callback listener
-     */
-    once(eventName: 'device', listener: NuimoOnDeviceDiscoveredCallback): this
-    /**
-     * Adds a **one-time** discovery session timed out listener callback to the end of the `listeners` array
-     *
-     * @param event - The name of the event (*'timeout'*)
-     * @param listener - Timeout callback listener
-     */
-    once(eventName: 'timeout', listener: NuimoOnEventCallback): this
-    /**
-     * Adds a **one-time** discovery session completed callback to the end of the `listeners` array
-     *
-     * @param event - The name of the event (*'done'*)
-     * @param listener - Done callback listener
-     */
-    once(eventName: 'done', listener: NuimoOnDiscoveryDoneCallback): this
+    on(eventName: 'device', listener: OnDeviceDiscoveredCallback): this
+    on(eventName: 'timeout', listener: OnEventCallback): this
+    on(eventName: 'done', listener: OnDiscoveryDoneCallback): this
 
-    /**
-     * Adds a device discovery listener function to the beginning of the `listeners` array
-     *
-     * @param event - The name of the event (*'device'*)
-     * @param listener - Discovery callback listener
-     */
-    prependListener(eventName: 'device', listener: NuimoOnDeviceDiscoveredCallback): this
-    /**
-     * Adds a discovery session timed out listener function to the beginning of the `listeners` array
-     *
-     * @param event - The name of the event (*'timeout'*)
-     * @param listener - Discovery callback listener
-     */
-    prependListener(eventName: 'timeout', listener: NuimoOnEventCallback): this
-    /**
-     * Adds a discovery session completed listener function to the beginning of the `listeners` array
-     *
-     * @param event - The name of the event (*'done'*)
-     * @param listener - Discovery callback listener
-     */
-    prependListener(eventName: 'done', listener: NuimoOnDiscoveryDoneCallback): this
+    once(eventName: 'device', listener: OnDeviceDiscoveredCallback): this
+    once(eventName: 'timeout', listener: OnEventCallback): this
+    once(eventName: 'done', listener: OnDiscoveryDoneCallback): this
 
-    prependOnceListener(eventName: 'device', listener: NuimoOnDeviceDiscoveredCallback): this
-    prependOnceListener(eventName: 'timeout', listener: NuimoOnEventCallback): this
-    prependOnceListener(eventName: 'done', listener: NuimoOnDiscoveryDoneCallback): this
+    prependListener(eventName: 'device', listener: OnDeviceDiscoveredCallback): this
+    prependListener(eventName: 'timeout', listener: OnEventCallback): this
+    prependListener(eventName: 'done', listener: OnDiscoveryDoneCallback): this
 
-    /**
-     * Removes a listener callback when a device has been discovered
-     *
-     * @param event - The name of the event being listened for
-     * @param listener - Discovery callback listener
-     */
-    removeListener(eventName: 'device', listener: NuimoOnDeviceDiscoveredCallback): this
-    removeListener(eventName: 'timeout', listener: NuimoOnEventCallback): this
-    removeListener(eventName: 'done', listener: NuimoOnDiscoveryDoneCallback): this
+    prependOnceListener(eventName: 'device', listener: OnDeviceDiscoveredCallback): this
+    prependOnceListener(eventName: 'timeout', listener: OnEventCallback): this
+    prependOnceListener(eventName: 'done', listener: OnDiscoveryDoneCallback): this
 
-    /**
-     * Returns the number of listeners listening to the event named eventName.
-     * @param type - The name of the event being listened for
-     *
-     * @return Number of listeners listening
-     */
+    removeListener(eventName: 'device', listener: OnDeviceDiscoveredCallback): this
+    removeListener(eventName: 'timeout', listener: OnEventCallback): this
+    removeListener(eventName: 'done', listener: OnDiscoveryDoneCallback): this
+
     listenerCount(type: 'device' | 'timeout' | 'done'): number
 }

@@ -11,9 +11,10 @@ import { Peripheral } from 'noble'
 
 import { DeviceDiscoverySession, DeviceDiscoverySessionOptions } from './discovery-session'
 import { DeviceDiscoveryState } from './device-discovery-state'
-import { NuimoDevice } from '../model/nuimo-device'
+import { NuimoControlDevice } from '../model/nuimo-control-device'
 import { NuimoError } from '../errors/nuimo-error'
 import { NuimoPeripheral } from '../device/nuimo-peripheral';
+import { OnDeviceDiscoveredCallback, OnErrorCallback, OnEventCallback } from '../callbacks/callbacks'
 
 const debug = createDebugLogger('nuimo/discovery')
 const debugBluetooth = createDebugLogger('nuimo/bluetooth')
@@ -35,7 +36,7 @@ export class DeviceDiscoveryManager extends EventEmitter {
     /**
      * All devices discovered, index by device ID
      */
-    private discoveredDevicesMap: Map<string, NuimoDevice> = new Map()
+    private discoveredDevicesMap: Map<string, NuimoControlDevice> = new Map()
 
     /**
      * Indiciates if a discovery should be performed when the BT radio is powered on
@@ -70,7 +71,7 @@ export class DeviceDiscoveryManager extends EventEmitter {
     /**
      * All discovered devices by the device manager
      */
-    get discoveredDevices(): NuimoDevice[] {
+    get discoveredDevices(): NuimoControlDevice[] {
         return [...this.discoveredDevicesMap.values()]
     }
 
@@ -98,7 +99,7 @@ export class DeviceDiscoveryManager extends EventEmitter {
                     // Create a new device or pull the one from the cache
                     const existingDevice = this.discoveredDevicesMap.get(peripheral.uuid)
 
-                    const device = existingDevice || new NuimoDevice(new NuimoPeripheral(peripheral))
+                    const device = existingDevice || new NuimoControlDevice(new NuimoPeripheral(peripheral))
                     if (existingDevice) {
                         device.nuimoPeripheral.peripheral = peripheral
                     }
@@ -286,23 +287,44 @@ export class DeviceDiscoveryManager extends EventEmitter {
 //
 
 export interface DeviceDiscoveryManager extends EventEmitter {
-    addListener(event: 'device', listener: (device: NuimoDevice, newDevice: boolean) => void): this
-    addListener(event: 'error', listener: (device: NuimoError) => void): this
-    addListener(event: 'started' | 'stopped', listener: () => void): this
+    addListener(eventName: 'device', listener: OnDeviceDiscoveredCallback): this
+    addListener(eventName: 'error', listener: OnErrorCallback): this
+    addListener(eventName: 'started' | 'stopped', listener: OnEventCallback): this
 
-    emit(event: 'device', device: NuimoDevice, newDevice: boolean): boolean
-    emit(event: 'error', error: NuimoError): boolean
-    emit(event: 'started' | 'stopped'): boolean
+    /** @internal */
+    emit(eventName: 'device', device: NuimoControlDevice, newDevice: boolean): boolean
+    /** @internal */
+    emit(eventName: 'error', error: NuimoError): boolean
+    /** @internal */
+    emit(eventName: 'started' | 'stopped'): boolean
 
-    on(event: 'device', listener: (device: NuimoDevice, newDevice: boolean) => void): this
-    on(event: 'error', listener: (error: Error) => void): this
-    on(event: 'started' | 'stopped', listener: () => void): this
+    listeners(eventName: 'device'): OnDeviceDiscoveredCallback[]
+    listeners(eventName: 'error'): OnErrorCallback[]
+    listeners(eventName: 'started' | 'stopped'): OnEventCallback[]
 
-    prependListener(event: 'device', listener: (device: NuimoDevice, newDevice: boolean) => void): this
-    prependListener(event: 'error', listener: (error: NuimoError) => void): this
-    prependListener(event: 'started' | 'stopped', listener: () => void): this
+    off(eventName: 'device', listener: OnDeviceDiscoveredCallback): this
+    off(eventName: 'error', listener: OnErrorCallback): this
+    off(eventName: 'started' | 'stopped', listener: OnEventCallback): this
 
-    prependOnceListener(event: 'device', listener: (device: NuimoDevice, newDevice: boolean) => void): this
-    prependOnceListener(event: 'error', listener: (error: NuimoError) => void): this
-    prependOnceListener(event: 'started' | 'stopped', listener: () => void): this
+    on(eventName: 'device', listener: OnDeviceDiscoveredCallback): this
+    on(eventName: 'error', listener: OnErrorCallback): this
+    on(eventName: 'started' | 'stopped', listener: OnEventCallback): this
+
+    once(eventName: 'device', listener: OnDeviceDiscoveredCallback): this
+    once(eventName: 'error', listener: OnErrorCallback): this
+    once(eventName: 'started' | 'stopped', listener: OnEventCallback): this
+
+    prependListener(eventName: 'device', listener: OnDeviceDiscoveredCallback): this
+    prependListener(eventName: 'error', listener: OnErrorCallback): this
+    prependListener(eventName: 'started' | 'stopped', listener: OnEventCallback): this
+
+    prependOnceListener(eventName: 'device', listener: OnDeviceDiscoveredCallback): this
+    prependOnceListener(eventName: 'error', listener: OnErrorCallback): this
+    prependOnceListener(eventName: 'started' | 'stopped', listener: OnEventCallback): this
+
+    removeListener(eventName: 'device', listener: OnDeviceDiscoveredCallback): this
+    removeListener(eventName: 'error', listener: OnErrorCallback): this
+    removeListener(eventName: 'started' | 'stopped', listener: OnEventCallback): this
+
+    listenerCount(type: 'device' | 'error' | 'started' | 'stopped'): number
 }

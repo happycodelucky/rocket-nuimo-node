@@ -1,3 +1,4 @@
+export * from './callbacks/callbacks'
 export * from './defaults'
 export * from './device'
 export * from './discovery'
