@@ -1,4 +1,4 @@
-import { DeviceDiscoveryManager, NuimoDevice, NuimoDeviceCommunicationError, NuimoDeviceCommunicationErrorCode } from '../src'
+import { DeviceDiscoveryManager, NuimoControlDevice, NuimoDeviceCommunicationError, NuimoDeviceCommunicationErrorCode } from '..'
 import { DEVICE_DISCOVERY_TIMEOUT_MS } from '../src/defaults'
 
 // Device connection manager
@@ -9,7 +9,7 @@ const manager = DeviceDiscoveryManager.defaultManager
  *
  * @param [deviceId] - specific device to connect to
  */
-export async function connectToDevice(deviceId?: string): Promise<NuimoDevice> {
+export async function connectToDevice(deviceId?: string): Promise<NuimoControlDevice> {
     console.log('Starting Numio discovery')
     const session = manager.startDiscoverySession({
         timeoutMs: DEVICE_DISCOVERY_TIMEOUT_MS,
