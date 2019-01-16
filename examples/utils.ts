@@ -10,7 +10,7 @@ const manager = DeviceDiscoveryManager.defaultManager
  * @param [deviceId] - specific device to connect to
  */
 export async function connectToDevice(deviceId?: string): Promise<NuimoControlDevice> {
-    console.log('Starting Numio discovery')
+    console.log('Starting Numio Control discovery')
     const session = manager.startDiscoverySession({
         timeoutMs: DEVICE_DISCOVERY_TIMEOUT_MS,
         deviceIds: deviceId ? [deviceId] : undefined,
@@ -22,7 +22,7 @@ export async function connectToDevice(deviceId?: string): Promise<NuimoControlDe
 
     console.log('Connecting...')
     if (await device.connect()) {
-        console.log('Connected to Nuimo')
+        console.log('Connected to Nuimo Control')
 
         return device
     }

@@ -12,8 +12,8 @@ async function main() {
     const device = await connectToDevice(DEVICE_ID)
 
     // Create a custom Glyph
-    // Nuimo has a 9x9 LED display, but you only need to create what you need
-    // and use `GlyphAlignment` to align the glyph
+    // Nuimo Control has a 9x9 LED display, but you only need to create what you need
+    // and use `GlyphAlignment` to align the glyph on display
     const glyph = Glyph.fromString([
         '  *  ',
         ' *** ',
@@ -22,24 +22,15 @@ async function main() {
         '*****',
         '** **',
         '* * *',
-    ], GlyphAlignment.Center)
+    ])
 
     // Display the glyph for 5 seconds
     device.displayGlyph(glyph, {
-        transition: DisplayTransition.CrossFade,
-        timeoutMs: 5000, // 5 seconds (max 25.5 seconds)
+        alignment: GlyphAlignment.Center,           // Center align (default)
+        brightness: 1,                              // Display brightness
+        transition: DisplayTransition.CrossFade,    // Fade in/out
+        timeoutMs: 5000,                            // Timeout after 5 seconds
     })
-
-    // Display another glyph after 5 seconds
-    setTimeout(() => {
-        // Invert the glyph and display
-        const invertedGlyph = glyph.invert()
-        device.displayGlyph(invertedGlyph, {
-            brightness: 0.1,
-            transition: DisplayTransition.Immediate,
-            timeoutMs: 5000, // 5 seconds (max 25.5 seconds)
-        })
-    }, 5000)
 }
 
 // Boot strap async function

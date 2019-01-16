@@ -30,9 +30,9 @@ async function main() {
         transition: DisplayTransition.CrossFade,
     })
 
-    // Set up click handlers
+    // When display button is pressed
     device.on('selectDown', () => {
-        console.log('SELECTED PRESSED')
+        console.log('Display button presses')
 
         device.displayGlyph(glyph, {
             alignment: GlyphAlignment.Center,
@@ -41,9 +41,9 @@ async function main() {
         })
     })
 
-    // Set up click handlers
+    // When display button is released
     device.on('selectUp', () => {
-        console.log('SELECTED RELEASED')
+        console.log('Display button released')
 
         device.displayGlyph(glyph, {
             alignment: GlyphAlignment.Center,
@@ -52,9 +52,9 @@ async function main() {
         })
     })
 
-    // Set up click handlers
+    // When display button is pressed & released
     device.on('select', () => {
-        console.log('SELECTED')
+        console.log('Display button clicked')
     })
 }
 

@@ -12,7 +12,7 @@ const DEVICE_ID: string | undefined = undefined
  * Main application entry point
  */
 async function main() {
-    console.log('Starting Numio discovery')
+    console.log('Starting Numio Control discovery')
 
     // Create a new discovery session
     // Will throw an NuimoError if timed out, be sure to capture it
@@ -31,7 +31,7 @@ async function main() {
 
     // Establish device connection
     if (await device.connect()) {
-        console.log('Connected to Nuimo')
+        console.log('Connected to Nuimo Control')
 
         console.log('DEVICE INFO:')
         console.log(`ID:      ${device.id}`)

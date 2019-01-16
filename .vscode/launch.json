@@ -7,27 +7,47 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "01 Device Info Example",
-            "program": "${workspaceRoot}/dev/examples/01-device-info/example-device-info.js",
-            "cwd": "${workspaceRoot}",
+            "name": "01 - Device Discovery",
+            "program": "${workspaceFolder}/node_modules/.bin/ts-node",
+            "args": [
+                "./examples/01-device-discovery/example-device-discovery.ts"
+            ],
             "sourceMaps": true,
             "showAsyncStacks": true,
-            "smartStep": false,
-            "env": {
-                "DEBUG": "nuimo*",
-            }
+            "smartStep": true
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "LED Display",
+            "name": "02 - Display",
             "program": "${workspaceFolder}/node_modules/.bin/ts-node",
             "args": [
-                "./examples/05-display/example-display.ts"
+                "./examples/02-display/example-display.ts"
             ],
-            "env": {
-                "DEBUG": "nuimo*",
-            },
+            "sourceMaps": true,
+            "showAsyncStacks": true,
+            "smartStep": true
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "02 - Display w/ Animation",
+            "program": "${workspaceFolder}/node_modules/.bin/ts-node",
+            "args": [
+                "./examples/02-display/example-animation.ts"
+            ],
+            "sourceMaps": true,
+            "showAsyncStacks": true,
+            "smartStep": true
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "03 - Select Events",
+            "program": "${workspaceFolder}/node_modules/.bin/ts-node",
+            "args": [
+                "./examples/03-select-events/example-select-events.ts"
+            ],
             "sourceMaps": true,
             "showAsyncStacks": true,
             "smartStep": true
