@@ -34,6 +34,9 @@
     "tslint": "^5.11",
     "typescript": "^3.2"
   },
+  "resolutions": {
+    "xpc-connection": "sandeepmistry/node-xpc-connection#pull/26/head"
+  },
   "scripts": {
     "test": "nyc mocha -r ts-node/register -r test/prepare test/**/*.spec.ts",
     "example-device-info": "ts-node --project ./examples/tsconfig.json ./examples/01-device-info/example-device-info.ts"
