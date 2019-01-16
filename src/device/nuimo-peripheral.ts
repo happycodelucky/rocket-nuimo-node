@@ -215,7 +215,7 @@ export class NuimoPeripheral extends EventEmitter {
                 // Display time (max 25.5 seconds)
                 const displayTime = options.timeoutMs !== undefined
                     ? Math.max(Math.min(Math.round((options.timeoutMs / 100)) & 0xFF, 0xFF), 0x0)
-                    : 0xFF
+                    : 0
 
                 const matrixLen = bitmap.bytes.length
                 const data = Buffer.alloc(matrixLen + 2)
