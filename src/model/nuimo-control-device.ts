@@ -1,12 +1,30 @@
 import { EventEmitter } from 'events'
 
-import { ButtonClickCharacteristicData, FlyCharacteristicData, TouchOrSwipeCharacteristicData } from '../bluetooth/gatt'
 import { Glyph } from './glyph'
+import { GlyphAlignment } from './glyph-alignment'
 import { NuimoBitmap } from '../device/nuimo-bitmap'
+import { NuimoError } from '../errors/nuimo-error'
 import { NuimoPeripheral } from '../device/nuimo-peripheral'
 import { SwipeGestureDirection } from './swipe-gesture-direction'
 import { TouchGestureArea } from './touch-gesture-area'
-import { NuimoOnErrorCallback, NuimoOnEventCallback } from '../callbacks/callbacks'
+
+import {
+    ButtonClickCharacteristicData,
+    FlyCharacteristicData,
+    TouchOrSwipeCharacteristicData,
+} from '../bluetooth/gatt'
+
+import {
+    OnBatteryLeveCallback,
+    OnDirectionalSwipeGestureCallback,
+    OnErrorCallback,
+    OnEventCallback,
+    OnHoverCallback,
+    OnRotateCallback,
+    OnRssiCallback,
+    OnSwipeGestureCallback,
+    OnTouchGestureCallback,
+ } from '../callbacks/callbacks'
 
 /**
  * Display transition when displaying a glyph
@@ -27,6 +45,12 @@ export enum DisplayTransition {
  * Options used when calling displayGlyph
  */
 export interface DisplayGlyphOptions {
+    /**
+     * For glyphs smaller or larger than the 9x9 screen, the alignment to render the glyph with
+     * Default is GlyphAlignment.Center
+     */
+    alignment?: GlyphAlignment,
+
     /**
      * Transition effect between glyph displays
      */
@@ -50,38 +74,13 @@ type HoverEvents = 'hover'
 type RotateEvents = 'rotate' | 'rotateLeft' | 'rotateRight'
 type SelectEvents = 'select' | 'selectUp' | 'selectDown'
 type SwipeEvents = 'swipeUp' | 'swipeLeft' | 'swipeRight' | 'swipeDown'
-type TapEvents = 'touchTop' | 'touchLeft' | 'touchRight' | 'touchBottom'
-type TouchEvents = 'longTouchTop' | 'longTouchLeft' | 'longTouchRight' | 'longTouchBottom'
+type TouchEvents = 'touchTop' | 'touchLeft' | 'touchRight' | 'touchBottom'
+type LongTouchEvents = 'longTouchTop' | 'longTouchLeft' | 'longTouchRight' | 'longTouchBottom'
 
 /**
- * Declaration for events
+ * A Nuimo Control device client for interacting with BT Nuimo Control peripheral
  */
-export declare interface NuimoDevice {
-    on(event: HoverEvents, listener: (proximity: number) => void): this
-    on(event: SelectEvents | TapEvents | TouchEvents, listener: NuimoOnEventCallback): this
-    on(event: RotateEvents, listener: (delta: number, rotation: number) => void): this
-    on(event: SwipeEvents , listener: (touchless: boolean) => void): this
-    on(event: 'swipe' , listener: (direction: SwipeGestureDirection, touchless: boolean) => void): this
-    on(event: 'touch' | 'longTouch' , listener: (area: TouchGestureArea) => void): this
-    on(event: 'error', listener: NuimoOnErrorCallback): this;
-    on(event: 'batteryLevel', listener: (level: number) => void): this;
-    on(event: 'rssi', listener: (power: number) => void): this;
-
-    once(event: HoverEvents, listener: (proximity: number) => void): this
-    once(event: SelectEvents | TapEvents | TouchEvents, listener: NuimoOnEventCallback): this
-    once(event: RotateEvents, listener: (delta: number, rotation: number) => void): this
-    once(event: SwipeEvents , listener: (touchless: boolean) => void): this
-    once(event: 'swipe' , listener: (direction: SwipeGestureDirection, touchless: boolean) => void): this
-    once(event: 'touch' | 'longTouch' , listener: (area: TouchGestureArea) => void): this
-    once(event: 'error', listener: NuimoOnErrorCallback): this;
-    once(event: 'batteryLevel', listener: (level: number) => void): this;
-    once(event: 'rssi', listener: (power: number) => void): this;
-}
-
-/**
- * A Nuimo device client for interacting with BT Nuimo peripheral
- */
-export class NuimoDevice extends EventEmitter {
+export class NuimoControlDevice extends EventEmitter {
     /**
      * Associated peripheral
      * @internal
@@ -232,7 +231,7 @@ export class NuimoDevice extends EventEmitter {
     //
 
     /**
-     * Displays a glyph on the Nuimo display
+     * Displays a glyph on the Nuimo Control display
      *
      * @param glyph - glyph to display
      * @param [options={}] - options when displaying the glyph
@@ -275,13 +274,13 @@ export class NuimoDevice extends EventEmitter {
      */
     private bindToPeripheral(peripheral: NuimoPeripheral) {
         peripheral.on('disconnect', () => this.emit('disconnect'))
-        peripheral.on('batteryLevel', () => this.emit('batteryLevel', this.batteryLevel))
+        peripheral.on('batteryLevel', () => this.emit('batteryLevel', this.batteryLevel!))
         peripheral.on('button', this.onButtonClick.bind(this))
         peripheral.on('fly', this.onFly.bind(this))
         peripheral.on('hover', this.onHover.bind(this))
         peripheral.on('longTouch', this.onLongTouch.bind(this))
         peripheral.on('rotate', this.onRotate.bind(this))
-        peripheral.on('rssi', () => this.emit('rssi', this.rssi))
+        peripheral.on('rssi', () => this.emit('rssi', this.rssi!))
         peripheral.on('swipe', this.onSwipe.bind(this))
         peripheral.on('touch', this.onTouch.bind(this))
     }
@@ -293,10 +292,10 @@ export class NuimoDevice extends EventEmitter {
     /** @internal */
     private onButtonClick(state: ButtonClickCharacteristicData) {
         if (state === ButtonClickCharacteristicData.Released) {
-            this.emit('buttonUp')
+            this.emit('selectUp')
             this.emit('select')
         } else if (state === ButtonClickCharacteristicData.Pressed) {
-            this.emit('buttonDown')
+            this.emit('selectDown')
         }
     }
 
@@ -320,24 +319,24 @@ export class NuimoDevice extends EventEmitter {
     /** @internal */
     private onTouch(state: TouchOrSwipeCharacteristicData) {
         if (state === TouchOrSwipeCharacteristicData.TouchBottom) {
-            this.emit('tapUp')
-            this.emit('tap', TouchGestureArea.Bottom)
+            this.emit('touchTop')
+            this.emit('touch', TouchGestureArea.Bottom)
         } else if (state === TouchOrSwipeCharacteristicData.TouchLeft) {
-            this.emit('tapLeft')
-            this.emit('tap', TouchGestureArea.Left)
+            this.emit('touchLeft')
+            this.emit('touch', TouchGestureArea.Left)
         } else if (state === TouchOrSwipeCharacteristicData.TouchRight) {
-            this.emit('tapRight')
-            this.emit('tap', TouchGestureArea.Right)
+            this.emit('touchRight')
+            this.emit('touch', TouchGestureArea.Right)
         } else if (state === TouchOrSwipeCharacteristicData.TouchTop) {
-            this.emit('tapUp')
-            this.emit('tap', TouchGestureArea.Top)
+            this.emit('touchTop')
+            this.emit('touch', TouchGestureArea.Top)
         }
     }
 
     /** @internal */
     private onLongTouch(state: TouchOrSwipeCharacteristicData) {
         if (state === TouchOrSwipeCharacteristicData.LongTouchBottom) {
-            this.emit('longTouchUp')
+            this.emit('longTouchBottom')
             this.emit('longTouch', TouchGestureArea.Bottom)
         } else if (state === TouchOrSwipeCharacteristicData.LongTouchLeft) {
             this.emit('longTouchLeft')
@@ -346,7 +345,7 @@ export class NuimoDevice extends EventEmitter {
             this.emit('longTouchRight')
             this.emit('longTouch', TouchGestureArea.Right)
         } else if (state === TouchOrSwipeCharacteristicData.LongTouchTop) {
-            this.emit('longTouchUp')
+            this.emit('longTouchTop')
             this.emit('longTouch', TouchGestureArea.Top)
         }
     }
@@ -384,4 +383,108 @@ export class NuimoDevice extends EventEmitter {
     private onHover(proximity: number) {
         this.emit('hover', proximity)
     }
+}
+
+//
+// Event declarations
+//
+
+export declare interface NuimoControlDevice {
+    addListener(eventName: HoverEvents, listener: OnHoverCallback): this
+    addListener(eventName: SelectEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this
+    addListener(eventName: RotateEvents, listener: OnRotateCallback): this
+    addListener(eventName: SwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
+    addListener(eventName: 'swipe', listener: OnSwipeGestureCallback): this
+    addListener(eventName: 'touch' | 'longTouch', listener: OnTouchGestureCallback): this
+    addListener(eventName: 'error', listener: OnErrorCallback): this
+    addListener(eventName: 'batteryLevel', listener: OnBatteryLeveCallback): this
+    addListener(eventName: 'rssi', listener: OnRssiCallback): this
+
+    /** @internal */
+    emit(eventName: HoverEvents | 'batteryLevel' | 'rssi', value: number): boolean
+    /** @internal */
+    emit(eventName: SelectEvents | TouchEvents | LongTouchEvents | 'disconnect'): boolean
+    /** @internal */
+    emit(eventName: RotateEvents, delta: number, rotation: number): boolean
+    /** @internal */
+    emit(eventName: SwipeEvents, hoverSwipe: boolean): boolean
+    /** @internal */
+    emit(eventName: 'swipe', direction: SwipeGestureDirection, hoverSwipe: boolean): boolean
+    /** @internal */
+    emit(eventName: 'touch' | 'longTouch', area: TouchGestureArea): boolean
+    /** @internal */
+    emit(eventName: 'error', error: NuimoError): boolean
+
+    listeners(eventName: HoverEvents): OnHoverCallback[]
+    listeners(eventName: SelectEvents | TouchEvents | LongTouchEvents | 'disconnect'): OnEventCallback[]
+    listeners(eventName: RotateEvents): OnRotateCallback[]
+    listeners(eventName: SwipeEvents): OnDirectionalSwipeGestureCallback[]
+    listeners(eventName: 'swipe'): OnSwipeGestureCallback[]
+    listeners(eventName: 'touch' | 'longTouch'): OnTouchGestureCallback[]
+    listeners(eventName: 'error'): OnErrorCallback[]
+    listeners(eventName: 'batteryLevel'): OnBatteryLeveCallback[]
+    listeners(eventName: 'rssi'): OnRssiCallback[]
+
+    off(eventName: HoverEvents, listener: OnHoverCallback): this
+    off(eventName: SelectEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this
+    off(eventName: RotateEvents, listener: OnRotateCallback): this
+    off(eventName: SwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
+    off(eventName: 'swipe', listener: OnSwipeGestureCallback): this
+    off(eventName: 'touch' | 'longTouch', listener: OnTouchGestureCallback): this
+    off(eventName: 'error', listener: OnErrorCallback): this
+    off(eventName: 'batteryLevel', listener: OnBatteryLeveCallback): this
+    off(eventName: 'rssi', listener: OnRssiCallback): this
+
+    on(eventName: HoverEvents, listener: OnHoverCallback): this
+    on(eventName: SelectEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this
+    on(eventName: RotateEvents, listener: OnRotateCallback): this
+    on(eventName: SwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
+    on(eventName: 'swipe', listener: OnSwipeGestureCallback): this
+    on(eventName: 'touch' | 'longTouch', listener: OnTouchGestureCallback): this
+    on(eventName: 'error', listener: OnErrorCallback): this
+    on(eventName: 'batteryLevel', listener: OnBatteryLeveCallback): this
+    on(eventName: 'rssi', listener: OnRssiCallback): this
+
+    once(eventName: HoverEvents, listener: OnHoverCallback): this
+    once(eventName: SelectEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this
+    once(eventName: RotateEvents, listener: OnRotateCallback): this
+    once(eventName: SwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
+    once(eventName: 'swipe', listener: OnSwipeGestureCallback): this
+    once(eventName: 'touch' | 'longTouch', listener: OnTouchGestureCallback): this
+    once(eventName: 'error', listener: OnErrorCallback): this
+    once(eventName: 'batteryLevel', listener: OnBatteryLeveCallback): this
+    once(eventName: 'rssi', listener: OnRssiCallback): this
+
+    prependListener(eventName: HoverEvents, listener: OnHoverCallback): this
+    prependListener(eventName: SelectEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this
+    prependListener(eventName: RotateEvents, listener: OnRotateCallback): this
+    prependListener(eventName: SwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
+    prependListener(eventName: 'swipe', listener: OnSwipeGestureCallback): this
+    prependListener(eventName: 'touch' | 'longTouch', listener: OnTouchGestureCallback): this
+    prependListener(eventName: 'error', listener: OnErrorCallback): this
+    prependListener(eventName: 'batteryLevel', listener: OnBatteryLeveCallback): this
+    prependListener(eventName: 'rssi', listener: OnRssiCallback): this
+
+    prependOnceListener(eventName: HoverEvents, listener: OnHoverCallback): this
+    prependOnceListener(eventName: SelectEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this
+    prependOnceListener(eventName: RotateEvents, listener: OnRotateCallback): this
+    prependOnceListener(eventName: SwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
+    prependOnceListener(eventName: 'swipe', listener: OnSwipeGestureCallback): this
+    prependOnceListener(eventName: 'touch' | 'longTouch', listener: OnTouchGestureCallback): this
+    prependOnceListener(eventName: 'error', listener: OnErrorCallback): this
+    prependOnceListener(eventName: 'batteryLevel', listener: OnBatteryLeveCallback): this
+    prependOnceListener(eventName: 'rssi', listener: OnRssiCallback): this
+
+    removeListener(eventName: HoverEvents, listener: OnHoverCallback): this
+    removeListener(eventName: SelectEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this
+    removeListener(eventName: RotateEvents, listener: OnRotateCallback): this
+    removeListener(eventName: SwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
+    removeListener(eventName: 'swipe', listener: OnSwipeGestureCallback): this
+    removeListener(eventName: 'touch' | 'longTouch', listener: OnTouchGestureCallback): this
+    removeListener(eventName: 'error', listener: OnErrorCallback): this
+    removeListener(eventName: 'batteryLevel', listener: OnBatteryLeveCallback): this
+    removeListener(eventName: 'rssi', listener: OnRssiCallback): this
+
+    listenerCount(type: HoverEvents | SelectEvents | TouchEvents | LongTouchEvents | 'disconnect' | RotateEvents | SwipeEvents |
+        'swipe' | 'touch' | 'longTouch' | 'error' | 'batteryLevel' | 'rssi'): number
 }
