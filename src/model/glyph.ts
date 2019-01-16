@@ -1,24 +1,20 @@
 import * as GlyphMasks from './glyph-alignment'
 
 import { GlyphAlignment } from './glyph-alignment'
-import { LED_DISPLAY_COLS, LED_DISPLAY_ROWS } from '../device/display-config'
 
 /**
- * String based LED glyph for Nuimo LED matrix displays
+ * String based glyph for Nuimo Control LED matrix displays
  */
 export class Glyph {
     /**
      * LED on glyph character
      */
     static readonly onChar = '*'
+
     /**
      * LED off glyph character
      */
     static readonly offChar = ' '
-    /**
-     * Blank row
-     */
-    static readonly blankRow = Glyph.offChar.repeat(LED_DISPLAY_ROWS)
 
     /**
      * Glyph character rows
@@ -28,27 +24,20 @@ export class Glyph {
     /**
      * Glyph height in characters
      */
-    readonly height: number = LED_DISPLAY_ROWS
+    readonly height: number
 
     /**
      * Glyph width in characters
      */
-    readonly width: number = LED_DISPLAY_COLS
+    readonly width: number
 
     /**
      * @param rows - character rows encoded with `onChar` and `offChar`
      */
     private constructor(rows: ReadonlyArray<string>) {
-        if (rows.length > LED_DISPLAY_ROWS) {
-            throw new TypeError(`Glyph(rows) should have ${LED_DISPLAY_ROWS} elements`)
-        }
-        for (const [row, i] of rows) {
-            if (row.length > LED_DISPLAY_COLS) {
-                throw new TypeError(`Glyph(rows[${i}]) should have ${LED_DISPLAY_COLS} characters`)
-            }
-        }
-
         this.characterRows = rows
+        this.height = this.characterRows.length
+        this.width = Math.max(...rows.map(r => r.length))
     }
 
     /**
@@ -61,70 +50,18 @@ export class Glyph {
      * *Note*: Do not use unicode characters as they are not supported
      *
      * @param rows - glyph string character rows
-     * @param [alignment=GlyphAlignment.Center] - optional alighment to align bitmap to
      *
      * @return New bitmap based on the rows and alignment
      */
-    static fromString(rows: ReadonlyArray<string>, alignment: GlyphAlignment = GlyphAlignment.Center): Glyph {
-        if (rows.length > LED_DISPLAY_ROWS) {
-            throw new TypeError(`Glyph(rows) should contain no more than ${LED_DISPLAY_ROWS} elements`)
-        }
-        for (const [row, i] of rows) {
-            if (row.length > LED_DISPLAY_COLS) {
-                throw new TypeError(`Glyph(rows[${i}]) should can only be ${LED_DISPLAY_COLS} in length`)
-            }
-        }
-
-        // Rows
-        rows = rows.map(row => {
+    static fromString(rows: ReadonlyArray<string>): Glyph {
+        return new Glyph(rows.map(row => {
             let normalizedRow = ''
             for (const char of row) {
                 normalizedRow += /\s/.test(char) ? Glyph.offChar : Glyph.onChar
             }
 
-            if (row.length < LED_DISPLAY_COLS) {
-                if ((alignment & GlyphMasks.GLYPH_HLEFT_MASK) === GlyphMasks.GLYPH_HLEFT_MASK) {
-                    normalizedRow = normalizedRow.padEnd(LED_DISPLAY_COLS, Glyph.offChar)
-                } else if ((alignment & GlyphMasks.GLYPH_HRIGHT_MASK) === GlyphMasks.GLYPH_HRIGHT_MASK) {
-                    normalizedRow = normalizedRow.padStart(LED_DISPLAY_COLS, Glyph.offChar)
-                } else {
-                    const rowPrefix = LED_DISPLAY_COLS - Math.floor((LED_DISPLAY_COLS - row.length) / 2)
-                    normalizedRow = normalizedRow.padStart(rowPrefix, Glyph.offChar).padEnd(LED_DISPLAY_COLS, Glyph.offChar)
-                }
-            }
-
             return normalizedRow
-        })
-
-        const glyph: string[] = []
-        if (rows.length < LED_DISPLAY_ROWS) {
-            const missingRows = LED_DISPLAY_ROWS - rows.length
-
-            let prefixRows = 0
-            // tslint:disable-next-line prefer-conditional-expression
-            if ((alignment & GlyphMasks.GLYPH_VBOTTOM_MASK) === GlyphMasks.GLYPH_VBOTTOM_MASK) {
-                prefixRows = missingRows
-            } else if ((alignment & GlyphMasks.GLYPH_VCENTER_MASK) === GlyphMasks.GLYPH_VCENTER_MASK) {
-                prefixRows = Math.floor(missingRows / 2)
-            }
-
-            // Prefix
-            while (prefixRows) {
-                glyph.push(Glyph.blankRow)
-                prefixRows -= 1
-            }
-
-            glyph.push(...rows)
-
-            // Suffix
-            while (glyph.length < LED_DISPLAY_ROWS) {
-                glyph.push(Glyph.blankRow)
-            }
-        } else {
-            glyph.push(...rows)
-        }
-
-        return new Glyph(glyph)
+        }))
     }
 
     /**
@@ -136,17 +73,19 @@ export class Glyph {
      * @return A new glyph with the transformation applied
      */
     translate(x: number, y: number, wrap: boolean = false): Glyph {
-        if (x > LED_DISPLAY_COLS) {
-            throw new TypeError(`translate(x) should be less than ${LED_DISPLAY_COLS}`)
+        const [width, height] = [this.width, this.height]
+
+        if (x > width) {
+            throw new TypeError(`translate(x) should be less than ${width}`)
         }
-        if (x < -LED_DISPLAY_COLS) {
-            throw new TypeError(`translate(x) should be greater or equal to -${LED_DISPLAY_COLS}`)
+        if (x < -width) {
+            throw new TypeError(`translate(x) should be greater or equal to -${width}`)
         }
-        if (y > LED_DISPLAY_ROWS) {
-            throw new TypeError(`translate(y) should be less than ${LED_DISPLAY_ROWS}`)
+        if (y > height) {
+            throw new TypeError(`translate(y) should be less than ${height}`)
         }
-        if (y < -LED_DISPLAY_ROWS) {
-            throw new TypeError(`translate(y) should be greater or equal to -${LED_DISPLAY_ROWS}`)
+        if (y < -height) {
+            throw new TypeError(`translate(y) should be greater or equal to -${height}`)
         }
 
         // Check of any change
@@ -157,7 +96,7 @@ export class Glyph {
         let rows = this.characterRows
         // Adjust vertical alignment
         if (y !== 0) {
-            if (Math.abs(y) === LED_DISPLAY_ROWS) {
+            if (Math.abs(y) === height) {
                 rows = wrap ? rows : []
             } else {
                 rows = (y < 0)
@@ -168,7 +107,7 @@ export class Glyph {
 
         // Adjust horizontal aligment
         if (x !== 0) {
-            if (Math.abs(y) === LED_DISPLAY_COLS) {
+            if (Math.abs(y) === width) {
                 rows = wrap ? rows : []
             } else {
                 rows = rows.map(row => {
@@ -179,24 +118,7 @@ export class Glyph {
             }
         }
 
-        // Adjust alignment of the glyph
-        let alignment = 0
-        if (y < 0) {
-            alignment |= GlyphMasks.GLYPH_VTOP_MASK
-        } else if (y > 0) {
-            alignment |= GlyphMasks.GLYPH_VBOTTOM_MASK
-        } else {
-            alignment |= GlyphMasks.GLYPH_VCENTER_MASK
-        }
-        if (x < 0) {
-            alignment |= GlyphMasks.GLYPH_HLEFT_MASK
-        } else if (x > 0) {
-            alignment |= GlyphMasks.GLYPH_HRIGHT_MASK
-        } else {
-            alignment |= GlyphMasks.GLYPH_HCENTER_MASK
-        }
-
-        return wrap ? new Glyph(rows) : Glyph.fromString(rows, alignment as GlyphAlignment)
+        return new Glyph(rows)
     }
 
     /**
@@ -213,6 +135,72 @@ export class Glyph {
         })
 
         return new Glyph(rows)
+    }
+
+    /**
+     * Resizes the glyph
+     * @param width - width to resize to
+     * @param height - height to resize to
+     * @param [alignment=GlyphAlignment.Center] - alignment to pad/crop the glyph
+     */
+    resize(width: number, height: number, alignment: GlyphAlignment = GlyphAlignment.Center): Glyph {
+        if (width < 0) {
+            throw new TypeError('resize(width) should be cannot be less than 0')
+        }
+        if (height < 0) {
+            throw new TypeError('resize(height) should be cannot be less than 0')
+        }
+
+        // When the width or height is 0 then the glyph has no content
+        if (width === 0 || height === 0) {
+            return new Glyph([])
+        }
+
+        const rows = this.characterRows.map(row => {
+            if (row.length < width) {
+                if ((alignment & GlyphMasks.GLYPH_HLEFT_MASK) === GlyphMasks.GLYPH_HLEFT_MASK) {
+                    row = row.padEnd(width, Glyph.offChar)
+                } else if ((alignment & GlyphMasks.GLYPH_HRIGHT_MASK) === GlyphMasks.GLYPH_HRIGHT_MASK) {
+                    row = row.padStart(width, Glyph.offChar)
+                } else {
+                    const rowPrefix = width - Math.floor((width - row.length) / 2)
+                    row = row.padStart(rowPrefix, Glyph.offChar).padEnd(width, Glyph.offChar)
+                }
+            }
+
+            return row
+        })
+
+        const glyph: string[] = []
+        if (rows.length < height) {
+            const missingRows = height - rows.length
+
+            let prefixRows = 0
+            // tslint:disable-next-line prefer-conditional-expression
+            if ((alignment & GlyphMasks.GLYPH_VBOTTOM_MASK) === GlyphMasks.GLYPH_VBOTTOM_MASK) {
+                prefixRows = missingRows
+            } else if ((alignment & GlyphMasks.GLYPH_VCENTER_MASK) === GlyphMasks.GLYPH_VCENTER_MASK) {
+                prefixRows = Math.floor(missingRows / 2)
+            }
+
+            const blankRow = Glyph.offChar.repeat(width)
+            // Prefix
+            while (prefixRows) {
+                glyph.push(blankRow)
+                prefixRows -= 1
+            }
+
+            glyph.push(...rows)
+
+            // Suffix
+            while (glyph.length < height) {
+                glyph.push(blankRow)
+            }
+        } else {
+            glyph.push(...rows)
+        }
+
+        return new Glyph(glyph)
     }
 
     /**

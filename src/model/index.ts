@@ -1,6 +1,6 @@
 export * from './glyph'
 export * from './glyph-alignment'
 export * from './glyphs'
-export * from './nuimo-device'
+export * from './nuimo-control-device'
 export * from './swipe-gesture-direction'
 export * from './touch-gesture-area'
