@@ -1,5 +1,7 @@
 import { EventEmitter } from 'events'
 
+import { emptyGlyph } from './glyphs'
+
 import { Glyph } from './glyph'
 import { GlyphAlignment } from './glyph-alignment'
 import { NuimoBitmap } from '../device/nuimo-bitmap'
@@ -25,6 +27,20 @@ import {
     OnSwipeGestureCallback,
     OnTouchGestureCallback,
  } from '../callbacks/callbacks'
+import { LED_DISPLAY_COLS, LED_DISPLAY_ROWS } from '../device';
+
+// Empty bitmap for clearing display
+const emptyBitmap = new NuimoBitmap(emptyGlyph)
+
+/**
+ * Composition mode when display a glyph
+ */
+export enum DisplayComposition {
+    /**
+     * Inverts the displayed glyph
+     */
+    Invert,
+}
 
 /**
  * Display transition when displaying a glyph
@@ -52,15 +68,20 @@ export interface DisplayGlyphOptions {
     alignment?: GlyphAlignment,
 
     /**
-     * Transition effect between glyph displays
-     */
-    transition?: DisplayTransition
-
-    /**
      * Display brightness
      * Does not affect device brightness level already set
      */
     brightness?: number
+
+    /**
+     * Display composition mode
+     */
+    compositionMode?: DisplayComposition
+
+    /**
+     * Transition effect between glyph displays
+     */
+    transition?: DisplayTransition
 
     /**
      * Timeout, in milliseconds before the glyph disappears
@@ -239,12 +260,31 @@ export class NuimoControlDevice extends EventEmitter {
     async displayGlyph(glyph: Glyph, options?: DisplayGlyphOptions): Promise<void> {
         const explicitBrightness = options && options.brightness
         const brightness = explicitBrightness !== undefined ? explicitBrightness : this.brightness
-        const bitmap = new NuimoBitmap(glyph)
+
+        // Resize and perform composition
+        let displayGlyph = glyph.resize(LED_DISPLAY_COLS, LED_DISPLAY_ROWS, options && options.alignment)
+        if (options && options.compositionMode === DisplayComposition.Invert) {
+            displayGlyph = displayGlyph.invert()
+        }
+        const bitmap = new NuimoBitmap(displayGlyph)
 
         return this.nuimoPeripheral.displayBitmap(bitmap, {
             brightness,
             timeoutMs: options && options.timeoutMs,
             fadeTransition: options && options.transition === DisplayTransition.CrossFade,
+        }) as Promise<any>
+    }
+
+    /**
+     * Clears the display
+     *
+     * @param [transition=DisplayTransition.CrossFade] - transition when clearing the screen
+     */
+    async clearDisplay(transition?: DisplayTransition): Promise<void> {
+        return this.nuimoPeripheral.displayBitmap(emptyBitmap, {
+            brightness: this.brightness,
+            timeoutMs: 0,
+            fadeTransition: transition === DisplayTransition.CrossFade,
         }) as Promise<any>
     }
 
