@@ -156,6 +156,11 @@ export class Glyph {
             return new Glyph([])
         }
 
+        // Check there is resizing needed
+        if (height === this.height && this.characterRows.find(row => row.length !== width) === undefined) {
+            return this
+        }
+
         const rows = this.characterRows.map(row => {
             if (row.length < width) {
                 if ((alignment & GlyphMasks.GLYPH_HLEFT_MASK) === GlyphMasks.GLYPH_HLEFT_MASK) {
@@ -163,8 +168,17 @@ export class Glyph {
                 } else if ((alignment & GlyphMasks.GLYPH_HRIGHT_MASK) === GlyphMasks.GLYPH_HRIGHT_MASK) {
                     row = row.padStart(width, Glyph.offChar)
                 } else {
-                    const rowPrefix = width - Math.floor((width - row.length) / 2)
-                    row = row.padStart(rowPrefix, Glyph.offChar).padEnd(width, Glyph.offChar)
+                    const rowPrefixWidth = width - Math.floor((width - row.length) / 2)
+                    row = row.padStart(rowPrefixWidth, Glyph.offChar).padEnd(width, Glyph.offChar)
+                }
+            } else if (row.length > width) {
+                if ((alignment & GlyphMasks.GLYPH_HLEFT_MASK) === GlyphMasks.GLYPH_HLEFT_MASK) {
+                    row = row.slice(0, width)
+                } else if ((alignment & GlyphMasks.GLYPH_HRIGHT_MASK) === GlyphMasks.GLYPH_HRIGHT_MASK) {
+                    row = row.slice(row.length - width)
+                } else {
+                    const rowPrefixWidth = Math.floor((row.length - width) / 2)
+                    row = row.slice(rowPrefixWidth, rowPrefixWidth + width)
                 }
             }
 
@@ -197,7 +211,18 @@ export class Glyph {
                 glyph.push(blankRow)
             }
         } else {
-            glyph.push(...rows)
+            if (rows.length > height) {
+                if ((alignment & GlyphMasks.GLYPH_VBOTTOM_MASK) === GlyphMasks.GLYPH_VBOTTOM_MASK) {
+                    glyph.push(...rows.slice(rows.length - height))
+                } else if ((alignment & GlyphMasks.GLYPH_VTOP_MASK) === GlyphMasks.GLYPH_VTOP_MASK) {
+                    glyph.push(...rows.slice(0, height))
+                } else {
+                    const prefixHeight = Math.floor((rows.length - height) / 2)
+                    glyph.push(...rows.slice(prefixHeight, prefixHeight + height))
+                }
+            } else {
+                glyph.push(...rows)
+            }
         }
 
         return new Glyph(glyph)
