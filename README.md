@@ -1,9 +1,9 @@
 ![Rocket Nuimo](https://github.com/pryomoax/rocket-nuimo-node/raw/master/assets/rocket-nuimo.png)
 
-![Release](https://img.shields.io/github/release/pryomoax/rocket-nuimo-node.svg?style=for-the-badge)
-![License](https://img.shields.io/npm/l/rocket-nuimo.svg?style=for-the-badge)
+[![Release](https://img.shields.io/github/release-pre/pryomoax/rocket-nuimo-node.svg?style=for-the-badge)](https://github.com/pryomoax/rocket-nuimo-node/releases)
+[![License](https://img.shields.io/github/license/pryomoax/rocket-nuimo-node.svg?style=for-the-badge)](./LICENSE)
 ![Node](https://img.shields.io/node/v/rocket-nuimo.svg?style=for-the-badge)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge)](https://github.com/pryomoax/rocket-nuimo-node/graphs/commit-activity)
+[![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge)](https://github.com/pryomoax/rocket-nuimo-node/graphs/commit-activity)
 
 Welcome to 🚀 Rocket Nuimo, a Node.js client package for Senic's [Numio Control](https://www.senic.com/nuimo-control) BLE device.
 
