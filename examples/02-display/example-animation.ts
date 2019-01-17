@@ -54,7 +54,12 @@ async function main() {
     // Perform a little animation
     let offset = 0
     let direction = 1
-    setInterval(() => {
+    const interval = setInterval(() => {
+        // Check if the client is still connected
+        if (!device.isConnected) {
+            return
+        }
+
         const newOffset = offset + direction
         if (offset + direction > primaryGlyph.height || newOffset < 0) {
             direction *= -1
@@ -67,6 +72,11 @@ async function main() {
             transition: DisplayTransition.Immediate,
         })
     }, 500)
+
+    // If there is a disconnection, cancel the animation
+    device.on('disconnect', () => {
+        clearInterval(interval)
+    })
 }
 
 // Boot strap async function
