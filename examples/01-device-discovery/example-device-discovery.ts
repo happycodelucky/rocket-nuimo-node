@@ -37,6 +37,14 @@ async function main() {
         console.log(`ID:      ${device.id}`)
         console.log(`RSSI:    ${device.rssi}`)
         console.log(`BATTERY: ${device.batteryLevel}`)
+
+        // If the device gets disconnected, exit the app
+        device.on('disconnect', () => {
+            console.log('Disconnected! Exiting.')
+
+            // On a disconnect, exit
+            process.exit(1)
+        })
     }
 }
 
