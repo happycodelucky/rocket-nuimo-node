@@ -5,6 +5,18 @@
   "main": "lib/index.js",
   "types": "dts/index.d.ts",
   "author": "Paul Bates (paul.bates@gorocode.io)",
+  "keywords": [
+    "senic",
+    "nuimo",
+    "nuimo connect",
+    "rocket nuimo",
+    "ble",
+    "iot",
+    "dial",
+    "knob",
+    "volume"
+  ],
+  "badges": [],
   "license": "MIT",
   "dependencies": {
     "check-types": "^7.4",
