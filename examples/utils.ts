@@ -1,3 +1,5 @@
+import chalk from 'chalk'
+
 import { DeviceDiscoveryManager, NuimoControlDevice, NuimoDeviceCommunicationError, NuimoDeviceCommunicationErrorCode } from '..'
 import { DEVICE_DISCOVERY_TIMEOUT_MS } from '../src/defaults'
 
@@ -24,11 +26,37 @@ export async function connectToDevice(deviceId?: string): Promise<NuimoControlDe
     if (await device.connect()) {
         console.log('Connected to Nuimo Control')
 
+        device.on('disconnect', () => {
+            console.log('Disconnected! Exiting.')
+
+            // On a disconnect, exit
+            process.exit(1)
+        })
+
         return device
     }
 
     // Throw error
     throw new NuimoDeviceCommunicationError(NuimoDeviceCommunicationErrorCode.ConnectionTimeout, device.id)
+}
+
+/**
+ * Helper to log events
+ *
+ * @param eventName - name of event
+ * @param [params] - event params
+ */
+export function logEvent(eventName: string, params?: Record<string, any>) {
+    console.log(`'${chalk.bold.green(eventName)}' event`)
+    if (params) {
+        for (const key in params) {
+            if (typeof key !== 'string') {
+                continue
+            }
+            console.log(`> ${chalk.bold(key)}: ${chalk.italic(params[key])}`)
+        }
+
+    }
 }
 
 /**

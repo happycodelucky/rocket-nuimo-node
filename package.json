@@ -14,12 +14,14 @@
     "weak": "^1.0"
   },
   "devDependencies": {
+    "@types/chalk": "^2.2.0",
     "@types/debug": "^0.0.31",
     "@types/noble": "^0.0.38",
     "@types/node": "^10.12.18",
     "@types/weak": "^1.0.0",
     "chai": "^4.2",
     "chai-as-promised": "^7.1",
+    "chalk": "^2.4.2",
     "del": "^3.0.0",
     "gulp": "^4.0",
     "gulp-sourcemaps": "^2.6.4",
@@ -39,6 +41,6 @@
   },
   "scripts": {
     "test": "nyc mocha -r ts-node/register -r test/prepare test/**/*.spec.ts",
-    "example-device-info": "ts-node --project ./examples/tsconfig.json ./examples/01-device-info/example-device-info.ts"
+    "example": "ts-node --project ./examples/tsconfig.json ./examples/04-gesture-events/example-touch-events.ts"
   }
 }
