@@ -1,4 +1,4 @@
-import { DisplayTransition, Glyph, GlyphAlignment, DisplayComposition } from '../..'
+import { DisplayComposition, DisplayTransition, Glyph, GlyphAlignment } from '../..'
 import { bootstrap, connectToDevice } from '../utils'
 
 // Uncomment to search for only your device
