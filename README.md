@@ -1,6 +1,11 @@
-![Rocket Nuimo](https://github.com/pryomoax/nuimo-connect-node/raw/master/assets/rocket-nuimo.png)
+![Rocket Nuimo](https://github.com/pryomoax/rocket-nuimo-node/raw/master/assets/rocket-nuimo.png)
 
-Welcome to 🚀 Rocket Nuimo, a Node.js client package for Senic's Numio BLE device. 
+![Release](https://img.shields.io/github/release/pryomoax/rocket-nuimo-node.svg?style=for-the-badge)
+![License](https://img.shields.io/npm/l/rocket-nuimo.svg?style=for-the-badge)
+![Node](https://img.shields.io/node/v/rocket-nuimo.svg?style=for-the-badge)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge)](https://github.com/pryomoax/rocket-nuimo-node/graphs/commit-activity)
+
+Welcome to 🚀 Rocket Nuimo, a Node.js client package for Senic's [Numio Control](https://www.senic.com/nuimo-control) BLE device.
 
 ⚠️ **THIS PACKAGE IS NOT YET PUBLISHED!** ⚠️
 
@@ -24,7 +29,7 @@ In *your* project's `package.json` insert the following:
 
 ```json
   "depedendencie": {
-   "rocket-nuimo": "^0.4"   
+   "rocket-nuimo": "^0.4"
   },
   "resolutions": {
     "noble": "https://github.com/Timeular/noble-mac"
@@ -51,7 +56,7 @@ In *your* project's `package.json` insert the following:
 
 ```json
   "depedendencie": {
-   "rocket-nuimo": "^0.4"   
+   "rocket-nuimo": "^0.4"
   },
   "resolutions": {
     "xpc-connection": "sandeepmistry/node-xpc-connection#pull/26/head"
