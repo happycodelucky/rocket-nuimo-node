@@ -46,7 +46,7 @@ export interface OnHoverCallback {
     /**
      * @param proximity - proximity between 0-1, 0 being closest to the device
      */
-    (proximity: boolean): void
+    (proximity: number): void
 }
 
 /**
