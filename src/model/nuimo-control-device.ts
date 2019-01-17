@@ -94,9 +94,10 @@ export interface DisplayGlyphOptions {
 type HoverEvents = 'hover'
 type RotateEvents = 'rotate' | 'rotateLeft' | 'rotateRight'
 type SelectEvents = 'select' | 'selectUp' | 'selectDown'
-type SwipeEvents = 'swipeUp' | 'swipeLeft' | 'swipeRight' | 'swipeDown'
+type SwipeEvents = 'swipeUp' | 'swipeDown'
+type HoverSwipeEvents = 'swipeLeft' | 'swipeRight'
 type TouchEvents = 'touchTop' | 'touchLeft' | 'touchRight' | 'touchBottom'
-type LongTouchEvents = 'longTouchTop' | 'longTouchLeft' | 'longTouchRight' | 'longTouchBottom'
+type LongTouchEvents = 'longTouchLeft' | 'longTouchRight' | 'longTouchBottom'
 
 /**
  * A Nuimo Control device client for interacting with BT Nuimo Control peripheral
@@ -256,8 +257,9 @@ export class NuimoControlDevice extends EventEmitter {
      *
      * @param glyph - glyph to display
      * @param [options={}] - options when displaying the glyph
+     * @return true if the glyph was displayed
      */
-    async displayGlyph(glyph: Glyph, options?: DisplayGlyphOptions): Promise<void> {
+    async displayGlyph(glyph: Glyph, options?: DisplayGlyphOptions): Promise<boolean> {
         const explicitBrightness = options && options.brightness
         const brightness = explicitBrightness !== undefined ? explicitBrightness : this.brightness
 
@@ -272,20 +274,21 @@ export class NuimoControlDevice extends EventEmitter {
             brightness,
             timeoutMs: options && options.timeoutMs,
             fadeTransition: options && options.transition === DisplayTransition.CrossFade,
-        }) as Promise<any>
+        }).catch(() => false)
     }
 
     /**
      * Clears the display
      *
      * @param [transition=DisplayTransition.CrossFade] - transition when clearing the screen
+     * @return true if the display was cleared
      */
-    async clearDisplay(transition?: DisplayTransition): Promise<void> {
+    async clearDisplay(transition?: DisplayTransition): Promise<boolean> {
         return this.nuimoPeripheral.displayBitmap(emptyBitmap, {
             brightness: this.brightness,
             timeoutMs: 0,
             fadeTransition: transition === DisplayTransition.CrossFade,
-        }) as Promise<any>
+        }).catch(() => false)
     }
 
     /**
@@ -342,7 +345,7 @@ export class NuimoControlDevice extends EventEmitter {
     /** @internal */
     private onSwipe(state: TouchOrSwipeCharacteristicData) {
         if (state === TouchOrSwipeCharacteristicData.SwipeDown) {
-            this.emit('swipeDown', false)
+            this.emit('swipeDown')
             this.emit('swipe', SwipeGestureDirection.Down, false)
         } else if (state === TouchOrSwipeCharacteristicData.SwipeLeft) {
             this.emit('swipeLeft', false)
@@ -351,7 +354,7 @@ export class NuimoControlDevice extends EventEmitter {
             this.emit('swipeRight', false)
             this.emit('swipe', SwipeGestureDirection.Right, false)
         } else if (state === TouchOrSwipeCharacteristicData.SwipeUp) {
-            this.emit('swipeUp', false)
+            this.emit('swipeUp')
             this.emit('swipe', SwipeGestureDirection.Up, false)
         }
     }
@@ -384,9 +387,6 @@ export class NuimoControlDevice extends EventEmitter {
         } else if (state === TouchOrSwipeCharacteristicData.LongTouchRight) {
             this.emit('longTouchRight')
             this.emit('longTouch', TouchGestureArea.Right)
-        } else if (state === TouchOrSwipeCharacteristicData.LongTouchTop) {
-            this.emit('longTouchTop')
-            this.emit('longTouch', TouchGestureArea.Top)
         }
     }
 
@@ -431,9 +431,10 @@ export class NuimoControlDevice extends EventEmitter {
 
 export declare interface NuimoControlDevice {
     addListener(eventName: HoverEvents, listener: OnHoverCallback): this
-    addListener(eventName: SelectEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this
+    addListener(eventName: SelectEvents | SwipeEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this
     addListener(eventName: RotateEvents, listener: OnRotateCallback): this
-    addListener(eventName: SwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
+    addListener(eventName: HoverSwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
+
     addListener(eventName: 'swipe', listener: OnSwipeGestureCallback): this
     addListener(eventName: 'touch' | 'longTouch', listener: OnTouchGestureCallback): this
     addListener(eventName: 'error', listener: OnErrorCallback): this
@@ -443,11 +444,11 @@ export declare interface NuimoControlDevice {
     /** @internal */
     emit(eventName: HoverEvents | 'batteryLevel' | 'rssi', value: number): boolean
     /** @internal */
-    emit(eventName: SelectEvents | TouchEvents | LongTouchEvents | 'disconnect'): boolean
+    emit(eventName: SelectEvents | SwipeEvents | TouchEvents | LongTouchEvents | 'disconnect'): boolean
     /** @internal */
     emit(eventName: RotateEvents, delta: number, rotation: number): boolean
     /** @internal */
-    emit(eventName: SwipeEvents, hoverSwipe: boolean): boolean
+    emit(eventName: HoverSwipeEvents, hoverSwipe: boolean): boolean
     /** @internal */
     emit(eventName: 'swipe', direction: SwipeGestureDirection, hoverSwipe: boolean): boolean
     /** @internal */
@@ -456,9 +457,9 @@ export declare interface NuimoControlDevice {
     emit(eventName: 'error', error: NuimoError): boolean
 
     listeners(eventName: HoverEvents): OnHoverCallback[]
-    listeners(eventName: SelectEvents | TouchEvents | LongTouchEvents | 'disconnect'): OnEventCallback[]
+    listeners(eventName: SelectEvents | SwipeEvents | TouchEvents | LongTouchEvents | 'disconnect'): OnEventCallback[]
     listeners(eventName: RotateEvents): OnRotateCallback[]
-    listeners(eventName: SwipeEvents): OnDirectionalSwipeGestureCallback[]
+    listeners(eventName: HoverSwipeEvents): OnDirectionalSwipeGestureCallback[]
     listeners(eventName: 'swipe'): OnSwipeGestureCallback[]
     listeners(eventName: 'touch' | 'longTouch'): OnTouchGestureCallback[]
     listeners(eventName: 'error'): OnErrorCallback[]
@@ -466,9 +467,9 @@ export declare interface NuimoControlDevice {
     listeners(eventName: 'rssi'): OnRssiCallback[]
 
     off(eventName: HoverEvents, listener: OnHoverCallback): this
-    off(eventName: SelectEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this
+    off(eventName: SelectEvents | SwipeEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this
     off(eventName: RotateEvents, listener: OnRotateCallback): this
-    off(eventName: SwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
+    off(eventName: HoverSwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
     off(eventName: 'swipe', listener: OnSwipeGestureCallback): this
     off(eventName: 'touch' | 'longTouch', listener: OnTouchGestureCallback): this
     off(eventName: 'error', listener: OnErrorCallback): this
@@ -476,9 +477,9 @@ export declare interface NuimoControlDevice {
     off(eventName: 'rssi', listener: OnRssiCallback): this
 
     on(eventName: HoverEvents, listener: OnHoverCallback): this
-    on(eventName: SelectEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this
+    on(eventName: SelectEvents | SwipeEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this
     on(eventName: RotateEvents, listener: OnRotateCallback): this
-    on(eventName: SwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
+    on(eventName: HoverSwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
     on(eventName: 'swipe', listener: OnSwipeGestureCallback): this
     on(eventName: 'touch' | 'longTouch', listener: OnTouchGestureCallback): this
     on(eventName: 'error', listener: OnErrorCallback): this
@@ -486,9 +487,9 @@ export declare interface NuimoControlDevice {
     on(eventName: 'rssi', listener: OnRssiCallback): this
 
     once(eventName: HoverEvents, listener: OnHoverCallback): this
-    once(eventName: SelectEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this
+    once(eventName: SelectEvents | SwipeEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this
     once(eventName: RotateEvents, listener: OnRotateCallback): this
-    once(eventName: SwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
+    once(eventName: HoverSwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
     once(eventName: 'swipe', listener: OnSwipeGestureCallback): this
     once(eventName: 'touch' | 'longTouch', listener: OnTouchGestureCallback): this
     once(eventName: 'error', listener: OnErrorCallback): this
@@ -496,9 +497,10 @@ export declare interface NuimoControlDevice {
     once(eventName: 'rssi', listener: OnRssiCallback): this
 
     prependListener(eventName: HoverEvents, listener: OnHoverCallback): this
-    prependListener(eventName: SelectEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this
+    prependListener(eventName: SelectEvents | SwipeEvents | TouchEvents | LongTouchEvents | 'disconnect',
+        listener: OnEventCallback): this
     prependListener(eventName: RotateEvents, listener: OnRotateCallback): this
-    prependListener(eventName: SwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
+    prependListener(eventName: HoverSwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
     prependListener(eventName: 'swipe', listener: OnSwipeGestureCallback): this
     prependListener(eventName: 'touch' | 'longTouch', listener: OnTouchGestureCallback): this
     prependListener(eventName: 'error', listener: OnErrorCallback): this
@@ -506,9 +508,10 @@ export declare interface NuimoControlDevice {
     prependListener(eventName: 'rssi', listener: OnRssiCallback): this
 
     prependOnceListener(eventName: HoverEvents, listener: OnHoverCallback): this
-    prependOnceListener(eventName: SelectEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this
+    prependOnceListener(eventName: SelectEvents | SwipeEvents | TouchEvents | LongTouchEvents | 'disconnect',
+        listener: OnEventCallback): this
     prependOnceListener(eventName: RotateEvents, listener: OnRotateCallback): this
-    prependOnceListener(eventName: SwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
+    prependOnceListener(eventName: HoverSwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
     prependOnceListener(eventName: 'swipe', listener: OnSwipeGestureCallback): this
     prependOnceListener(eventName: 'touch' | 'longTouch', listener: OnTouchGestureCallback): this
     prependOnceListener(eventName: 'error', listener: OnErrorCallback): this
@@ -516,15 +519,16 @@ export declare interface NuimoControlDevice {
     prependOnceListener(eventName: 'rssi', listener: OnRssiCallback): this
 
     removeListener(eventName: HoverEvents, listener: OnHoverCallback): this
-    removeListener(eventName: SelectEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this
+    removeListener(eventName: SelectEvents | SwipeEvents | TouchEvents | LongTouchEvents | 'disconnect',
+        listener: OnEventCallback): this
     removeListener(eventName: RotateEvents, listener: OnRotateCallback): this
-    removeListener(eventName: SwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
+    removeListener(eventName: HoverSwipeEvents, listener: OnDirectionalSwipeGestureCallback): this
     removeListener(eventName: 'swipe', listener: OnSwipeGestureCallback): this
     removeListener(eventName: 'touch' | 'longTouch', listener: OnTouchGestureCallback): this
     removeListener(eventName: 'error', listener: OnErrorCallback): this
     removeListener(eventName: 'batteryLevel', listener: OnBatteryLeveCallback): this
     removeListener(eventName: 'rssi', listener: OnRssiCallback): this
 
-    listenerCount(type: HoverEvents | SelectEvents | TouchEvents | LongTouchEvents | 'disconnect' | RotateEvents | SwipeEvents |
-        'swipe' | 'touch' | 'longTouch' | 'error' | 'batteryLevel' | 'rssi'): number
+    listenerCount(type: HoverEvents | HoverSwipeEvents | SelectEvents | TouchEvents | LongTouchEvents | RotateEvents | SwipeEvents |
+        'disconnect' | 'swipe' | 'touch' | 'longTouch' | 'error' | 'batteryLevel' | 'rssi'): number
 }
