@@ -148,7 +148,6 @@ Thumbs.db
 node_modules
 
 # Generared sources
-dev
-dist
+publish
 dts
 lib
