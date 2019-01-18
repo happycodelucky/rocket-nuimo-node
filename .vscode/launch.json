@@ -12,6 +12,9 @@
             "args": [
                 "./examples/01-device-discovery/example-device-discovery.ts"
             ],
+            "env": {
+                "TS_PROJECT": "./examples/tsconfig.json"
+            },
             "sourceMaps": true,
             "showAsyncStacks": true,
             "smartStep": true
@@ -24,6 +27,9 @@
             "args": [
                 "./examples/02-display/example-display.ts"
             ],
+            "env": {
+                "TS_PROJECT": "./examples/tsconfig.json"
+            },
             "sourceMaps": true,
             "showAsyncStacks": true,
             "smartStep": true
@@ -36,6 +42,9 @@
             "args": [
                 "./examples/02-display/example-animation.ts"
             ],
+            "env": {
+                "TS_PROJECT": "./examples/tsconfig.json"
+            },
             "sourceMaps": true,
             "showAsyncStacks": true,
             "smartStep": true
@@ -48,6 +57,69 @@
             "args": [
                 "./examples/03-select-events/example-select-events.ts"
             ],
+            "env": {
+                "TS_PROJECT": "./examples/tsconfig.json"
+            },
+            "sourceMaps": true,
+            "showAsyncStacks": true,
+            "smartStep": true
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "04 - Gesture Touch Events",
+            "program": "${workspaceFolder}/node_modules/.bin/ts-node",
+            "args": [
+                "./examples/04-gesture-events/example-touch-events.ts"
+            ],
+            "env": {
+                "TS_PROJECT": "./examples/tsconfig.json"
+            },
+            "sourceMaps": true,
+            "showAsyncStacks": true,
+            "smartStep": true
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "04 - Gesture Swipe Events",
+            "program": "${workspaceFolder}/node_modules/.bin/ts-node",
+            "args": [
+                "./examples/04-gesture-events/example-swipe-events.ts"
+            ],
+            "env": {
+                "TS_PROJECT": "./examples/tsconfig.json"
+            },
+            "sourceMaps": true,
+            "showAsyncStacks": true,
+            "smartStep": true
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "04 - Gesture Hover Events",
+            "program": "${workspaceFolder}/node_modules/.bin/ts-node",
+            "args": [
+                "./examples/04-gesture-events/example-hover-events.ts"
+            ],
+            "env": {
+                "TS_PROJECT": "./examples/tsconfig.json"
+            },
+            "sourceMaps": true,
+            "showAsyncStacks": true,
+            "smartStep": true
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "05 - Rotate Events",
+            "program": "${workspaceFolder}/node_modules/.bin/ts-node",
+            "args": [
+                "./examples/05-rotate-events/example-rotate-events.ts"
+            ],
+            "env": {
+                "TS_PROJECT": "./examples/tsconfig.json"
+            },
             "sourceMaps": true,
             "showAsyncStacks": true,
             "smartStep": true
