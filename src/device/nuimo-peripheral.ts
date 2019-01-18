@@ -19,7 +19,7 @@ const debug = createDebugLogger('nuimo/device/bluetooth')
 const DEVICE_CONNECT_TIMEOUT_MS = 30 * 1000 // 30 seconds
 
 // Number of points to accumulate one rotation
-const DEVICE_ROTATION_POINTS = Math.PI * 1000
+const DEVICE_ROTATION_POINTS = 2650
 
 // Number of points measured for hover proximity
 const DEVICE_HOVER_PROXIMITY_POINTS = 250
