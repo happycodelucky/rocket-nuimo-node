@@ -46,7 +46,6 @@
     "gulp": "^4.0",
     "gulp-bump": "^3.1",
     "gulp-json-editor": "^2.5.0",
-    "gulp-json-modify": "^1.0.2",
     "gulp-tslint": "^8.1",
     "gulp-typescript": "^5.0",
     "merge2": "^1.2.3",
