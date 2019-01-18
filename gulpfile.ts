@@ -5,8 +5,7 @@
  *  - clean
  *  - lint
  *  - build
- *  - cleanArtifacts
- *  - packageArtifacts
+ *  - preparePublish
  *  - publish
  */
 
