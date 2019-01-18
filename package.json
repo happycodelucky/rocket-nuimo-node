@@ -1,6 +1,6 @@
 {
   "name": "rocket-nuimo",
-  "version": "0.4.1-pre.0",
+  "version": "0.4.1-pre.1",
   "description": "Client package for connecting to Nuimo Control by Senic",
   "license": "MIT",
   "private": true,
