@@ -13,7 +13,7 @@
 To install `rocket-nuimo` for use within your project use [yarn](https://yarnpkg.com) or [npm](https://npmjs.com)
 
 ```bash
-$ yarn add `rocket-nuimo`
+$ yarn add rocket-nuimo
 ```
 
 ## macOS Mojave Installation
