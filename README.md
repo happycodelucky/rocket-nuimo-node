@@ -48,6 +48,57 @@ Now when you run your respect `yarn install` or `npm install` it will the packag
 
 API documentation coming shortly. Check out [examples](./examples) for now.
 
+## Getting Connected
+
+```javascript
+import { DeviceDiscoveryManager } from 'rocket-nuimo'
+
+// Device connection manager
+const manager = DeviceDiscoveryManager.defaultManager
+
+/**
+ * Main application entry point
+ */
+async function main() {
+    console.log('Starting Numio Control discovery')
+
+    // Create a new discovery session
+    const session = manager.startDiscoverySession()
+
+    console.log('Waiting for device...')
+
+    // Convenience to await the first discovered Nuimo device
+    const device = await session.waitForFirstDevice()
+
+    console.log(`Found device '${device.id}'`)
+    console.log('Connecting...')
+
+    // Establish device connection
+    if (await device.connect()) {
+        console.log('Connected to Nuimo Control')
+
+        //
+        // You're connected, observe events and get started...
+        //
+
+        // If the device gets disconnected, exit the app
+        device.on('disconnect', () => {
+            console.log('Disconnected! Exiting.')
+
+            // On a disconnect, exit
+            process.exit(0)
+        })
+    }
+}
+
+// Boot strap async function
+main().catch((err) => {
+  console.log(err)
+})
+```
+
+## Examples
+
 Clone `rocket-nuimo-node` and run the examples to try things out. [package.json](./package.json) contains many example scripts. Alternatively, for [Visual Sudio Code](https://code.visualstudio.com/) users you have access to the pre-configured launch configurations to run the examples.
 
 ```bash
