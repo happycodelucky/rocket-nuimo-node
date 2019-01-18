@@ -30,7 +30,7 @@ export async function connectToDevice(deviceId?: string): Promise<NuimoControlDe
             console.log('Disconnected! Exiting.')
 
             // On a disconnect, exit
-            process.exit(1)
+            process.exit(0)
         })
 
         return device
