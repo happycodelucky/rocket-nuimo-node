@@ -1,7 +1,7 @@
 {
   "name": "rocket-nuimo",
   "version": "0.4.1-pre.3",
-  "description": "Client package for connecting to Nuimo Control by Senic",
+  "description": "🚀 Client package for connecting to Nuimo Control by Senic",
   "license": "MIT",
   "private": true,
   "repository": "pryomoax/rocket-nuimo-node",
