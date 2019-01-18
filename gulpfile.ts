@@ -77,8 +77,10 @@ export function preparePublish(done: TaskCallback) {
     const project = tsProject()
     const artifactsPath = ARTIFACTS_DEST
 
+    const cleanPublish = () => del(ARTIFACTS_DEST)
+
     return series(
-        () => del(ARTIFACTS_DEST),
+        cleanPublish,
         lintSources.bind(undefined, project),
         transpileSources.bind(undefined, project, artifactsPath),
         parallel(
