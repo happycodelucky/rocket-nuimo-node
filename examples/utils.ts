@@ -50,10 +50,10 @@ export function logEvent(eventName: string, params?: Record<string, any>) {
     console.log(`'${chalk.bold.green(eventName)}' event`)
     if (params) {
         for (const key in params) {
+            // tslint:disable-next-line:strict-type-predicates tsc does not correctly type-check
             if (typeof key !== 'string') {
-                continue
+                console.log(`> ${chalk.bold(key)}: ${chalk.italic(params[key])}`)
             }
-            console.log(`> ${chalk.bold(key)}: ${chalk.italic(params[key])}`)
         }
 
     }
@@ -64,10 +64,8 @@ export function logEvent(eventName: string, params?: Record<string, any>) {
  *
  * @param main - main function
  */
-export async function bootstrap(main: () => void) {
-    try {
-        await main()
-    } catch (err) {
+export function bootstrap(main: () => Promise<void>) {
+    main().catch(err => {
         console.error(`Connection error: ${err.message}`)
-    }
+    })
 }
