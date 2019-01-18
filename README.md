@@ -11,7 +11,7 @@ Welcome to 🚀 Rocket Nuimo, a Node.js client package for Senic's [Numio Contro
 
 ----
 
-#Installation
+# Installation
 To install `rocket-nuimo` for use within your project use [yarn](https://yarnpkg.com) or [npm](https://npmjs.com)
 
 ```bash
@@ -43,28 +43,3 @@ $ yarn install
 ```
 
 Now when you run your respect `yarn install` or `npm install` it will the package suitable to running on macOS.
-
-## Node.js 10+ Installation
-
-(If you applied the above macOS fix you can skip this. `noble-mac` does not use `xpc-connection`)
-
-Another issue related to modern version of Node.js with respects to [noble](https://github.com/noble/noble) is with it's depedency on [xpc-connection](https://github.com/sandeepmistry/node-xpc-connection).
-
-### Overridding Depedencies
-
-In *your* project's `package.json` insert the following:
-
-```json
-  "depedendencie": {
-   "rocket-nuimo": "^0.4"
-  },
-  "resolutions": {
-    "xpc-connection": "sandeepmistry/node-xpc-connection#pull/26/head"
-  },
-```
-
-Then run from the terminal
-
-```bash
-$ yarn install
-```
