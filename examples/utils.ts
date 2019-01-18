@@ -51,7 +51,7 @@ export function logEvent(eventName: string, params?: Record<string, any>) {
     if (params) {
         for (const key in params) {
             // tslint:disable-next-line:strict-type-predicates tsc does not correctly type-check
-            if (typeof key !== 'string') {
+            if (typeof key === 'string') {
                 console.log(`> ${chalk.bold(key)}: ${chalk.italic(params[key])}`)
             }
         }
