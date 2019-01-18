@@ -10,6 +10,7 @@ export class NuimoError extends Error {
         super(message);
 
         // Correct prototype overridden by Error
+        // tslint:disable-next-line:no-unsafe-any
         Reflect.setPrototypeOf(this, new.target.prototype);
 
         this.name = name;

@@ -31,12 +31,12 @@ export class DeviceDiscoveryManager extends EventEmitter {
     /**
      * Active discovery sessions
      */
-    private activeSessions: Set<DeviceDiscoverySession> = new Set()
+    private readonly activeSessions: Set<DeviceDiscoverySession> = new Set()
 
     /**
      * All devices discovered, index by device ID
      */
-    private discoveredDevicesMap: Map<string, NuimoControlDevice> = new Map()
+    private readonly discoveredDevicesMap: Map<string, NuimoControlDevice> = new Map()
 
     /**
      * Indiciates if a discovery should be performed when the BT radio is powered on
@@ -256,7 +256,7 @@ export class DeviceDiscoveryManager extends EventEmitter {
         }
 
         // Listen for power state changes in the radio
-        noble.on('stateChange', onPowerStateChange.bind(this))
+        noble.on('stateChange', onPowerStateChange)
 
         // Check if the power is already on, and handle the power state
         if (noble.state === 'poweredOn') {
@@ -275,7 +275,7 @@ export class DeviceDiscoveryManager extends EventEmitter {
         // Start discovery
         debug('Beginning device discovery session')
         this.managerDiscoveryState = DeviceDiscoveryState.Discovering
-        this.activeSessions.forEach(session => session.startDiscovery())
+        this.activeSessions.forEach(session => { session.startDiscovery() })
         noble.startScanning()
 
         this.emit('started')

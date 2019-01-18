@@ -41,7 +41,7 @@ export class DeviceDiscoverySession extends EventEmitter {
     /**
      * Options supplied when starting a new discovery
      */
-    private discoveryOptions: DeviceDiscoverySessionOptions
+    private readonly discoveryOptions: DeviceDiscoverySessionOptions
 
     /**
      * Timeout timer when a timeout was specified
@@ -56,7 +56,7 @@ export class DeviceDiscoverySession extends EventEmitter {
     /**
      * Internal map of discovered devices, and devices to ignore when seen subsequent times
      */
-    private sessionDiscoveredDevicesMap: Map<string, NuimoControlDevice> = new Map()
+    private readonly sessionDiscoveredDevicesMap: Map<string, NuimoControlDevice> = new Map()
 
     /**
      * Promise for first call to waitForFirstDevice
@@ -154,7 +154,8 @@ export class DeviceDiscoverySession extends EventEmitter {
         // Need to wait for a device to be discovered
         const self = this
         const lisenters = new Map<string, (...args: any[]) => void>()
-        // Function called when a device is discovered
+
+        /** Function called when a device is discovered */
         function onWaitDeviceDiscovered(device: NuimoControlDevice) {
             if (self.waitForDeviceResolveCallback) {
                 self.waitForDeviceResolveCallback(device)
@@ -170,7 +171,8 @@ export class DeviceDiscoverySession extends EventEmitter {
                 self.removeListener(key as any, value)
             })
         }
-        // Function called when the session times out
+
+        /** Function called when the session times */
         function onWaitTimeout() {
             if (self.waitForDeviceRejectCallback) {
                 self.waitForDeviceRejectCallback(new Error('Timeout'))

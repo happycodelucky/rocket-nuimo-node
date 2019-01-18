@@ -248,11 +248,11 @@ export class NuimoPeripheral extends EventEmitter {
                         resolve(true)
                     }
                 })
-            }) as Promise<boolean>
+            })
         }
 
         throw new NuimoDeviceCommunicationError(
-            NuimoDeviceCommunicationErrorCode.NotReady, this.id)
+            NuimoDeviceCommunicationErrorCode.NotConnected, this.id)
     }
 
     /**
@@ -417,7 +417,7 @@ export class NuimoPeripheral extends EventEmitter {
                 }
 
                 // Characterisitic discovery...
-                await Promise.all(services.map(service => {
+                await Promise.all(services.map(async (service) => {
                     return new Promise<Characteristic[]>((resolveCharacteristic, rejectCharacteristic) => {
                         service.discoverCharacteristics([], (err, characteristics) => {
                             if (err) {
@@ -504,7 +504,7 @@ export class NuimoPeripheral extends EventEmitter {
             case DeviceConnectedStatus.Connected:
                 return
             case DeviceConnectedStatus.Connecting:
-                throw new NuimoDeviceCommunicationError(NuimoDeviceCommunicationErrorCode.NotReady, this.id)
+                throw new NuimoDeviceCommunicationError(NuimoDeviceCommunicationErrorCode.NotConnected, this.id)
             case DeviceConnectedStatus.Disconnected:
                 throw new NuimoDeviceCommunicationError(NuimoDeviceCommunicationErrorCode.Disconnected, this.id)
         }
@@ -517,7 +517,7 @@ export class NuimoPeripheral extends EventEmitter {
      * @param handler - handler to be called when the characteristic value changes
      * @return Promise to capture when subscription has succeeded
      */
-    private bindCharacterNotifyHandler(characteristic: Characteristic, handler: NuimoNotifyHandler): Promise<boolean> {
+    private async bindCharacterNotifyHandler(characteristic: Characteristic, handler: NuimoNotifyHandler): Promise<boolean> {
         debug(`Subscribing to characteristic ${characteristic.name || characteristic.uuid}`)
 
         characteristic.on('data', (data: Buffer, isNotification: boolean) => {
