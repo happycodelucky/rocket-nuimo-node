@@ -2,8 +2,13 @@
   "name": "rocket-nuimo",
   "version": "0.4.1-pre.0",
   "description": "Client package for connecting to Nuimo Control by Senic",
-  "main": "lib/index.js",
-  "author": "Paul Bates (paul.bates@gorocode.io)",
+  "license": "MIT",
+  "private": true,
+  "repository": "pryomoax/rocket-nuimo-node",
+  "author": {
+    "name": "Paul Bates",
+    "email": "paul.a.bates@gmail.com"
+  },
   "keywords": [
     "senic",
     "nuimo",
@@ -15,7 +20,8 @@
     "knob",
     "volume"
   ],
-  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "dts/index.d.ts",
   "dependencies": {
     "check-types": "^7.4",
     "debug": "^3.1",
@@ -28,6 +34,7 @@
     "@types/del": "^3.0",
     "@types/gulp": "^4.0",
     "@types/gulp-bump": "^2.8",
+    "@types/gulp-json-editor": "^2.2.31",
     "@types/merge2": "^1.1.4",
     "@types/noble": "^0.0.38",
     "@types/node": "^10.12",
@@ -38,6 +45,8 @@
     "del": "^3.0",
     "gulp": "^4.0",
     "gulp-bump": "^3.1",
+    "gulp-json-editor": "^2.5.0",
+    "gulp-json-modify": "^1.0.2",
     "gulp-tslint": "^8.1",
     "gulp-typescript": "^5.0",
     "merge2": "^1.2.3",
