@@ -24,11 +24,11 @@
     "weak": "^1.0"
   },
   "devDependencies": {
-    "@types/chalk": "^2.2",
     "@types/debug": "^0.0",
     "@types/del": "^3.0",
     "@types/gulp": "^4.0",
     "@types/gulp-bump": "^2.8",
+    "@types/merge2": "^1.1.4",
     "@types/noble": "^0.0.38",
     "@types/node": "^10.12",
     "@types/weak": "^1.0.0",
@@ -40,6 +40,7 @@
     "gulp-bump": "^3.1",
     "gulp-tslint": "^8.1",
     "gulp-typescript": "^5.0",
+    "merge2": "^1.2.3",
     "mocha": "^5.2",
     "mocha-typescript": "^1.1",
     "nyc": "^13.0",
@@ -59,7 +60,6 @@
     "swipe-events": "ts-node --project ./examples/tsconfig.json ./examples/04-gesture-events/example-swipe-events.ts",
     "hover-events": "ts-node --project ./examples/tsconfig.json ./examples/04-gesture-events/example-hover-events.ts",
     "rotate-events": "ts-node --project ./examples/tsconfig.json ./examples/05-rotate-events/example-rotate-events.ts",
-
     "test": "TS_NODE_PROJECT=./test/tsconfig.json nyc mocha -r ts-node/register -r test/prepare test/**/*.spec.ts test/*.spec.ts --exit"
   }
 }
