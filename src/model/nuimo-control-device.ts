@@ -362,7 +362,7 @@ export class NuimoControlDevice extends EventEmitter {
     /** @internal */
     private onTouch(state: TouchOrSwipeCharacteristicData) {
         if (state === TouchOrSwipeCharacteristicData.TouchBottom) {
-            this.emit('touchTop')
+            this.emit('touchBottom')
             this.emit('touch', TouchGestureArea.Bottom)
         } else if (state === TouchOrSwipeCharacteristicData.TouchLeft) {
             this.emit('touchLeft')
