@@ -23,11 +23,17 @@
         "strictNullChecks": true,
         "strictPropertyInitialization": true,
         "stripInternal": true,
-        "target": "es2017"
+        "target": "es2017",
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "types": [
+            "node"
+        ]
     },
     "typeAcquisition": {
         "enable": true,
-        "include": [ "node", "noble", "weak" ],
+        "include": [ "node", "noble", "weak" ]
     },
     "exclude":[
         "node_modules"

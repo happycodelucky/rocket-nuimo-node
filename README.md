@@ -142,3 +142,9 @@ There can be troubles connecting to a Nuimo when playing around with the device.
 - Power cycle Nuimo Control
 - [Reset bluetooth](https://macpaw.com/how-to/fix-bluetooth-not-available-problem) on your Mac
 - Check if there are any current issue with [noble](https://github.com/noble/noble) related to the OS/Node.js version you are using.
+
+# Special Thanks
+
+Thanks to those making things better with PRs:
+
+* [@Mitch90](https://github.com/Mitch90)
