@@ -16,7 +16,7 @@
             "ignore-words": ["HACK", "REVIEW", "TODO"]
         }],
         "callable-types": false,
-        "completed-docs": [true, {
+        "completed-docs": [false, {
             "classes": true,
             "enums": true,
             "enum-members": { "visibilities": ["exported"], "tags": { "existence": ["internal"] }},
@@ -118,7 +118,6 @@
         "no-unsafe-any": true,
         "no-unsafe-finally": true,
         "no-unused-expression": false,
-        "no-use-before-declare": true,
         "no-var-keyword": true,
         "no-var-requires": true,
         "no-void-expression": true,
@@ -156,6 +155,7 @@
         "space-before-function-paren": [true, {"anonymous": "always", "named": "never", "asyncArrow": "always"}],
         "space-within-parens": [true, "never"],
         "strict-boolean-expressions": false,
+        "strict-comparisons": false,
         "strict-type-predicates": true,
         "switch-default": false,
         "switch-final-break": false,
