@@ -244,9 +244,9 @@ export class NuimoPeripheral extends EventEmitter {
                         }
 
                         return
-                    } else {
-                        resolve(true)
                     }
+
+                    resolve(true)
                 })
             })
         }

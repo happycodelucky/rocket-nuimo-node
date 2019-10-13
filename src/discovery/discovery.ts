@@ -91,7 +91,7 @@ export class DeviceDiscoveryManager extends EventEmitter {
             // TODO: Should we account for BT initialization for timeouts?
             this.initializeBluetooth()
 
-            noble.on('discover', async (peripheral: Peripheral) => {
+            noble.on('discover', (peripheral: Peripheral) => {
                 const isNuimoDevice = (peripheral.advertisement.localName === 'Nuimo')
                 if (isNuimoDevice) {
                     debug(`Nuimo device found ${peripheral.uuid}`)
