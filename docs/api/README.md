@@ -28,7 +28,6 @@
 
 * [DeviceDiscoverySessionOptions](interfaces/devicediscoverysessionoptions.md)
 * [DisplayGlyphOptions](interfaces/displayglyphoptions.md)
-* [NuimoNotifyHandler](interfaces/nuimonotifyhandler.md)
 * [OnBatteryLeveCallback](interfaces/onbatterylevecallback.md)
 * [OnDeviceDiscoveredCallback](interfaces/ondevicediscoveredcallback.md)
 * [OnDirectionalSwipeGestureCallback](interfaces/ondirectionalswipegesturecallback.md)
@@ -53,7 +52,6 @@
 
 ### Variables
 
-* [buttonClickEvent](README.md#const-buttonclickevent)
 * [digitGlyphs](README.md#const-digitglyphs)
 * [emptyGlyph](README.md#const-emptyglyph)
 * [errorGlyph](README.md#const-errorglyph)
@@ -67,8 +65,6 @@
 * [playGlyph](README.md#const-playglyph)
 * [rightGlyph](README.md#const-rightglyph)
 * [stopGlyph](README.md#const-stopglyph)
-* [swipeEvent](README.md#const-swipeevent)
-* [touchEvent](README.md#const-touchevent)
 
 ### Functions
 
@@ -117,15 +113,6 @@ ___
 Ƭ **TouchEvents**: *"touchTop" | "touchLeft" | "touchRight" | "touchBottom"*
 
 ## Variables
-
-### `Const` buttonClickEvent
-
-• **buttonClickEvent**: *Set‹number›* = new Set<number>([
-    ButtonClickCharacteristicData.Pressed,
-    ButtonClickCharacteristicData.Released,
-])
-
-___
 
 ### `Const` digitGlyphs
 
@@ -433,28 +420,6 @@ ___
 ])
 
 Stop icon glyph
-
-___
-
-### `Const` swipeEvent
-
-• **swipeEvent**: *Set‹number›* = new Set<number>([
-    TouchOrSwipeCharacteristicData.SwipeLeft,
-    TouchOrSwipeCharacteristicData.SwipeRight,
-    TouchOrSwipeCharacteristicData.SwipeUp,
-    TouchOrSwipeCharacteristicData.SwipeDown,
-])
-
-___
-
-### `Const` touchEvent
-
-• **touchEvent**: *Set‹number›* = new Set<number>([
-    TouchOrSwipeCharacteristicData.TouchLeft,
-    TouchOrSwipeCharacteristicData.TouchRight,
-    TouchOrSwipeCharacteristicData.TouchTop,
-    TouchOrSwipeCharacteristicData.TouchBottom,
-])
 
 ## Functions
 

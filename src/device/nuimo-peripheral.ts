@@ -55,12 +55,14 @@ export interface DisplayBitmapOptions {
 }
 
 // Button click characteristic events
+/** @internal */
 const buttonClickEvent = new Set<number>([
     ButtonClickCharacteristicData.Pressed,
     ButtonClickCharacteristicData.Released,
 ])
 
-// Swipe gesture characteristic events
+// Swipe gesture characteristic
+/** @internal */
 const swipeEvent = new Set<number>([
     TouchOrSwipeCharacteristicData.SwipeLeft,
     TouchOrSwipeCharacteristicData.SwipeRight,
@@ -69,6 +71,7 @@ const swipeEvent = new Set<number>([
 ])
 
 // Touch gesture characteristic events
+/** @internal */
 const touchEvent = new Set<number>([
     TouchOrSwipeCharacteristicData.TouchLeft,
     TouchOrSwipeCharacteristicData.TouchRight,
@@ -97,6 +100,7 @@ const hoverEvents = new Set<number>([
 
 /**
  * Handler function for characteristic notify BLE subscriptions
+ * @internal
  */
 interface NuimoNotifyHandler {
     (data: Buffer, characteristic: Characteristic): void
@@ -109,24 +113,31 @@ interface NuimoNotifyHandler {
 export class NuimoPeripheral extends EventEmitter {
     /**
      * Associated bluetooth peripheral
+     * @internal
      */
     private internalPeripheral: Peripheral
 
     /**
-     * State of connection to a peripheral
+     * State of connection to a
+     * @internal
      */
     private internalConnectedState: DeviceConnectedStatus = DeviceConnectedStatus.Disconnected
+
     /**
      * Pending connection promise to ensure multiple connects result in a single connection attempt
+     * @internal
      */
     private pendingConnection?: Promise<boolean>
+
     /**
      * LED characteristic to write display data to
+     * @internal
      */
     private ledCharacteristic: Characteristic | undefined
 
     /**
      * Cached battery level
+     * @internal
      */
     private internalBatteryLevel = 100
 
@@ -330,6 +341,8 @@ export class NuimoPeripheral extends EventEmitter {
 
     /**
      * Connects to a peripheral
+     * @internal
+     *
      * @emit 'connect'
      */
     private async connectToPeriperal(): Promise<boolean> {
@@ -503,6 +516,7 @@ export class NuimoPeripheral extends EventEmitter {
     /**
      * Throws an error if the device is not fully connected, ensuring code following this call can operated on
      * a connected device.
+     * @internal
      */
     private connectionRequiredToProceed() {
         switch (this.connectedState) {
@@ -517,6 +531,7 @@ export class NuimoPeripheral extends EventEmitter {
 
     /**
      * Subscribes to a characteristic with a notify handler
+     * @internal
      *
      * @param characteristic - characteristic to subscribe to
      * @param handler - handler to be called when the characteristic value changes
@@ -550,6 +565,7 @@ export class NuimoPeripheral extends EventEmitter {
 
     /**
      * Subscribes to characteristics of the battery status service
+     * @internal
      *
      * @param service - service the characteristic is a member of
      * @param characteristics - characteristics to subscribe to
@@ -594,6 +610,7 @@ export class NuimoPeripheral extends EventEmitter {
 
     /**
      * Subscribes to characteristics of the nuimo service
+     * @internal
      *
      * @param service - service the characteristic is a member of
      * @param characteristics - characteristics to subscribe to
@@ -630,6 +647,7 @@ export class NuimoPeripheral extends EventEmitter {
 
     /**
      * Notify handler for button click interactions
+     * @internal
      *
      * @param data - characteristic data
      * @param characteristic - characteristic the data is fod
@@ -642,6 +660,7 @@ export class NuimoPeripheral extends EventEmitter {
 
     /**
      * Notify handler for device fly gesture interactions
+     * @internal
      *
      * @param data - fly characteristic data
      * @param characteristic - notification characteristic
@@ -661,6 +680,7 @@ export class NuimoPeripheral extends EventEmitter {
 
     /**
      * Notify handler for device ring rotation interactions
+     * @internal
      *
      * @param data - rotation characteristic data
      * @param characteristic - notification characteristic
@@ -673,6 +693,7 @@ export class NuimoPeripheral extends EventEmitter {
 
     /**
      * Notify handler for swipe, touch, and long touch screen interactions
+     * @internal
      *
      * @param data - swipe/touch characteristic data
      * @param characteristic - notification characteristic
@@ -689,6 +710,7 @@ export class NuimoPeripheral extends EventEmitter {
 
     /**
      * Notify handler for battery level changes
+     * @internal
      *
      * @param data - characteristic data
      * @param characteristic - characteristic the data is for
