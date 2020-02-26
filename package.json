@@ -57,6 +57,8 @@
     "nyc": "^15.0",
     "ts-node": "^8.6",
     "tslint": "^6.0",
+    "typedoc": "^0.16",
+    "typedoc-plugin-markdown": "^2.2",
     "typescript": "^3.8"
   },
   "scripts": {
@@ -68,6 +70,12 @@
     "swipe-events": "ts-node --project ./examples/tsconfig.json ./examples/04-gesture-events/example-swipe-events.ts",
     "hover-events": "ts-node --project ./examples/tsconfig.json ./examples/04-gesture-events/example-hover-events.ts",
     "rotate-events": "ts-node --project ./examples/tsconfig.json ./examples/05-rotate-events/example-rotate-events.ts",
-    "test": "TS_NODE_PROJECT=./test/tsconfig.json nyc mocha -r ts-node/register -r test/prepare.ts test/**/*.spec.ts test/*.spec.ts --exit"
+
+    "test": "TS_NODE_PROJECT=./test/tsconfig.json nyc mocha -r ts-node/register -r ./test/prepare.ts test/**/*.spec.ts test/*.spec.ts --exit",
+    "build": "npx tsc --project ./tsconfig.json -d --declarationDir dts; npx typedoc",
+    "build:src": "npx tsc -p ./tsconfig.json",
+    "build:dts": "npx tsc -p ./tsconfig.json -d --declarationDir dts",
+    "build:docs": "npx typedoc",
+    "lint": "npx tslint -p ./tsconfig.json; npx tslint --project ./examples/tsconfig.json"
   }
 }

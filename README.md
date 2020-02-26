@@ -17,9 +17,13 @@ $ yarn add rocket-nuimo
 
 ----
 
+# APIs
+
+Documentation for the `rocket-nuimo` API are under [docs/api](./docs/api).
+
 # Getting Started
 
-API documentation coming shortly. Check out [examples](./examples) for now.
+Check out [examples](./examples) to see how to use everything from discovering, display, and eventinbg.
 
 ## Getting Connected
 
