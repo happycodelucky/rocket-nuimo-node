@@ -429,6 +429,7 @@ export class NuimoControlDevice extends EventEmitter {
 // Event declarations
 //
 
+// tslint:disable-next-line:completed-docs
 export declare interface NuimoControlDevice {
     addListener(eventName: HoverEvents, listener: OnHoverCallback): this
     addListener(eventName: SelectEvents | SwipeEvents | TouchEvents | LongTouchEvents | 'disconnect', listener: OnEventCallback): this

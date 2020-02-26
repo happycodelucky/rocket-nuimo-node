@@ -156,6 +156,7 @@ export class DeviceDiscoverySession extends EventEmitter {
         const lisenters = new Map<string, (...args: any[]) => void>()
 
         /** Function called when a device is discovered */
+        // tslint:disable-next-line:completed-docs
         function onWaitDeviceDiscovered(device: NuimoControlDevice) {
             if (self.waitForDeviceResolveCallback) {
                 self.waitForDeviceResolveCallback(device)
@@ -173,6 +174,7 @@ export class DeviceDiscoverySession extends EventEmitter {
         }
 
         /** Function called when the session times */
+        // tslint:disable-next-line:completed-docs
         function onWaitTimeout() {
             if (self.waitForDeviceRejectCallback) {
                 self.waitForDeviceRejectCallback(new Error('Timeout'))
@@ -280,6 +282,7 @@ export class DeviceDiscoverySession extends EventEmitter {
 // Event declarations
 //
 
+// tslint:disable-next-line:completed-docs
 export interface DeviceDiscoverySession extends EventEmitter {
     addListener(eventName: 'device', listener: OnDeviceDiscoveredCallback): this
     addListener(eventName: 'timeout', listener: OnEventCallback): this

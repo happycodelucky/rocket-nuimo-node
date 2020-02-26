@@ -20,7 +20,6 @@ import gulpTsLint from 'gulp-tslint'
 
 import { Linter } from 'tslint'
 import { Project } from 'gulp-typescript'
-import { TaskCallback } from 'gulp'
 
 import { createProject as createTsProject } from 'gulp-typescript'
 import { dest, parallel, series, src } from 'gulp'
