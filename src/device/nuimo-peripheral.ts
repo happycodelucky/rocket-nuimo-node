@@ -80,6 +80,7 @@ const touchEvent = new Set<number>([
 ])
 
 // Long touch gesture characteristic events
+/** @internal */
 const longTouchEvents = new Set<number>([
     TouchOrSwipeCharacteristicData.LongTouchLeft,
     TouchOrSwipeCharacteristicData.LongTouchRight,
@@ -88,12 +89,14 @@ const longTouchEvents = new Set<number>([
 ])
 
 // Fly gesture characteristic events
+/** @internal */
 const flyEvents = new Set<number>([
     FlyCharacteristicData.Left,
     FlyCharacteristicData.Right,
 ])
 
 // Fly gesture characteristic events, but representing the hover up/down
+/** @internal */
 const hoverEvents = new Set<number>([
     FlyCharacteristicData.UpDown,
 ])

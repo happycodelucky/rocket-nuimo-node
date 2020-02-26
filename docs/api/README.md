@@ -56,11 +56,8 @@
 * [emptyGlyph](README.md#const-emptyglyph)
 * [errorGlyph](README.md#const-errorglyph)
 * [filledGlyph](README.md#const-filledglyph)
-* [flyEvents](README.md#const-flyevents)
-* [hoverEvents](README.md#const-hoverevents)
 * [leftGlyph](README.md#const-leftglyph)
 * [linkGlyph](README.md#const-linkglyph)
-* [longTouchEvents](README.md#const-longtouchevents)
 * [pauseGlyph](README.md#const-pauseglyph)
 * [playGlyph](README.md#const-playglyph)
 * [rightGlyph](README.md#const-rightglyph)
@@ -287,23 +284,6 @@ Filled glyph
 
 ___
 
-### `Const` flyEvents
-
-• **flyEvents**: *Set‹number›* = new Set<number>([
-    FlyCharacteristicData.Left,
-    FlyCharacteristicData.Right,
-])
-
-___
-
-### `Const` hoverEvents
-
-• **hoverEvents**: *Set‹number›* = new Set<number>([
-    FlyCharacteristicData.UpDown,
-])
-
-___
-
 ### `Const` leftGlyph
 
 • **leftGlyph**: *[Glyph](classes/glyph.md)‹›* = Glyph.fromString([
@@ -337,17 +317,6 @@ ___
 ])
 
 Link icon (infinity) glyph
-
-___
-
-### `Const` longTouchEvents
-
-• **longTouchEvents**: *Set‹number›* = new Set<number>([
-    TouchOrSwipeCharacteristicData.LongTouchLeft,
-    TouchOrSwipeCharacteristicData.LongTouchRight,
-    TouchOrSwipeCharacteristicData.LongTouchTop,
-    TouchOrSwipeCharacteristicData.LongTouchBottom,
-])
 
 ___
 
