@@ -149,5 +149,6 @@ node_modules
 
 # Generared sources
 publish
+dist
 dts
 lib
