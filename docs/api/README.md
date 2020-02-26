@@ -63,10 +63,6 @@
 * [rightGlyph](README.md#const-rightglyph)
 * [stopGlyph](README.md#const-stopglyph)
 
-### Functions
-
-* [deviceCommunicatioErrorMessage](README.md#devicecommunicatioerrormessage)
-
 ## Type aliases
 
 ###  HoverEvents
@@ -389,21 +385,3 @@ ___
 ])
 
 Stop icon glyph
-
-## Functions
-
-###  deviceCommunicatioErrorMessage
-
-▸ **deviceCommunicatioErrorMessage**(`code`: [NuimoDeviceCommunicationErrorCode](enums/nuimodevicecommunicationerrorcode.md), `id`: string, `message?`: undefined | string): *string*
-
-Helper function for generating connection error messages
-
-**Parameters:**
-
-Name | Type | Description |
------- | ------ | ------ |
-`code` | [NuimoDeviceCommunicationErrorCode](enums/nuimodevicecommunicationerrorcode.md) | connection error code |
-`id` | string | device ID for the connection error |
-`message?` | undefined &#124; string | optional error mesage  |
-
-**Returns:** *string*

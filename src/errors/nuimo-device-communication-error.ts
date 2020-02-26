@@ -65,6 +65,8 @@ export class NuimoDeviceCommunicationError extends NuimoError {
 
 /**
  * Helper function for generating connection error messages
+ * @internal
+ *
  * @param code - connection error code
  * @param id - device ID for the connection error
  * @param message - optional error mesage
