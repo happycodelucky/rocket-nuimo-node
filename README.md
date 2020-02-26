@@ -15,24 +15,6 @@ To install `rocket-nuimo` for use within your project use [yarn](https://yarnpkg
 $ yarn add rocket-nuimo
 ```
 
-## macOS Mojave Installation
-`rocket-numio` uses [noble](https://github.com/noble/noble) under the hood for communicating with to BLE devices. `nobel` running on Mojavé has issues currently and must be worked around.
-
-Whether you are uses `rocket-numio` as a depedency, or running one of the [example](./examples) you will need to make overrides or adjustments when running on macOS.
-
-### Overridding Depedencies
-
-In *your* project's `package.json` insert the following:
-
-```json
-  "depedendencie": {
-   "rocket-nuimo": "^0.4"
-  },
-  "resolutions": {
-    "noble": "https://github.com/Timeular/noble-mac"
-  }
-```
-
 Then run from the terminal
 
 ```bash

@@ -9,6 +9,8 @@
  *  - publish
  */
 
+// tslint:disable:completed-docs
+
 import * as del from 'del'
 import * as typescript from 'typescript'
 import * as merge from 'merge2'
@@ -26,7 +28,7 @@ import { dest, parallel, series, src } from 'gulp'
 // Build destination paths
 const ARTIFACTS_DEST = 'publish'    // Build artificats
 const COVERAGE_DEST = 'coverage'    // Coverage reports
-const LIB_DEST = 'lib'              // Javascript sources
+const DIST_DEST = 'dist'            // Javascript sources
 const TYPEDEF_DEST = 'dts'          // Defintion files
 
 // Package projects
@@ -43,11 +45,11 @@ const PACKAGE_FILES_GLOB = [
 /**
  * Purges all generated sources and artifacts
  */
-export function clean() {
+export async function clean() {
     return del([
         ARTIFACTS_DEST,
         COVERAGE_DEST,
-        LIB_DEST,
+        DIST_DEST,
         TYPEDEF_DEST,
     ])
 }
@@ -55,7 +57,7 @@ export function clean() {
 /**
  * Performs a lint on package & example sources
  */
-export function lint(done: TaskCallback) {
+export async function lint(done: (error?: any) => void) {
     return parallel(
         lintSources.bind(undefined, tsProject()),
         lintSources.bind(undefined, tsExamplesProject()),
@@ -65,14 +67,14 @@ export function lint(done: TaskCallback) {
 /**
  * Transpiles package sources
  */
-export function build() {
+export async function build() {
     return transpileSources(tsProject(), './')
 }
 
 /**
  * Packages up the package and assembles an set of artifacts for publishing
  */
-export function preparePublish(done: TaskCallback) {
+export async function preparePublish(done: (error?: any) => void) {
     const project = tsProject()
     const artifactsPath = ARTIFACTS_DEST
 
@@ -93,7 +95,7 @@ export function preparePublish(done: TaskCallback) {
 /**
  *
  */
-export function publish(done: TaskCallback) {
+export function publish(done: (error?: any) => void) {
 }
 
 //
@@ -170,7 +172,7 @@ function copyPackageFiles(artifactsPath: string) {
 function updatePackageJson(artifactsPath: string) {
     return src(`${artifactsPath}/package.json`)
         .pipe(jsonEditor((json: Record<string, any>) => {
-            json.main = `${LIB_DEST}/index.js`
+            json.main = `${DIST_DEST}/index.js`
             json.types = `${TYPEDEF_DEST}/index.d.ts`
             json.devDependencies = undefined
             json.private = undefined

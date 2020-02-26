@@ -3,11 +3,11 @@
  */
 
 import * as createDebugLogger from 'debug'
-import * as noble from 'noble'
-import * as weak from 'weak'
+import * as noble from '@abandonware/noble'
+import * as weak from 'weak-napi'
 
 import { EventEmitter } from 'events'
-import { Peripheral } from 'noble'
+import { Peripheral } from '@abandonware/noble'
 
 import { DeviceDiscoverySession, DeviceDiscoverySessionOptions } from './discovery-session'
 import { DeviceDiscoveryState } from './device-discovery-state'
@@ -286,6 +286,7 @@ export class DeviceDiscoveryManager extends EventEmitter {
 // Event interface
 //
 
+// tslint:disable-next-line:completed-docs
 export interface DeviceDiscoveryManager extends EventEmitter {
     addListener(eventName: 'device', listener: OnDeviceDiscoveredCallback): this
     addListener(eventName: 'error', listener: OnErrorCallback): this

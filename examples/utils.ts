@@ -1,4 +1,4 @@
-import chalk from 'chalk'
+import * as chalk from 'chalk'
 
 import { DeviceDiscoveryManager, NuimoControlDevice, NuimoDeviceCommunicationError, NuimoDeviceCommunicationErrorCode } from '..'
 import { DEVICE_DISCOVERY_TIMEOUT_MS } from '../src/defaults'
@@ -49,7 +49,7 @@ export async function connectToDevice(deviceId?: string): Promise<NuimoControlDe
 export function logEvent(eventName: string, params?: Record<string, any>) {
     console.log(`'${chalk.bold.green(eventName)}' event`)
     if (params) {
-        for (const key in params) {
+        for (const key of Reflect.ownKeys(params)) {
             // tslint:disable-next-line:strict-type-predicates tsc does not correctly type-check
             if (typeof key === 'string') {
                 console.log(`> ${chalk.bold(key)}: ${chalk.italic(params[key])}`)

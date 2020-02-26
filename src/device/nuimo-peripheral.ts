@@ -1,6 +1,6 @@
 import * as createDebugLogger from 'debug'
 
-import { Characteristic, Peripheral, Service } from 'noble'
+import { Characteristic, Peripheral, Service } from '@abandonware/noble'
 import { EventEmitter } from 'events'
 
 import { BatteryStatusServiceCharacteristic } from '../bluetooth/gatt'
@@ -190,6 +190,44 @@ export class NuimoPeripheral extends EventEmitter {
         return undefined
     }
 
+    /**
+     * Underlying bluetooth peripheral
+     */
+    get peripheral(): Peripheral {
+        return this.internalPeripheral
+    }
+
+    /**
+     * Sets a new peripheral to preprent the Nuimo device
+     * This may attempt a reconnect if a connection was prior lost
+     *
+     * @param peripheral - bluetooth peripheral representing the device
+     */
+    set peripheral(peripheral: Peripheral) {
+        if (peripheral.advertisement.localName !== 'Nuimo') {
+            throw new TypeError('peripheral(peripheral) does not represent a Nuimo device')
+        }
+
+        if (peripheral !== this.internalPeripheral) {
+            const wasConnected = this.isConnected
+
+            const oldPeripheral = this.internalPeripheral
+            if (oldPeripheral) {
+                oldPeripheral.removeAllListeners()
+                oldPeripheral.disconnect()
+            }
+
+            this.internalConnectedState = DeviceConnectedStatus.Disconnected
+            this.internalPeripheral = peripheral
+            this.ledCharacteristic = undefined
+
+            // If the device was connected, event the disconnect
+            if (wasConnected) {
+                this.emit('disconnect')
+            }
+        }
+    }
+
     //
     // Public functions
     //
@@ -266,44 +304,6 @@ export class NuimoPeripheral extends EventEmitter {
 
         this.internalConnectedState = DeviceConnectedStatus.Disconnected
         this.emit('disconnect')
-    }
-
-    /**
-     * Underlying bluetooth peripheral
-     */
-    get peripheral(): Peripheral {
-        return this.internalPeripheral
-    }
-
-    /**
-     * Sets a new peripheral to preprent the Nuimo device
-     * This may attempt a reconnect if a connection was prior lost
-     *
-     * @param peripheral - bluetooth peripheral representing the device
-     */
-    set peripheral(peripheral: Peripheral) {
-        if (peripheral.advertisement.localName !== 'Nuimo') {
-            throw new TypeError('peripheral(peripheral) does not represent a Nuimo device')
-        }
-
-        if (peripheral !== this.internalPeripheral) {
-            const wasConnected = this.isConnected
-
-            const oldPeripheral = this.internalPeripheral
-            if (oldPeripheral) {
-                oldPeripheral.removeAllListeners()
-                oldPeripheral.disconnect()
-            }
-
-            this.internalConnectedState = DeviceConnectedStatus.Disconnected
-            this.internalPeripheral = peripheral
-            this.ledCharacteristic = undefined
-
-            // If the device was connected, event the disconnect
-            if (wasConnected) {
-                this.emit('disconnect')
-            }
-        }
     }
 
     /**
@@ -699,6 +699,7 @@ export class NuimoPeripheral extends EventEmitter {
 //
 
 /** @internal */
+// tslint:disable-next-line:completed-docs
 export interface NuimoPeripheral extends EventEmitter {
     emit(eventName: 'error', error: Error): boolean
     emit(eventName: 'connect' | 'disconnect'): boolean
