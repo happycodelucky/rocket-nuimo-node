@@ -15,14 +15,6 @@ To install `rocket-nuimo` for use within your project use [yarn](https://yarnpkg
 $ yarn add rocket-nuimo
 ```
 
-Then run from the terminal
-
-```bash
-$ yarn install
-```
-
-Now when you run your respect `yarn install` or `npm install` it will the package suitable to running on macOS.
-
 ----
 
 # Getting Started
@@ -122,7 +114,7 @@ There can be troubles connecting to a Nuimo when playing around with the device.
 
 - Click the center screen button to wake up Nuimo Control
 - Power cycle Nuimo Control
-- [Reset bluetooth](https://macpaw.com/how-to/fix-bluetooth-not-available-problem) on your Mac
+- [Reset bluetooth](https://macpaw.com/how-to/fix-bluetooth-not-available-problem) if on your Mac
 - Check if there are any current issue with [noble](https://github.com/noble/noble) related to the OS/Node.js version you are using.
 
 # Special Thanks
