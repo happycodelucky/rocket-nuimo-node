@@ -9,6 +9,7 @@ import { NuimoControlDevice } from '../model/nuimo-control-device'
 import { OnDeviceDiscoveredCallback, OnDiscoveryDoneCallback, OnEventCallback } from '../callbacks/callbacks'
 
 // Create debug logger
+/** @internal */
 const debug = createDebugLogger('nuimo/discovery')
 
 /**
@@ -40,36 +41,43 @@ export class DeviceDiscoverySession extends EventEmitter {
 
     /**
      * Options supplied when starting a new discovery
+     * @internal
      */
     private readonly discoveryOptions: DeviceDiscoverySessionOptions
 
     /**
      * Timeout timer when a timeout was specified
+     * @internal
      */
     private timeoutTimer?: NodeJS.Timer
 
     /**
      * Mutable internal discovery state
+     * @internal
      */
     private sessionDiscoveryState: DeviceDiscoveryState
 
     /**
      * Internal map of discovered devices, and devices to ignore when seen subsequent times
+     * @internal
      */
     private readonly sessionDiscoveredDevicesMap: Map<string, NuimoControlDevice> = new Map()
 
     /**
      * Promise for first call to waitForFirstDevice
+     * @internal
      */
     private waitForDevicePromise?: Promise<NuimoControlDevice>
 
     /**
      * Callback for found device
+     * @internal
      */
     private waitForDeviceResolveCallback?: (device: NuimoControlDevice) => void
 
     /**
      * Callback for timeouts or other rejections
+     * @internal
      */
     private waitForDeviceRejectCallback?: (error: Error) => void
 

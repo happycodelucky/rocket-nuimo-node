@@ -53,19 +53,8 @@
 
 ### Variables
 
-* [DEVICE_CONNECT_TIMEOUT_MS](README.md#const-device_connect_timeout_ms)
-* [DEVICE_DISCOVERY_TIMEOUT_MS](README.md#const-device_discovery_timeout_ms)
-* [DEVICE_HOVER_PROXIMITY_MAX_CLAMP](README.md#const-device_hover_proximity_max_clamp)
-* [DEVICE_HOVER_PROXIMITY_MIN_CLAMP](README.md#const-device_hover_proximity_min_clamp)
-* [DEVICE_HOVER_PROXIMITY_POINTS](README.md#const-device_hover_proximity_points)
-* [DEVICE_ROTATION_POINTS](README.md#const-device_rotation_points)
-* [LED_DISPLAY_COLS](README.md#const-led_display_cols)
-* [LED_DISPLAY_ROWS](README.md#const-led_display_rows)
 * [buttonClickEvent](README.md#const-buttonclickevent)
-* [debug](README.md#const-debug)
-* [debugBluetooth](README.md#const-debugbluetooth)
 * [digitGlyphs](README.md#const-digitglyphs)
-* [emptyBitmap](README.md#const-emptybitmap)
 * [emptyGlyph](README.md#const-emptyglyph)
 * [errorGlyph](README.md#const-errorglyph)
 * [filledGlyph](README.md#const-filledglyph)
@@ -129,80 +118,12 @@ ___
 
 ## Variables
 
-### `Const` DEVICE_CONNECT_TIMEOUT_MS
-
-• **DEVICE_CONNECT_TIMEOUT_MS**: *number* = 30 * 1000
-
-Default connection timeout 10 seconds
-
-___
-
-### `Const` DEVICE_DISCOVERY_TIMEOUT_MS
-
-• **DEVICE_DISCOVERY_TIMEOUT_MS**: *number* = 60 * 1000
-
-Default discovery timeout 60 seconds
-
-___
-
-### `Const` DEVICE_HOVER_PROXIMITY_MAX_CLAMP
-
-• **DEVICE_HOVER_PROXIMITY_MAX_CLAMP**: *1* = 1
-
-___
-
-### `Const` DEVICE_HOVER_PROXIMITY_MIN_CLAMP
-
-• **DEVICE_HOVER_PROXIMITY_MIN_CLAMP**: *2* = 2
-
-___
-
-### `Const` DEVICE_HOVER_PROXIMITY_POINTS
-
-• **DEVICE_HOVER_PROXIMITY_POINTS**: *250* = 250
-
-___
-
-### `Const` DEVICE_ROTATION_POINTS
-
-• **DEVICE_ROTATION_POINTS**: *2650* = 2650
-
-___
-
-### `Const` LED_DISPLAY_COLS
-
-• **LED_DISPLAY_COLS**: *9* = 9
-
-LED matrix columns
-
-___
-
-### `Const` LED_DISPLAY_ROWS
-
-• **LED_DISPLAY_ROWS**: *9* = 9
-
-LED matrix rows
-
-___
-
 ### `Const` buttonClickEvent
 
 • **buttonClickEvent**: *Set‹number›* = new Set<number>([
     ButtonClickCharacteristicData.Pressed,
     ButtonClickCharacteristicData.Released,
 ])
-
-___
-
-### `Const` debug
-
-• **debug**: *Debugger* = createDebugLogger('nuimo/discovery')
-
-___
-
-### `Const` debugBluetooth
-
-• **debugBluetooth**: *Debugger* = createDebugLogger('nuimo/bluetooth')
 
 ___
 
@@ -322,12 +243,6 @@ ___
 ]
 
 Digit glyphs
-
-___
-
-### `Const` emptyBitmap
-
-• **emptyBitmap**: *NuimoBitmap‹›* = new NuimoBitmap(emptyGlyph)
 
 ___
 

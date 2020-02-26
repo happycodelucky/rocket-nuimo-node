@@ -16,7 +16,9 @@ import { NuimoError } from '../errors/nuimo-error'
 import { NuimoPeripheral } from '../device/nuimo-peripheral';
 import { OnDeviceDiscoveredCallback, OnErrorCallback, OnEventCallback } from '../callbacks/callbacks'
 
+/** @internal */
 const debug = createDebugLogger('nuimo/discovery')
+/** @internal */
 const debugBluetooth = createDebugLogger('nuimo/bluetooth')
 
 /**
@@ -24,37 +26,40 @@ const debugBluetooth = createDebugLogger('nuimo/bluetooth')
  */
 export class DeviceDiscoveryManager extends EventEmitter {
     /**
+     * Default device discovery manager to manage discovery of one or more Nuimo devices
+     */
+    static defaultManager: DeviceDiscoveryManager = new DeviceDiscoveryManager()
+
+    /**
      * Device discovery state
+     * @internal
      */
     private managerDiscoveryState: DeviceDiscoveryState = DeviceDiscoveryState.Initial
 
     /**
      * Active discovery sessions
+     * @internal
      */
     private readonly activeSessions: Set<DeviceDiscoverySession> = new Set()
 
     /**
      * All devices discovered, index by device ID
+     * @internal
      */
     private readonly discoveredDevicesMap: Map<string, NuimoControlDevice> = new Map()
 
     /**
      * Indiciates if a discovery should be performed when the BT radio is powered on
+     * @internal
      */
     private discoverWhenPoweredOnRequested: boolean = false
 
     /**
      * There should be no need to construct a new device manager. Use `defaultManager`
+     * @internal
      */
     private constructor() {
         super()
-    }
-
-    /**
-     * Default device discovery manager to manage discovery of one or more Nuimo devices
-     */
-    static get defaultManager(): DeviceDiscoveryManager {
-        return new DeviceDiscoveryManager()
     }
 
     //
@@ -204,6 +209,7 @@ export class DeviceDiscoveryManager extends EventEmitter {
 
     /**
      * Initializes bluetooth on the host hardware, ensuring it's powered on before initiating discovery
+     * @internal
      */
     private initializeBluetooth() {
         // Only initialized if the discovery was never started
@@ -266,6 +272,7 @@ export class DeviceDiscoveryManager extends EventEmitter {
 
     /**
      * Kicks off device discovery
+     * @internal
      */
     private discoverDevices() {
         if (this.managerDiscoveryState !== DeviceDiscoveryState.Ready) {

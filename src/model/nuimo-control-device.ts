@@ -30,6 +30,7 @@ import {
 import { LED_DISPLAY_COLS, LED_DISPLAY_ROWS } from '../device';
 
 // Empty bitmap for clearing display
+/** @internal */
 const emptyBitmap = new NuimoBitmap(emptyGlyph)
 
 /**

@@ -16,16 +16,21 @@ import { NuimoServiceCharacteristic } from '../bluetooth/gatt'
 const debug = createDebugLogger('nuimo/device/bluetooth')
 
 // Timeout when connecting to a device
+/** @internal */
 const DEVICE_CONNECT_TIMEOUT_MS = 30 * 1000 // 30 seconds
 
 // Number of points to accumulate one rotation
+/** @internal */
 const DEVICE_ROTATION_POINTS = 2650
 
 // Number of points measured for hover proximity
+/** @internal */
 const DEVICE_HOVER_PROXIMITY_POINTS = 250
 
 // Proximity is hard to get exacts, clamp the values to account for missed hi/low ranges
+/** @internal */
 const DEVICE_HOVER_PROXIMITY_MIN_CLAMP = 2
+/** @internal */
 const DEVICE_HOVER_PROXIMITY_MAX_CLAMP = 1
 
 /**

@@ -16,13 +16,13 @@ A device manager is the main entry for connecting to Nuimo devices. It offers de
 
 ### Properties
 
+* [defaultManager](devicediscoverymanager.md#static-defaultmanager)
 * [defaultMaxListeners](devicediscoverymanager.md#static-defaultmaxlisteners)
 
 ### Accessors
 
 * [discoveredDevices](devicediscoverymanager.md#discovereddevices)
 * [discoveryState](devicediscoverymanager.md#discoverystate)
-* [defaultManager](devicediscoverymanager.md#static-defaultmanager)
 
 ### Methods
 
@@ -47,6 +47,14 @@ A device manager is the main entry for connecting to Nuimo devices. It offers de
 * [listenerCount](devicediscoverymanager.md#static-listenercount)
 
 ## Properties
+
+### `Static` defaultManager
+
+▪ **defaultManager**: *[DeviceDiscoveryManager](devicediscoverymanager.md)* = new DeviceDiscoveryManager()
+
+Default device discovery manager to manage discovery of one or more Nuimo devices
+
+___
 
 ### `Static` defaultMaxListeners
 
@@ -75,16 +83,6 @@ ___
 Active discovery state
 
 **Returns:** *[DeviceDiscoveryState](../enums/devicediscoverystate.md)*
-
-___
-
-### `Static` defaultManager
-
-• **get defaultManager**(): *[DeviceDiscoveryManager](devicediscoverymanager.md)*
-
-Default device discovery manager to manage discovery of one or more Nuimo devices
-
-**Returns:** *[DeviceDiscoveryManager](devicediscoverymanager.md)*
 
 ## Methods
 
