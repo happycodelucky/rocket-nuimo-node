@@ -1,6 +1,6 @@
 {
   "name": "rocket-nuimo",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "🚀 Client package for connecting to Nuimo Control by Senic",
   "license": "MIT",
   "private": true,
@@ -23,7 +23,7 @@
   "main": "lib/index.js",
   "types": "dts/index.d.ts",
   "dependencies": {
-    "@abandonware/noble": "^1.9.2-6",
+    "@abandonware/noble": "^1.9.2-7",
     "check-types": "^11.1",
     "debug": "^4.1",
     "tslib": "^1.11",
@@ -52,7 +52,7 @@
     "gulp-tslint": "^8.1",
     "gulp-typescript": "^5.0",
     "merge2": "^1.3",
-    "mocha": "^7.0",
+    "mocha": "^7.1",
     "mocha-typescript": "^1.1",
     "nyc": "^15.0",
     "ts-node": "^8.6",
@@ -70,7 +70,6 @@
     "swipe-events": "ts-node --project ./examples/tsconfig.json ./examples/04-gesture-events/example-swipe-events.ts",
     "hover-events": "ts-node --project ./examples/tsconfig.json ./examples/04-gesture-events/example-hover-events.ts",
     "rotate-events": "ts-node --project ./examples/tsconfig.json ./examples/05-rotate-events/example-rotate-events.ts",
-
     "test": "TS_NODE_PROJECT=./test/tsconfig.json nyc mocha -r ts-node/register -r ./test/prepare.ts test/**/*.spec.ts test/*.spec.ts --exit",
     "build": "npx tsc --project ./tsconfig.json -d --declarationDir dts; npx typedoc",
     "build:src": "npx tsc -p ./tsconfig.json",
