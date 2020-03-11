@@ -146,8 +146,8 @@ function transpileSources(project: Project, artifactsPath: string) {
     const compilationResult = project.src().pipe(project())
 
     return merge([
-        compilationResult.js.pipe(dest(`${artifactsPath}/lib`)),
-        compilationResult.dts.pipe(dest(`${artifactsPath}/dts`)),
+        compilationResult.js.pipe(dest(`${artifactsPath}/${DIST_DEST}`)),
+        compilationResult.dts.pipe(dest(`${artifactsPath}/${TYPEDEF_DEST}`)),
     ])
 }
 
