@@ -1,4 +1,4 @@
-[Rocket Nuimo](../README.md) › [OnDirectionalSwipeGestureCallback](ondirectionalswipegesturecallback.md)
+[Rocket Nuimo - v1.0.0](../README.md) / OnDirectionalSwipeGestureCallback
 
 # Interface: OnDirectionalSwipeGestureCallback
 
@@ -10,14 +10,14 @@ Callback for `swipeLeft`, `swipeRight`, `swipeTop`, and `swipeBottom` events
 
 ## Callable
 
-▸ (`hoverSwipe`: boolean): *void*
+▸ **OnDirectionalSwipeGestureCallback**(`hoverSwipe`: *boolean*): *void*
 
 Note: hoverSwipe is only applicable for `swipeLeft` or `swipeRight` gestures
 
-**Parameters:**
+#### Parameters:
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`hoverSwipe` | boolean | indicates if the swipe comes from an in-air swipe when `true`; `false`                     indicates a touch interaction.  |
+`hoverSwipe` | *boolean* | indicates if the swipe comes from an in-air swipe when `true`; `false`                     indicates a touch interaction.    |
 
 **Returns:** *void*

@@ -1,6 +1,6 @@
-[Rocket Nuimo](README.md)
+Rocket Nuimo - v1.0.0
 
-# Rocket Nuimo
+# Rocket Nuimo - v1.0.0
 
 ## Index
 
@@ -40,348 +40,95 @@
 * [OnSwipeGestureCallback](interfaces/onswipegesturecallback.md)
 * [OnTouchGestureCallback](interfaces/ontouchgesturecallback.md)
 
-### Type aliases
-
-* [HoverEvents](README.md#hoverevents)
-* [HoverSwipeEvents](README.md#hoverswipeevents)
-* [LongTouchEvents](README.md#longtouchevents)
-* [RotateEvents](README.md#rotateevents)
-* [SelectEvents](README.md#selectevents)
-* [SwipeEvents](README.md#swipeevents)
-* [TouchEvents](README.md#touchevents)
-
 ### Variables
 
-* [digitGlyphs](README.md#const-digitglyphs)
-* [emptyGlyph](README.md#const-emptyglyph)
-* [errorGlyph](README.md#const-errorglyph)
-* [filledGlyph](README.md#const-filledglyph)
-* [leftGlyph](README.md#const-leftglyph)
-* [linkGlyph](README.md#const-linkglyph)
-* [pauseGlyph](README.md#const-pauseglyph)
-* [playGlyph](README.md#const-playglyph)
-* [rightGlyph](README.md#const-rightglyph)
-* [stopGlyph](README.md#const-stopglyph)
-
-## Type aliases
-
-###  HoverEvents
-
-Ƭ **HoverEvents**: *"hover"*
-
-___
-
-###  HoverSwipeEvents
-
-Ƭ **HoverSwipeEvents**: *"swipeLeft" | "swipeRight"*
-
-___
-
-###  LongTouchEvents
-
-Ƭ **LongTouchEvents**: *"longTouchLeft" | "longTouchRight" | "longTouchBottom"*
-
-___
-
-###  RotateEvents
-
-Ƭ **RotateEvents**: *"rotate" | "rotateLeft" | "rotateRight"*
-
-___
-
-###  SelectEvents
-
-Ƭ **SelectEvents**: *"select" | "selectUp" | "selectDown"*
-
-___
-
-###  SwipeEvents
-
-Ƭ **SwipeEvents**: *"swipeUp" | "swipeDown"*
-
-___
-
-###  TouchEvents
-
-Ƭ **TouchEvents**: *"touchTop" | "touchLeft" | "touchRight" | "touchBottom"*
+* [digitGlyphs](README.md#digitglyphs)
+* [emptyGlyph](README.md#emptyglyph)
+* [errorGlyph](README.md#errorglyph)
+* [filledGlyph](README.md#filledglyph)
+* [leftGlyph](README.md#leftglyph)
+* [linkGlyph](README.md#linkglyph)
+* [pauseGlyph](README.md#pauseglyph)
+* [playGlyph](README.md#playglyph)
+* [rightGlyph](README.md#rightglyph)
+* [stopGlyph](README.md#stopglyph)
 
 ## Variables
 
-### `Const` digitGlyphs
+### digitGlyphs
 
-• **digitGlyphs**: *[Glyph](classes/glyph.md)‹›[]* = [
-    Glyph.fromString([
-        '         ',
-        '   ***   ',
-        '  *   *  ',
-        '  *   *  ',
-        '  * * *  ',
-        '  *   *  ',
-        '  *   *  ',
-        '   ***   ',
-        '         ',
-    ]),
-    Glyph.fromString([
-        '         ',
-        '    *    ',
-        '   **    ',
-        '    *    ',
-        '    *    ',
-        '    *    ',
-        '    *    ',
-        '   ***   ',
-        '         ',
-    ]),
-    Glyph.fromString([
-        '         ',
-        '   ***   ',
-        '  *   *  ',
-        '      *  ',
-        '     *   ',
-        '   **    ',
-        '  *      ',
-        '  *****  ',
-        '         ',
-    ]),
-    Glyph.fromString([
-        '         ',
-        '   ***   ',
-        '  *   *  ',
-        '      *  ',
-        '     *   ',
-        '      *  ',
-        '  *   *  ',
-        '   ***   ',
-        '         ',
-    ]),
-    Glyph.fromString([
-        '         ',
-        '     *   ',
-        '    **   ',
-        '   * *   ',
-        '  *  *   ',
-        '  *****  ',
-        '     *   ',
-        '     *   ',
-        '         ',
-    ]),
-    Glyph.fromString([
-        '         ',
-        '   ****  ',
-        '  *      ',
-        '  *      ',
-        '   ***   ',
-        '      *  ',
-        '  *   *  ',
-        '   ***   ',
-        '         ',
-    ]),
-    Glyph.fromString([
-        '         ',
-        '   ***   ',
-        '  *   *  ',
-        '  *      ',
-        '  ****   ',
-        '  *   *  ',
-        '  *   *  ',
-        '   ***   ',
-        '         ',
-    ]),
-    Glyph.fromString([
-        '         ',
-        '  ****   ',
-        '      *  ',
-        '      *  ',
-        '     *   ',
-        '     *   ',
-        '    *    ',
-        '    *    ',
-        '         ',
-    ]),
-    Glyph.fromString([
-        '         ',
-        '   ***   ',
-        '  *   *  ',
-        '  *   *  ',
-        '   ***   ',
-        '  *   *  ',
-        '  *   *  ',
-        '   ***   ',
-        '         ',
-    ]),
-    Glyph.fromString([
-        '         ',
-        '   ***   ',
-        '  *   *  ',
-        '  *   *  ',
-        '   ****  ',
-        '      *  ',
-        '  *   *  ',
-        '   ***   ',
-        '         ',
-    ]),
-]
+• `Const` **digitGlyphs**: [*Glyph*](classes/glyph.md)[]
 
 Digit glyphs
 
 ___
 
-### `Const` emptyGlyph
+### emptyGlyph
 
-• **emptyGlyph**: *[Glyph](classes/glyph.md)‹›* = Glyph.fromString([
-    '         ',
-    '         ',
-    '         ',
-    '         ',
-    '         ',
-    '         ',
-    '         ',
-    '         ',
-    '         ',
-])
+• `Const` **emptyGlyph**: [*Glyph*](classes/glyph.md)
 
 Empty glyph
 
 ___
 
-### `Const` errorGlyph
+### errorGlyph
 
-• **errorGlyph**: *[Glyph](classes/glyph.md)‹›* = Glyph.fromString([
-    '         ',
-    '         ',
-    '  *   *  ',
-    '   * *   ',
-    '    *    ',
-    '   * *   ',
-    '  *   *  ',
-    '         ',
-    '         ',
-])
+• `Const` **errorGlyph**: [*Glyph*](classes/glyph.md)
 
 Error glyph
 
 ___
 
-### `Const` filledGlyph
+### filledGlyph
 
-• **filledGlyph**: *[Glyph](classes/glyph.md)‹›* = Glyph.fromString([
-    '*********',
-    '*********',
-    '*********',
-    '*********',
-    '*********',
-    '*********',
-    '*********',
-    '*********',
-    '*********',
-])
+• `Const` **filledGlyph**: [*Glyph*](classes/glyph.md)
 
 Filled glyph
 
 ___
 
-### `Const` leftGlyph
+### leftGlyph
 
-• **leftGlyph**: *[Glyph](classes/glyph.md)‹›* = Glyph.fromString([
-    '         ',
-    '    * *  ',
-    '   * *   ',
-    '  * *    ',
-    ' * *     ',
-    '  * *    ',
-    '   * *   ',
-    '    * *  ',
-    '         ',
-])
+• `Const` **leftGlyph**: [*Glyph*](classes/glyph.md)
 
 Left arrow glyphs
 
 ___
 
-### `Const` linkGlyph
+### linkGlyph
 
-• **linkGlyph**: *[Glyph](classes/glyph.md)‹›* = Glyph.fromString([
-    '         ',
-    ' **   ** ',
-    '*  * *  *',
-    '*  *    *',
-    '*   *   *',
-    '*    *  *',
-    '*  * *  *',
-    ' **   ** ',
-    '         ',
-])
+• `Const` **linkGlyph**: [*Glyph*](classes/glyph.md)
 
 Link icon (infinity) glyph
 
 ___
 
-### `Const` pauseGlyph
+### pauseGlyph
 
-• **pauseGlyph**: *[Glyph](classes/glyph.md)‹›* = Glyph.fromString([
-    '         ',
-    '  ** **  ',
-    '  ** **  ',
-    '  ** **  ',
-    '  ** **  ',
-    '  ** **  ',
-    '  ** **  ',
-    '  ** **  ',
-    '         ',
-])
+• `Const` **pauseGlyph**: [*Glyph*](classes/glyph.md)
 
 Pause icon glyph
 
 ___
 
-### `Const` playGlyph
+### playGlyph
 
-• **playGlyph**: *[Glyph](classes/glyph.md)‹›* = Glyph.fromString([
-    '         ',
-    '   *     ',
-    '   **    ',
-    '   ***   ',
-    '   ****  ',
-    '   ***   ',
-    '   **    ',
-    '   *     ',
-    '         ',
-])
+• `Const` **playGlyph**: [*Glyph*](classes/glyph.md)
 
 Play icon glyph
 
 ___
 
-### `Const` rightGlyph
+### rightGlyph
 
-• **rightGlyph**: *[Glyph](classes/glyph.md)‹›* = Glyph.fromString([
-    '         ',
-    '  * *    ',
-    '   * *   ',
-    '    * *  ',
-    '     * * ',
-    '    * *  ',
-    '   * *   ',
-    '  * *    ',
-    '         ',
-])
+• `Const` **rightGlyph**: [*Glyph*](classes/glyph.md)
 
 Right arrow glyph
 
 ___
 
-### `Const` stopGlyph
+### stopGlyph
 
-• **stopGlyph**: *[Glyph](classes/glyph.md)‹›* = Glyph.fromString([
-    '         ',
-    ' ******* ',
-    ' ******* ',
-    ' ******* ',
-    ' ******* ',
-    ' ******* ',
-    ' ******* ',
-    ' ******* ',
-    '         ',
-])
+• `Const` **stopGlyph**: [*Glyph*](classes/glyph.md)
 
 Stop icon glyph

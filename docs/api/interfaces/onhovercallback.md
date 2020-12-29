@@ -1,4 +1,4 @@
-[Rocket Nuimo](../README.md) › [OnHoverCallback](onhovercallback.md)
+[Rocket Nuimo - v1.0.0](../README.md) / OnHoverCallback
 
 # Interface: OnHoverCallback
 
@@ -10,14 +10,14 @@ Callback for 'hover' events
 
 ## Callable
 
-▸ (`proximity`: number): *void*
+▸ **OnHoverCallback**(`proximity`: *number*): *void*
 
 Callback for 'hover' events
 
-**Parameters:**
+#### Parameters:
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`proximity` | number | proximity between 0-1, 0 being closest to the device  |
+`proximity` | *number* | proximity between 0-1, 0 being closest to the device    |
 
 **Returns:** *void*

@@ -1,4 +1,4 @@
-[Rocket Nuimo](../README.md) › [DisplayGlyphOptions](displayglyphoptions.md)
+[Rocket Nuimo - v1.0.0](../README.md) / DisplayGlyphOptions
 
 # Interface: DisplayGlyphOptions
 
@@ -12,43 +12,43 @@ Options used when calling displayGlyph
 
 ### Properties
 
-* [alignment](displayglyphoptions.md#optional-alignment)
-* [brightness](displayglyphoptions.md#optional-brightness)
-* [compositionMode](displayglyphoptions.md#optional-compositionmode)
-* [timeoutMs](displayglyphoptions.md#optional-timeoutms)
-* [transition](displayglyphoptions.md#optional-transition)
+* [alignment](displayglyphoptions.md#alignment)
+* [brightness](displayglyphoptions.md#brightness)
+* [compositionMode](displayglyphoptions.md#compositionmode)
+* [timeoutMs](displayglyphoptions.md#timeoutms)
+* [transition](displayglyphoptions.md#transition)
 
 ## Properties
 
-### `Optional` alignment
+### alignment
 
-• **alignment**? : *[GlyphAlignment](../enums/glyphalignment.md)*
+• `Optional` **alignment**: [*GlyphAlignment*](../enums/glyphalignment.md)
 
 For glyphs smaller or larger than the 9x9 screen, the alignment to render the glyph with
 Default is GlyphAlignment.Center
 
 ___
 
-### `Optional` brightness
+### brightness
 
-• **brightness**? : *undefined | number*
+• `Optional` **brightness**: *number*
 
 Display brightness
 Does not affect device brightness level already set
 
 ___
 
-### `Optional` compositionMode
+### compositionMode
 
-• **compositionMode**? : *[DisplayComposition](../enums/displaycomposition.md)*
+• `Optional` **compositionMode**: [*DisplayComposition*](../enums/displaycomposition.md)
 
 Display composition mode
 
 ___
 
-### `Optional` timeoutMs
+### timeoutMs
 
-• **timeoutMs**? : *undefined | number*
+• `Optional` **timeoutMs**: *number*
 
 Timeout, in milliseconds before the glyph disappears
 
@@ -56,8 +56,8 @@ Max: 25 seconds
 
 ___
 
-### `Optional` transition
+### transition
 
-• **transition**? : *[DisplayTransition](../enums/displaytransition.md)*
+• `Optional` **transition**: [*DisplayTransition*](../enums/displaytransition.md)
 
 Transition effect between glyph displays

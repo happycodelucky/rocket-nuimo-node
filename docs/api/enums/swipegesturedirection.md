@@ -1,4 +1,4 @@
-[Rocket Nuimo](../README.md) › [SwipeGestureDirection](swipegesturedirection.md)
+[Rocket Nuimo - v1.0.0](../README.md) / SwipeGestureDirection
 
 # Enumeration: SwipeGestureDirection
 
@@ -15,7 +15,7 @@ On-screen swipe gesture direction
 
 ## Enumeration members
 
-###  Down
+### Down
 
 • **Down**: = "down"
 
@@ -23,7 +23,7 @@ Top to bottom on-screen swipe
 
 ___
 
-###  Left
+### Left
 
 • **Left**: = "left"
 
@@ -31,7 +31,7 @@ Right to left on-screen swipe
 
 ___
 
-###  Right
+### Right
 
 • **Right**: = "right"
 
@@ -39,7 +39,7 @@ Left to right on-screen swipe
 
 ___
 
-###  Up
+### Up
 
 • **Up**: = "up"
 

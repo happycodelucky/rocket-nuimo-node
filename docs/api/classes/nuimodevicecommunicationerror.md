@@ -1,4 +1,4 @@
-[Rocket Nuimo](../README.md) › [NuimoDeviceCommunicationError](nuimodevicecommunicationerror.md)
+[Rocket Nuimo - v1.0.0](../README.md) / NuimoDeviceCommunicationError
 
 # Class: NuimoDeviceCommunicationError
 
@@ -6,7 +6,7 @@ Class of error related to device communication errors with a known device
 
 ## Hierarchy
 
-  ↳ [NuimoError](nuimoerror.md)
+* [*NuimoError*](nuimoerror.md)
 
   ↳ **NuimoDeviceCommunicationError**
 
@@ -20,64 +20,37 @@ Class of error related to device communication errors with a known device
 
 * [code](nuimodevicecommunicationerror.md#code)
 * [id](nuimodevicecommunicationerror.md#id)
-* [message](nuimodevicecommunicationerror.md#message)
-* [name](nuimodevicecommunicationerror.md#name)
-* [stack](nuimodevicecommunicationerror.md#optional-stack)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new NuimoDeviceCommunicationError**(`code`: [NuimoDeviceCommunicationErrorCode](../enums/nuimodevicecommunicationerrorcode.md), `id`: string, `message?`: undefined | string): *[NuimoDeviceCommunicationError](nuimodevicecommunicationerror.md)*
+\+ **new NuimoDeviceCommunicationError**(`code`: [*NuimoDeviceCommunicationErrorCode*](../enums/nuimodevicecommunicationerrorcode.md), `id`: *string*, `message?`: *string*): [*NuimoDeviceCommunicationError*](nuimodevicecommunicationerror.md)
 
-*Overrides [NuimoError](nuimoerror.md).[constructor](nuimoerror.md#constructor)*
-
-**Parameters:**
+#### Parameters:
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`code` | [NuimoDeviceCommunicationErrorCode](../enums/nuimodevicecommunicationerrorcode.md) | connection error code |
-`id` | string | device ID for the connection error  |
-`message?` | undefined &#124; string | - |
+`code` | [*NuimoDeviceCommunicationErrorCode*](../enums/nuimodevicecommunicationerrorcode.md) | connection error code   |
+`id` | *string* | device ID for the connection error    |
+`message?` | *string* | - |
 
-**Returns:** *[NuimoDeviceCommunicationError](nuimodevicecommunicationerror.md)*
+**Returns:** [*NuimoDeviceCommunicationError*](nuimodevicecommunicationerror.md)
+
+Inherited from: [NuimoError](nuimoerror.md)
 
 ## Properties
 
-###  code
+### code
 
-• **code**: *[NuimoDeviceCommunicationErrorCode](../enums/nuimodevicecommunicationerrorcode.md)*
+• `Readonly` **code**: [*NuimoDeviceCommunicationErrorCode*](../enums/nuimodevicecommunicationerrorcode.md)
 
 Device error code
 
 ___
 
-###  id
+### id
 
-• **id**: *string*
+• `Readonly` **id**: *string*
 
 Device identifier
-
-___
-
-###  message
-
-• **message**: *string*
-
-*Inherited from [NuimoError](nuimoerror.md).[message](nuimoerror.md#message)*
-
-___
-
-###  name
-
-• **name**: *string*
-
-*Inherited from [NuimoError](nuimoerror.md).[name](nuimoerror.md#name)*
-
-___
-
-### `Optional` stack
-
-• **stack**? : *undefined | string*
-
-*Inherited from [NuimoError](nuimoerror.md).[stack](nuimoerror.md#optional-stack)*

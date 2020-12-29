@@ -1,4 +1,4 @@
-[Rocket Nuimo](../README.md) › [DeviceConnectedStatus](deviceconnectedstatus.md)
+[Rocket Nuimo - v1.0.0](../README.md) / DeviceConnectedStatus
 
 # Enumeration: DeviceConnectedStatus
 
@@ -14,7 +14,7 @@ Connection status of a peripheral device
 
 ## Enumeration members
 
-###  Connected
+### Connected
 
 • **Connected**: = "connected"
 
@@ -22,7 +22,7 @@ Connected, all services/characteristic subscribed to
 
 ___
 
-###  Connecting
+### Connecting
 
 • **Connecting**: = "connecting"
 
@@ -30,7 +30,7 @@ Connecting and discovering services/characteristics, not yet usable
 
 ___
 
-###  Disconnected
+### Disconnected
 
 • **Disconnected**: = "disconnected"
 

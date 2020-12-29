@@ -1,4 +1,4 @@
-[Rocket Nuimo](../README.md) › [OnEventCallback](oneventcallback.md)
+[Rocket Nuimo - v1.0.0](../README.md) / OnEventCallback
 
 # Interface: OnEventCallback
 
@@ -10,7 +10,7 @@ Callback for events with no event arguments
 
 ## Callable
 
-▸ (): *void*
+▸ **OnEventCallback**(): *void*
 
 Callback for events with no event arguments
 

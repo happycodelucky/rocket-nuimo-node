@@ -1,4 +1,4 @@
-[Rocket Nuimo](../README.md) › [TouchGestureArea](touchgesturearea.md)
+[Rocket Nuimo - v1.0.0](../README.md) / TouchGestureArea
 
 # Enumeration: TouchGestureArea
 
@@ -15,7 +15,7 @@ On-screen device touch area
 
 ## Enumeration members
 
-###  Bottom
+### Bottom
 
 • **Bottom**: = "bottom"
 
@@ -23,7 +23,7 @@ Bottom of screen
 
 ___
 
-###  Left
+### Left
 
 • **Left**: = "left"
 
@@ -31,7 +31,7 @@ Left of screen
 
 ___
 
-###  Right
+### Right
 
 • **Right**: = "right"
 
@@ -39,7 +39,7 @@ Right of screen
 
 ___
 
-###  Top
+### Top
 
 • **Top**: = "top"
 

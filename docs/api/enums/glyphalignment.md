@@ -1,4 +1,4 @@
-[Rocket Nuimo](../README.md) › [GlyphAlignment](glyphalignment.md)
+[Rocket Nuimo - v1.0.0](../README.md) / GlyphAlignment
 
 # Enumeration: GlyphAlignment
 
@@ -20,72 +20,72 @@ Glyph alignment for glyphs that do not fill the Nuimo display LED matrix
 
 ## Enumeration members
 
-###  Bottom
+### Bottom
 
-• **Bottom**: = GLYPH_VBOTTOM_MASK | GLYPH_HCENTER_MASK
+• **Bottom**: 
 
 Bottom justified
 
 ___
 
-###  BottomLeft
+### BottomLeft
 
-• **BottomLeft**: = GLYPH_VBOTTOM_MASK | GLYPH_HLEFT_MASK
+• **BottomLeft**: 
 
 Bottom-left justified
 
 ___
 
-###  BottomRight
+### BottomRight
 
-• **BottomRight**: = GLYPH_VBOTTOM_MASK | GLYPH_HRIGHT_MASK
+• **BottomRight**: 
 
 Bottom-right justified
 
 ___
 
-###  Center
+### Center
 
-• **Center**: = GLYPH_VCENTER_MASK | GLYPH_HCENTER_MASK
+• **Center**: 
 
 Center justified
 
 ___
 
-###  Left
+### Left
 
-• **Left**: = GLYPH_VCENTER_MASK | GLYPH_HLEFT_MASK
+• **Left**: 
 
 Left justified
 
 ___
 
-###  Right
+### Right
 
-• **Right**: = GLYPH_VCENTER_MASK | GLYPH_HRIGHT_MASK
+• **Right**: 
 
 Right justified
 
 ___
 
-###  Top
+### Top
 
-• **Top**: = GLYPH_VTOP_MASK | GLYPH_HCENTER_MASK
+• **Top**: 
 
 Top justified
 
 ___
 
-###  TopLeft
+### TopLeft
 
-• **TopLeft**: = GLYPH_VTOP_MASK | GLYPH_HLEFT_MASK
+• **TopLeft**: 
 
 Top-left justified
 
 ___
 
-###  TopRight
+### TopRight
 
-• **TopRight**: = GLYPH_VTOP_MASK | GLYPH_HRIGHT_MASK
+• **TopRight**: 
 
 Top-right justified

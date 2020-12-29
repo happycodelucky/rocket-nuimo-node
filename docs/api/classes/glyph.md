@@ -1,4 +1,4 @@
-[Rocket Nuimo](../README.md) › [Glyph](glyph.md)
+[Rocket Nuimo - v1.0.0](../README.md) / Glyph
 
 # Class: Glyph
 
@@ -10,13 +10,17 @@ String based glyph for Nuimo Control LED matrix displays
 
 ## Index
 
+### Constructors
+
+* [constructor](glyph.md#constructor)
+
 ### Properties
 
 * [characterRows](glyph.md#characterrows)
 * [height](glyph.md#height)
 * [width](glyph.md#width)
-* [offChar](glyph.md#static-offchar)
-* [onChar](glyph.md#static-onchar)
+* [offChar](glyph.md#offchar)
+* [onChar](glyph.md#onchar)
 
 ### Methods
 
@@ -24,79 +28,93 @@ String based glyph for Nuimo Control LED matrix displays
 * [resize](glyph.md#resize)
 * [toString](glyph.md#tostring)
 * [translate](glyph.md#translate)
-* [fromString](glyph.md#static-fromstring)
+* [fromString](glyph.md#fromstring)
+
+## Constructors
+
+### constructor
+
+\+ **new Glyph**(`rows`: readonly *string*[]): [*Glyph*](glyph.md)
+
+#### Parameters:
+
+Name | Type | Description |
+------ | ------ | ------ |
+`rows` | readonly *string*[] | character rows encoded with `onChar` and `offChar`    |
+
+**Returns:** [*Glyph*](glyph.md)
 
 ## Properties
 
-###  characterRows
+### characterRows
 
-• **characterRows**: *ReadonlyArray‹string›*
+• `Readonly` **characterRows**: *ReadonlyArray*<*string*\>
 
 Glyph character rows
 
 ___
 
-###  height
+### height
 
-• **height**: *number*
+• `Readonly` **height**: *number*
 
 Glyph height in characters
 
 ___
 
-###  width
+### width
 
-• **width**: *number*
+• `Readonly` **width**: *number*
 
 Glyph width in characters
 
 ___
 
-### `Static` offChar
+### offChar
 
-▪ **offChar**: *" "* = " "
+▪ `Readonly` `Static` **offChar**: * *= ' '
 
 LED off glyph character
 
 ___
 
-### `Static` onChar
+### onChar
 
-▪ **onChar**: *"*"* = "*"
+▪ `Readonly` `Static` **onChar**: ***= '*'
 
 LED on glyph character
 
 ## Methods
 
-###  invert
+### invert
 
-▸ **invert**(): *[Glyph](glyph.md)*
+▸ **invert**(): [*Glyph*](glyph.md)
 
 Inverts the glyph, turning off LEDs that are on and vice-versa
 
-**Returns:** *[Glyph](glyph.md)*
+**Returns:** [*Glyph*](glyph.md)
 
 ___
 
-###  resize
+### resize
 
-▸ **resize**(`width`: number, `height`: number, `alignment`: [GlyphAlignment](../enums/glyphalignment.md)): *[Glyph](glyph.md)*
+▸ **resize**(`width`: *number*, `height`: *number*, `alignment?`: [*GlyphAlignment*](../enums/glyphalignment.md)): [*Glyph*](glyph.md)
 
 Resizes the glyph
 
-**Parameters:**
+#### Parameters:
 
-Name | Type | Default | Description |
+Name | Type | Default value | Description |
 ------ | ------ | ------ | ------ |
-`width` | number | - | width to resize to |
-`height` | number | - | height to resize to |
-`alignment` | [GlyphAlignment](../enums/glyphalignment.md) | GlyphAlignment.Center | - |
+`width` | *number* | - | width to resize to   |
+`height` | *number* | - | height to resize to   |
+`alignment` | [*GlyphAlignment*](../enums/glyphalignment.md) | ... | - |
 
-**Returns:** *[Glyph](glyph.md)*
+**Returns:** [*Glyph*](glyph.md)
 
 ___
 
-###  toString
+### toString
 
 ▸ **toString**(): *string*
 
@@ -106,29 +124,29 @@ Return a string representation of the glyph
 
 ___
 
-###  translate
+### translate
 
-▸ **translate**(`x`: number, `y`: number, `wrap`: boolean): *[Glyph](glyph.md)*
+▸ **translate**(`x`: *number*, `y`: *number*, `wrap?`: *boolean*): [*Glyph*](glyph.md)
 
 Performs a translation of the x/y of the glyph and produces a new glyph
 
-**Parameters:**
+#### Parameters:
 
-Name | Type | Default | Description |
+Name | Type | Default value | Description |
 ------ | ------ | ------ | ------ |
-`x` | number | - | number of LED characters to shift the glyph by on the horizontal plane |
-`y` | number | - | number of LED charactersto shift the glyph by on the vertical plane |
-`wrap` | boolean | false | - |
+`x` | *number* | - | number of LED characters to shift the glyph by on the horizontal plane   |
+`y` | *number* | - | number of LED charactersto shift the glyph by on the vertical plane   |
+`wrap` | *boolean* | false | - |
 
-**Returns:** *[Glyph](glyph.md)*
+**Returns:** [*Glyph*](glyph.md)
 
 A new glyph with the transformation applied
 
 ___
 
-### `Static` fromString
+### fromString
 
-▸ **fromString**(`rows`: ReadonlyArray‹string›): *[Glyph](glyph.md)*
+▸ `Static`**fromString**(`rows`: readonly *string*[]): [*Glyph*](glyph.md)
 
 Creates a new LED glyph from an array of strings, where each array element represents a row, and each character an LED.
 Nuimo devices have a 9x9 LED matrix so the rows should be 9 elements or less, with 9 characters or less.
@@ -138,12 +156,12 @@ Nuimo devices have a 9x9 LED matrix so the rows should be 9 elements or less, wi
 
 *Note*: Do not use unicode characters as they are not supported
 
-**Parameters:**
+#### Parameters:
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`rows` | ReadonlyArray‹string› | glyph string character rows  |
+`rows` | readonly *string*[] | glyph string character rows    |
 
-**Returns:** *[Glyph](glyph.md)*
+**Returns:** [*Glyph*](glyph.md)
 
 New bitmap based on the rows and alignment

@@ -1,4 +1,4 @@
-[Rocket Nuimo](../README.md) › [NuimoDeviceCommunicationErrorCode](nuimodevicecommunicationerrorcode.md)
+[Rocket Nuimo - v1.0.0](../README.md) / NuimoDeviceCommunicationErrorCode
 
 # Enumeration: NuimoDeviceCommunicationErrorCode
 
@@ -18,7 +18,7 @@ Error code for connection class errors for a device
 
 ## Enumeration members
 
-###  Bluetooth
+### Bluetooth
 
 • **Bluetooth**: = "bluetooth"
 
@@ -26,7 +26,7 @@ Bluetooth communication related error
 
 ___
 
-###  ConnectionTimeout
+### ConnectionTimeout
 
 • **ConnectionTimeout**: = "timeout"
 
@@ -34,7 +34,7 @@ Connection attempt timed out
 
 ___
 
-###  Disconnected
+### Disconnected
 
 • **Disconnected**: = "disconnected"
 
@@ -42,7 +42,7 @@ Device has been disconnected
 
 ___
 
-###  NotAvailable
+### NotAvailable
 
 • **NotAvailable**: = "notAvailable"
 
@@ -50,7 +50,7 @@ Device is no longer available and cannot be connected to
 
 ___
 
-###  NotConnectable
+### NotConnectable
 
 • **NotConnectable**: = "notConnectable"
 
@@ -58,7 +58,7 @@ Device cannot be connected to, it may be connected to another device
 
 ___
 
-###  NotConnected
+### NotConnected
 
 • **NotConnected**: = "notConnected"
 
@@ -66,7 +66,7 @@ Device is available but no connection has been established
 
 ___
 
-###  Unknown
+### Unknown
 
 • **Unknown**: = "unknown"
 
