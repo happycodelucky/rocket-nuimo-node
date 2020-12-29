@@ -1,4 +1,4 @@
-![Rocket Nuimo](https://github.com/pryomoax/rocket-nuimo-node/raw/master/assets/rocket-nuimo.png)
+![Rocket Nuimo](https://github.com/pryomoax/rocket-nuimo-node/raw/main/assets/rocket-nuimo.png)
 
 [![License](https://img.shields.io/github/license/pryomoax/rocket-nuimo-node.svg?style=for-the-badge)](./LICENSE)
 ![Node](https://img.shields.io/npm/v/rocket-nuimo.svg?style=for-the-badge&label=version)
