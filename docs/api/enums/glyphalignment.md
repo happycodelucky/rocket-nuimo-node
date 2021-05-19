@@ -1,22 +1,22 @@
-[Rocket Nuimo - v1.0.0](../README.md) / GlyphAlignment
+[Rocket Nuimo - v1.1.0](../README.md) / GlyphAlignment
 
 # Enumeration: GlyphAlignment
 
 Glyph alignment for glyphs that do not fill the Nuimo display LED matrix
 
-## Index
+## Table of contents
 
 ### Enumeration members
 
-* [Bottom](glyphalignment.md#bottom)
-* [BottomLeft](glyphalignment.md#bottomleft)
-* [BottomRight](glyphalignment.md#bottomright)
-* [Center](glyphalignment.md#center)
-* [Left](glyphalignment.md#left)
-* [Right](glyphalignment.md#right)
-* [Top](glyphalignment.md#top)
-* [TopLeft](glyphalignment.md#topleft)
-* [TopRight](glyphalignment.md#topright)
+- [Bottom](glyphalignment.md#bottom)
+- [BottomLeft](glyphalignment.md#bottomleft)
+- [BottomRight](glyphalignment.md#bottomright)
+- [Center](glyphalignment.md#center)
+- [Left](glyphalignment.md#left)
+- [Right](glyphalignment.md#right)
+- [Top](glyphalignment.md#top)
+- [TopLeft](glyphalignment.md#topleft)
+- [TopRight](glyphalignment.md#topright)
 
 ## Enumeration members
 

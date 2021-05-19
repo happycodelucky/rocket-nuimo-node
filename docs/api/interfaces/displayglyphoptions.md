@@ -1,22 +1,18 @@
-[Rocket Nuimo - v1.0.0](../README.md) / DisplayGlyphOptions
+[Rocket Nuimo - v1.1.0](../README.md) / DisplayGlyphOptions
 
 # Interface: DisplayGlyphOptions
 
 Options used when calling displayGlyph
 
-## Hierarchy
-
-* **DisplayGlyphOptions**
-
-## Index
+## Table of contents
 
 ### Properties
 
-* [alignment](displayglyphoptions.md#alignment)
-* [brightness](displayglyphoptions.md#brightness)
-* [compositionMode](displayglyphoptions.md#compositionmode)
-* [timeoutMs](displayglyphoptions.md#timeoutms)
-* [transition](displayglyphoptions.md#transition)
+- [alignment](displayglyphoptions.md#alignment)
+- [brightness](displayglyphoptions.md#brightness)
+- [compositionMode](displayglyphoptions.md#compositionmode)
+- [timeoutMs](displayglyphoptions.md#timeoutms)
+- [transition](displayglyphoptions.md#transition)
 
 ## Properties
 
@@ -40,7 +36,7 @@ ___
 
 ### compositionMode
 
-• `Optional` **compositionMode**: [*DisplayComposition*](../enums/displaycomposition.md)
+• `Optional` **compositionMode**: [*Invert*](../enums/displaycomposition.md#invert)
 
 Display composition mode
 

@@ -1,12 +1,8 @@
-[Rocket Nuimo - v1.0.0](../README.md) / OnBatteryLeveCallback
+[Rocket Nuimo - v1.1.0](../README.md) / OnBatteryLeveCallback
 
 # Interface: OnBatteryLeveCallback
 
 Callback for 'batteryLevel' events
-
-## Hierarchy
-
-* **OnBatteryLeveCallback**
 
 ## Callable
 
@@ -14,10 +10,10 @@ Callback for 'batteryLevel' events
 
 Callback for 'batteryLevel' events
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Description |
------- | ------ | ------ |
-`level` | *number* | Battery level from 0-100    |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `level` | *number* | Battery level from 0-100 |
 
 **Returns:** *void*

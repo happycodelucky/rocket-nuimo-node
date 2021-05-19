@@ -1,19 +1,15 @@
-[Rocket Nuimo - v1.0.0](../README.md) / DeviceDiscoverySessionOptions
+[Rocket Nuimo - v1.1.0](../README.md) / DeviceDiscoverySessionOptions
 
 # Interface: DeviceDiscoverySessionOptions
 
 Options given when starting a new discovery session for Nuimo devices
 
-## Hierarchy
-
-* **DeviceDiscoverySessionOptions**
-
-## Index
+## Table of contents
 
 ### Properties
 
-* [deviceIds](devicediscoverysessionoptions.md#deviceids)
-* [timeoutMs](devicediscoverysessionoptions.md#timeoutms)
+- [deviceIds](devicediscoverysessionoptions.md#deviceids)
+- [timeoutMs](devicediscoverysessionoptions.md#timeoutms)
 
 ## Properties
 

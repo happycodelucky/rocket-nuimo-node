@@ -1,57 +1,57 @@
-Rocket Nuimo - v1.0.0
+Rocket Nuimo - v1.1.0
 
-# Rocket Nuimo - v1.0.0
+# Rocket Nuimo - v1.1.0
 
-## Index
+## Table of contents
 
 ### Enumerations
 
-* [DeviceConnectedStatus](enums/deviceconnectedstatus.md)
-* [DeviceDiscoveryState](enums/devicediscoverystate.md)
-* [DisplayComposition](enums/displaycomposition.md)
-* [DisplayTransition](enums/displaytransition.md)
-* [GlyphAlignment](enums/glyphalignment.md)
-* [NuimoDeviceCommunicationErrorCode](enums/nuimodevicecommunicationerrorcode.md)
-* [SwipeGestureDirection](enums/swipegesturedirection.md)
-* [TouchGestureArea](enums/touchgesturearea.md)
+- [DeviceConnectedStatus](enums/deviceconnectedstatus.md)
+- [DeviceDiscoveryState](enums/devicediscoverystate.md)
+- [DisplayComposition](enums/displaycomposition.md)
+- [DisplayTransition](enums/displaytransition.md)
+- [GlyphAlignment](enums/glyphalignment.md)
+- [NuimoDeviceCommunicationErrorCode](enums/nuimodevicecommunicationerrorcode.md)
+- [SwipeGestureDirection](enums/swipegesturedirection.md)
+- [TouchGestureArea](enums/touchgesturearea.md)
 
 ### Classes
 
-* [DeviceDiscoveryManager](classes/devicediscoverymanager.md)
-* [DeviceDiscoverySession](classes/devicediscoverysession.md)
-* [Glyph](classes/glyph.md)
-* [NuimoControlDevice](classes/nuimocontroldevice.md)
-* [NuimoDeviceCommunicationError](classes/nuimodevicecommunicationerror.md)
-* [NuimoError](classes/nuimoerror.md)
+- [DeviceDiscoveryManager](classes/devicediscoverymanager.md)
+- [DeviceDiscoverySession](classes/devicediscoverysession.md)
+- [Glyph](classes/glyph.md)
+- [NuimoControlDevice](classes/nuimocontroldevice.md)
+- [NuimoDeviceCommunicationError](classes/nuimodevicecommunicationerror.md)
+- [NuimoError](classes/nuimoerror.md)
 
 ### Interfaces
 
-* [DeviceDiscoverySessionOptions](interfaces/devicediscoverysessionoptions.md)
-* [DisplayGlyphOptions](interfaces/displayglyphoptions.md)
-* [OnBatteryLeveCallback](interfaces/onbatterylevecallback.md)
-* [OnDeviceDiscoveredCallback](interfaces/ondevicediscoveredcallback.md)
-* [OnDirectionalSwipeGestureCallback](interfaces/ondirectionalswipegesturecallback.md)
-* [OnDiscoveryDoneCallback](interfaces/ondiscoverydonecallback.md)
-* [OnErrorCallback](interfaces/onerrorcallback.md)
-* [OnEventCallback](interfaces/oneventcallback.md)
-* [OnHoverCallback](interfaces/onhovercallback.md)
-* [OnRotateCallback](interfaces/onrotatecallback.md)
-* [OnRssiCallback](interfaces/onrssicallback.md)
-* [OnSwipeGestureCallback](interfaces/onswipegesturecallback.md)
-* [OnTouchGestureCallback](interfaces/ontouchgesturecallback.md)
+- [DeviceDiscoverySessionOptions](interfaces/devicediscoverysessionoptions.md)
+- [DisplayGlyphOptions](interfaces/displayglyphoptions.md)
+- [OnBatteryLeveCallback](interfaces/onbatterylevecallback.md)
+- [OnDeviceDiscoveredCallback](interfaces/ondevicediscoveredcallback.md)
+- [OnDirectionalSwipeGestureCallback](interfaces/ondirectionalswipegesturecallback.md)
+- [OnDiscoveryDoneCallback](interfaces/ondiscoverydonecallback.md)
+- [OnErrorCallback](interfaces/onerrorcallback.md)
+- [OnEventCallback](interfaces/oneventcallback.md)
+- [OnHoverCallback](interfaces/onhovercallback.md)
+- [OnRotateCallback](interfaces/onrotatecallback.md)
+- [OnRssiCallback](interfaces/onrssicallback.md)
+- [OnSwipeGestureCallback](interfaces/onswipegesturecallback.md)
+- [OnTouchGestureCallback](interfaces/ontouchgesturecallback.md)
 
 ### Variables
 
-* [digitGlyphs](README.md#digitglyphs)
-* [emptyGlyph](README.md#emptyglyph)
-* [errorGlyph](README.md#errorglyph)
-* [filledGlyph](README.md#filledglyph)
-* [leftGlyph](README.md#leftglyph)
-* [linkGlyph](README.md#linkglyph)
-* [pauseGlyph](README.md#pauseglyph)
-* [playGlyph](README.md#playglyph)
-* [rightGlyph](README.md#rightglyph)
-* [stopGlyph](README.md#stopglyph)
+- [digitGlyphs](README.md#digitglyphs)
+- [emptyGlyph](README.md#emptyglyph)
+- [errorGlyph](README.md#errorglyph)
+- [filledGlyph](README.md#filledglyph)
+- [leftGlyph](README.md#leftglyph)
+- [linkGlyph](README.md#linkglyph)
+- [pauseGlyph](README.md#pauseglyph)
+- [playGlyph](README.md#playglyph)
+- [rightGlyph](README.md#rightglyph)
+- [stopGlyph](README.md#stopglyph)
 
 ## Variables
 

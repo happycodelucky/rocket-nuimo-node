@@ -1,17 +1,17 @@
-[Rocket Nuimo - v1.0.0](../README.md) / DeviceDiscoveryState
+[Rocket Nuimo - v1.1.0](../README.md) / DeviceDiscoveryState
 
 # Enumeration: DeviceDiscoveryState
 
 State of discovery for a DeviceDiscoverySession or DeviceDiscoveryManager
 
-## Index
+## Table of contents
 
 ### Enumeration members
 
-* [BluetoothUnavailable](devicediscoverystate.md#bluetoothunavailable)
-* [Discovering](devicediscoverystate.md#discovering)
-* [Initial](devicediscoverystate.md#initial)
-* [Ready](devicediscoverystate.md#ready)
+- [BluetoothUnavailable](devicediscoverystate.md#bluetoothunavailable)
+- [Discovering](devicediscoverystate.md#discovering)
+- [Initial](devicediscoverystate.md#initial)
+- [Ready](devicediscoverystate.md#ready)
 
 ## Enumeration members
 

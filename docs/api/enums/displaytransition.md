@@ -1,15 +1,15 @@
-[Rocket Nuimo - v1.0.0](../README.md) / DisplayTransition
+[Rocket Nuimo - v1.1.0](../README.md) / DisplayTransition
 
 # Enumeration: DisplayTransition
 
 Display transition when displaying a glyph
 
-## Index
+## Table of contents
 
 ### Enumeration members
 
-* [CrossFade](displaytransition.md#crossfade)
-* [Immediate](displaytransition.md#immediate)
+- [CrossFade](displaytransition.md#crossfade)
+- [Immediate](displaytransition.md#immediate)
 
 ## Enumeration members
 

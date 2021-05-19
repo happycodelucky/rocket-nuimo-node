@@ -1,54 +1,32 @@
-[Rocket Nuimo - v1.0.0](../README.md) / Glyph
+[Rocket Nuimo - v1.1.0](../README.md) / Glyph
 
 # Class: Glyph
 
 String based glyph for Nuimo Control LED matrix displays
 
-## Hierarchy
-
-* **Glyph**
-
-## Index
-
-### Constructors
-
-* [constructor](glyph.md#constructor)
+## Table of contents
 
 ### Properties
 
-* [characterRows](glyph.md#characterrows)
-* [height](glyph.md#height)
-* [width](glyph.md#width)
-* [offChar](glyph.md#offchar)
-* [onChar](glyph.md#onchar)
+- [characterRows](glyph.md#characterrows)
+- [height](glyph.md#height)
+- [width](glyph.md#width)
+- [offChar](glyph.md#offchar)
+- [onChar](glyph.md#onchar)
 
 ### Methods
 
-* [invert](glyph.md#invert)
-* [resize](glyph.md#resize)
-* [toString](glyph.md#tostring)
-* [translate](glyph.md#translate)
-* [fromString](glyph.md#fromstring)
-
-## Constructors
-
-### constructor
-
-\+ **new Glyph**(`rows`: readonly *string*[]): [*Glyph*](glyph.md)
-
-#### Parameters:
-
-Name | Type | Description |
------- | ------ | ------ |
-`rows` | readonly *string*[] | character rows encoded with `onChar` and `offChar`    |
-
-**Returns:** [*Glyph*](glyph.md)
+- [invert](glyph.md#invert)
+- [resize](glyph.md#resize)
+- [toString](glyph.md#tostring)
+- [translate](glyph.md#translate)
+- [fromString](glyph.md#fromstring)
 
 ## Properties
 
 ### characterRows
 
-• `Readonly` **characterRows**: *ReadonlyArray*<*string*\>
+• `Readonly` **characterRows**: readonly *string*[]
 
 Glyph character rows
 
@@ -72,7 +50,7 @@ ___
 
 ### offChar
 
-▪ `Readonly` `Static` **offChar**: * *= ' '
+▪ `Static` `Readonly` **offChar**: ``" "``= ' '
 
 LED off glyph character
 
@@ -80,7 +58,7 @@ ___
 
 ### onChar
 
-▪ `Readonly` `Static` **onChar**: ***= '*'
+▪ `Static` `Readonly` **onChar**: ``"*"``= '*'
 
 LED on glyph character
 
@@ -102,13 +80,13 @@ ___
 
 Resizes the glyph
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value | Description |
------- | ------ | ------ | ------ |
-`width` | *number* | - | width to resize to   |
-`height` | *number* | - | height to resize to   |
-`alignment` | [*GlyphAlignment*](../enums/glyphalignment.md) | ... | - |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `width` | *number* | width to resize to |
+| `height` | *number* | height to resize to |
+| `alignment` | [*GlyphAlignment*](../enums/glyphalignment.md) | - |
 
 **Returns:** [*Glyph*](glyph.md)
 
@@ -130,13 +108,13 @@ ___
 
 Performs a translation of the x/y of the glyph and produces a new glyph
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value | Description |
------- | ------ | ------ | ------ |
-`x` | *number* | - | number of LED characters to shift the glyph by on the horizontal plane   |
-`y` | *number* | - | number of LED charactersto shift the glyph by on the vertical plane   |
-`wrap` | *boolean* | false | - |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `x` | *number* | - | number of LED characters to shift the glyph by on the horizontal plane |
+| `y` | *number* | - | number of LED charactersto shift the glyph by on the vertical plane |
+| `wrap` | *boolean* | false | - |
 
 **Returns:** [*Glyph*](glyph.md)
 
@@ -146,7 +124,7 @@ ___
 
 ### fromString
 
-▸ `Static`**fromString**(`rows`: readonly *string*[]): [*Glyph*](glyph.md)
+▸ `Static` **fromString**(`rows`: readonly *string*[]): [*Glyph*](glyph.md)
 
 Creates a new LED glyph from an array of strings, where each array element represents a row, and each character an LED.
 Nuimo devices have a 9x9 LED matrix so the rows should be 9 elements or less, with 9 characters or less.
@@ -156,11 +134,11 @@ Nuimo devices have a 9x9 LED matrix so the rows should be 9 elements or less, wi
 
 *Note*: Do not use unicode characters as they are not supported
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Description |
------- | ------ | ------ |
-`rows` | readonly *string*[] | glyph string character rows    |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `rows` | readonly *string*[] | glyph string character rows |
 
 **Returns:** [*Glyph*](glyph.md)
 

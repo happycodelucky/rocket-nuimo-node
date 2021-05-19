@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.0.0](../README.md) / NuimoError
+[Rocket Nuimo - v1.1.0](../README.md) / NuimoError
 
 # Class: NuimoError
 
@@ -6,17 +6,17 @@ Generic error message for all Nuimo errors
 
 ## Hierarchy
 
-* *Error*
+- *Error*
 
   ↳ **NuimoError**
 
   ↳↳ [*NuimoDeviceCommunicationError*](nuimodevicecommunicationerror.md)
 
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](nuimoerror.md#constructor)
+- [constructor](nuimoerror.md#constructor)
 
 ## Constructors
 
@@ -24,11 +24,13 @@ Generic error message for all Nuimo errors
 
 \+ **new NuimoError**(`message`: *string*, `name?`: *string*): [*NuimoError*](nuimoerror.md)
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value | Description |
------- | ------ | ------ | ------ |
-`message` | *string* | - | error message   |
-`name` | *string* | 'NuimoError' | name given to the error    |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `message` | *string* | - | error message |
+| `name` | *string* | 'NuimoError' | name given to the error |
 
 **Returns:** [*NuimoError*](nuimoerror.md)
+
+Overrides: Error.constructor

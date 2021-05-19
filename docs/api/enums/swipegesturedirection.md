@@ -1,17 +1,17 @@
-[Rocket Nuimo - v1.0.0](../README.md) / SwipeGestureDirection
+[Rocket Nuimo - v1.1.0](../README.md) / SwipeGestureDirection
 
 # Enumeration: SwipeGestureDirection
 
 On-screen swipe gesture direction
 
-## Index
+## Table of contents
 
 ### Enumeration members
 
-* [Down](swipegesturedirection.md#down)
-* [Left](swipegesturedirection.md#left)
-* [Right](swipegesturedirection.md#right)
-* [Up](swipegesturedirection.md#up)
+- [Down](swipegesturedirection.md#down)
+- [Left](swipegesturedirection.md#left)
+- [Right](swipegesturedirection.md#right)
+- [Up](swipegesturedirection.md#up)
 
 ## Enumeration members
 

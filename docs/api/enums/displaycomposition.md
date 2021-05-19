@@ -1,14 +1,14 @@
-[Rocket Nuimo - v1.0.0](../README.md) / DisplayComposition
+[Rocket Nuimo - v1.1.0](../README.md) / DisplayComposition
 
 # Enumeration: DisplayComposition
 
 Composition mode when display a glyph
 
-## Index
+## Table of contents
 
 ### Enumeration members
 
-* [Invert](displaycomposition.md#invert)
+- [Invert](displaycomposition.md#invert)
 
 ## Enumeration members
 
