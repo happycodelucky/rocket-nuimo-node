@@ -1,6 +1,6 @@
-Rocket Nuimo - v1.1.0
+Rocket Nuimo - v1.2.0
 
-# Rocket Nuimo - v1.1.0
+# Rocket Nuimo - v1.2.0
 
 ## Table of contents
 
@@ -12,6 +12,7 @@ Rocket Nuimo - v1.1.0
 - [DisplayTransition](enums/displaytransition.md)
 - [GlyphAlignment](enums/glyphalignment.md)
 - [NuimoDeviceCommunicationErrorCode](enums/nuimodevicecommunicationerrorcode.md)
+- [RotationMode](enums/rotationmode.md)
 - [SwipeGestureDirection](enums/swipegesturedirection.md)
 - [TouchGestureArea](enums/touchgesturearea.md)
 
@@ -57,7 +58,7 @@ Rocket Nuimo - v1.1.0
 
 ### digitGlyphs
 
-• `Const` **digitGlyphs**: [*Glyph*](classes/glyph.md)[]
+• `Const` **digitGlyphs**: [Glyph](classes/glyph.md)[]
 
 Digit glyphs
 
@@ -65,7 +66,7 @@ ___
 
 ### emptyGlyph
 
-• `Const` **emptyGlyph**: [*Glyph*](classes/glyph.md)
+• `Const` **emptyGlyph**: [Glyph](classes/glyph.md)
 
 Empty glyph
 
@@ -73,7 +74,7 @@ ___
 
 ### errorGlyph
 
-• `Const` **errorGlyph**: [*Glyph*](classes/glyph.md)
+• `Const` **errorGlyph**: [Glyph](classes/glyph.md)
 
 Error glyph
 
@@ -81,7 +82,7 @@ ___
 
 ### filledGlyph
 
-• `Const` **filledGlyph**: [*Glyph*](classes/glyph.md)
+• `Const` **filledGlyph**: [Glyph](classes/glyph.md)
 
 Filled glyph
 
@@ -89,7 +90,7 @@ ___
 
 ### leftGlyph
 
-• `Const` **leftGlyph**: [*Glyph*](classes/glyph.md)
+• `Const` **leftGlyph**: [Glyph](classes/glyph.md)
 
 Left arrow glyphs
 
@@ -97,7 +98,7 @@ ___
 
 ### linkGlyph
 
-• `Const` **linkGlyph**: [*Glyph*](classes/glyph.md)
+• `Const` **linkGlyph**: [Glyph](classes/glyph.md)
 
 Link icon (infinity) glyph
 
@@ -105,7 +106,7 @@ ___
 
 ### pauseGlyph
 
-• `Const` **pauseGlyph**: [*Glyph*](classes/glyph.md)
+• `Const` **pauseGlyph**: [Glyph](classes/glyph.md)
 
 Pause icon glyph
 
@@ -113,7 +114,7 @@ ___
 
 ### playGlyph
 
-• `Const` **playGlyph**: [*Glyph*](classes/glyph.md)
+• `Const` **playGlyph**: [Glyph](classes/glyph.md)
 
 Play icon glyph
 
@@ -121,7 +122,7 @@ ___
 
 ### rightGlyph
 
-• `Const` **rightGlyph**: [*Glyph*](classes/glyph.md)
+• `Const` **rightGlyph**: [Glyph](classes/glyph.md)
 
 Right arrow glyph
 
@@ -129,6 +130,6 @@ ___
 
 ### stopGlyph
 
-• `Const` **stopGlyph**: [*Glyph*](classes/glyph.md)
+• `Const` **stopGlyph**: [Glyph](classes/glyph.md)
 
 Stop icon glyph

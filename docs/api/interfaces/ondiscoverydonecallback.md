@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.1.0](../README.md) / OnDiscoveryDoneCallback
+[Rocket Nuimo - v1.2.0](../README.md) / OnDiscoveryDoneCallback
 
 # Interface: OnDiscoveryDoneCallback
 
@@ -6,7 +6,9 @@ Callback for all discovery session `done` events
 
 ## Callable
 
-▸ **OnDiscoveryDoneCallback**(`timedOut`: *boolean*): *void*
+### OnDiscoveryDoneCallback
+
+▸ **OnDiscoveryDoneCallback**(`timedOut`): `void`
 
 Callback for all discovery session `done` events
 
@@ -14,6 +16,8 @@ Callback for all discovery session `done` events
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `timedOut` | *boolean* | Indicates if a discovery session timed out |
+| `timedOut` | `boolean` | Indicates if a discovery session timed out |
 
-**Returns:** *void*
+#### Returns
+
+`void`

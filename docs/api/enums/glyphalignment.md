@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.1.0](../README.md) / GlyphAlignment
+[Rocket Nuimo - v1.2.0](../README.md) / GlyphAlignment
 
 # Enumeration: GlyphAlignment
 
@@ -22,7 +22,7 @@ Glyph alignment for glyphs that do not fill the Nuimo display LED matrix
 
 ### Bottom
 
-• **Bottom**: 
+• **Bottom**
 
 Bottom justified
 
@@ -30,7 +30,7 @@ ___
 
 ### BottomLeft
 
-• **BottomLeft**: 
+• **BottomLeft**
 
 Bottom-left justified
 
@@ -38,7 +38,7 @@ ___
 
 ### BottomRight
 
-• **BottomRight**: 
+• **BottomRight**
 
 Bottom-right justified
 
@@ -46,7 +46,7 @@ ___
 
 ### Center
 
-• **Center**: 
+• **Center**
 
 Center justified
 
@@ -54,7 +54,7 @@ ___
 
 ### Left
 
-• **Left**: 
+• **Left**
 
 Left justified
 
@@ -62,7 +62,7 @@ ___
 
 ### Right
 
-• **Right**: 
+• **Right**
 
 Right justified
 
@@ -70,7 +70,7 @@ ___
 
 ### Top
 
-• **Top**: 
+• **Top**
 
 Top justified
 
@@ -78,7 +78,7 @@ ___
 
 ### TopLeft
 
-• **TopLeft**: 
+• **TopLeft**
 
 Top-left justified
 
@@ -86,6 +86,6 @@ ___
 
 ### TopRight
 
-• **TopRight**: 
+• **TopRight**
 
 Top-right justified

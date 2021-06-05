@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.1.0](../README.md) / NuimoControlDevice
+[Rocket Nuimo - v1.2.0](../README.md) / NuimoControlDevice
 
 # Class: NuimoControlDevice
 
@@ -6,11 +6,15 @@ A Nuimo Control device client for interacting with BT Nuimo Control peripheral
 
 ## Hierarchy
 
-- *EventEmitter*
+- `EventEmitter`
 
   ↳ **NuimoControlDevice**
 
 ## Table of contents
+
+### Properties
+
+- [rotationMode](nuimocontroldevice.md#rotationmode)
 
 ### Accessors
 
@@ -40,27 +44,39 @@ A Nuimo Control device client for interacting with BT Nuimo Control peripheral
 - [removeListener](nuimocontroldevice.md#removelistener)
 - [setRotationRange](nuimocontroldevice.md#setrotationrange)
 
+## Properties
+
+### rotationMode
+
+• **rotationMode**: [RotationMode](../enums/rotationmode.md)
+
+Rotation mode for the device
+
 ## Accessors
 
 ### batteryLevel
 
-• get **batteryLevel**(): *undefined* \| *number*
+• `get` **batteryLevel**(): `undefined` \| `number`
 
 Nuimo device battery level
 
-**Returns:** *undefined* \| *number*
+#### Returns
+
+`undefined` \| `number`
 
 ___
 
 ### brightness
 
-• get **brightness**(): *number*
+• `get` **brightness**(): `number`
 
 Brightness level of the Nuimo screen
 
-**Returns:** *number*
+#### Returns
 
-• set **brightness**(`brightness`: *number*): *void*
+`number`
+
+• `set` **brightness**(`brightness`): `void`
 
 Set brightness level of the Nuimo screen
 
@@ -71,61 +87,73 @@ due to the way Nuimo operates
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `brightness` | *number* | Brightness level between 0.0-1.0 |
+| `brightness` | `number` | Brightness level between 0.0-1.0 |
 
-**Returns:** *void*
+#### Returns
+
+`void`
 
 ___
 
 ### id
 
-• get **id**(): *string*
+• `get` **id**(): `string`
 
 Nuimo device identifier
 
-**Returns:** *string*
+#### Returns
+
+`string`
 
 ___
 
 ### isConnected
 
-• get **isConnected**(): *boolean*
+• `get` **isConnected**(): `boolean`
 
 Indicates if there is a connection established to the Nuimo device
 
-**Returns:** *boolean*
+#### Returns
+
+`boolean`
 
 ___
 
 ### maxRotation
 
-• get **maxRotation**(): *number*
+• `get` **maxRotation**(): `number`
 
 Maximum rotation allowed (default 0.0)
 
-**Returns:** *number*
+#### Returns
+
+`number`
 
 ___
 
 ### minRotation
 
-• get **minRotation**(): *number*
+• `get` **minRotation**(): `number`
 
 Minimum rotation allowed (default 0.0)
 
-**Returns:** *number*
+#### Returns
+
+`number`
 
 ___
 
 ### rotation
 
-• get **rotation**(): *number*
+• `get` **rotation**(): `number`
 
 Nuimo rotation value, can be between `minRotation` and `maxRotation`
 
-**Returns:** *number*
+#### Returns
 
-• set **rotation**(`rotation`: *number*): *void*
+`number`
+
+• `set` **rotation**(`rotation`): `void`
 
 Set the Nuimo currently rotation
 
@@ -133,146 +161,186 @@ Set the Nuimo currently rotation
 
 | Name | Type |
 | :------ | :------ |
-| `rotation` | *number* |
+| `rotation` | `number` |
 
-**Returns:** *void*
+#### Returns
+
+`void`
 
 ___
 
 ### rssi
 
-• get **rssi**(): *undefined* \| *number*
+• `get` **rssi**(): `undefined` \| `number`
 
 Nuimo device RSSI
 
-**Returns:** *undefined* \| *number*
+#### Returns
+
+`undefined` \| `number`
 
 ## Methods
 
 ### addListener
 
-▸ **addListener**(`eventName`: ``"hover"``, `listener`: [*OnHoverCallback*](../interfaces/onhovercallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+▸ **addListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"hover"`` |
-| `listener` | [*OnHoverCallback*](../interfaces/onhovercallback.md) |
+| `listener` | [OnHoverCallback](../interfaces/onhovercallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.addListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **addListener**(`eventName`: ``"disconnect"`` \| SelectEvents \| SwipeEvents \| TouchEvents \| LongTouchEvents, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
 
-#### Parameters
+EventEmitter.addListener
 
-| Name | Type |
-| :------ | :------ |
-| `eventName` | ``"disconnect"`` \| SelectEvents \| SwipeEvents \| TouchEvents \| LongTouchEvents |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
-
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
-
-Inherited from: EventEmitter.addListener
-
-▸ **addListener**(`eventName`: RotateEvents, `listener`: [*OnRotateCallback*](../interfaces/onrotatecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+▸ **addListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | RotateEvents |
-| `listener` | [*OnRotateCallback*](../interfaces/onrotatecallback.md) |
+| `eventName` | ``"disconnect"`` \| `SelectEvents` \| `SwipeEvents` \| `TouchEvents` \| `LongTouchEvents` |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.addListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **addListener**(`eventName`: HoverSwipeEvents, `listener`: [*OnDirectionalSwipeGestureCallback*](../interfaces/ondirectionalswipegesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.addListener
+
+▸ **addListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | HoverSwipeEvents |
-| `listener` | [*OnDirectionalSwipeGestureCallback*](../interfaces/ondirectionalswipegesturecallback.md) |
+| `eventName` | `RotateEvents` |
+| `listener` | [OnRotateCallback](../interfaces/onrotatecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.addListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **addListener**(`eventName`: ``"swipe"``, `listener`: [*OnSwipeGestureCallback*](../interfaces/onswipegesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.addListener
+
+▸ **addListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `eventName` | `HoverSwipeEvents` |
+| `listener` | [OnDirectionalSwipeGestureCallback](../interfaces/ondirectionalswipegesturecallback.md) |
+
+#### Returns
+
+[NuimoControlDevice](nuimocontroldevice.md)
+
+#### Inherited from
+
+EventEmitter.addListener
+
+▸ **addListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"swipe"`` |
-| `listener` | [*OnSwipeGestureCallback*](../interfaces/onswipegesturecallback.md) |
+| `listener` | [OnSwipeGestureCallback](../interfaces/onswipegesturecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.addListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **addListener**(`eventName`: ``"longTouch"`` \| ``"touch"``, `listener`: [*OnTouchGestureCallback*](../interfaces/ontouchgesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.addListener
+
+▸ **addListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"longTouch"`` \| ``"touch"`` |
-| `listener` | [*OnTouchGestureCallback*](../interfaces/ontouchgesturecallback.md) |
+| `listener` | [OnTouchGestureCallback](../interfaces/ontouchgesturecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.addListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **addListener**(`eventName`: ``"error"``, `listener`: [*OnErrorCallback*](../interfaces/onerrorcallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.addListener
+
+▸ **addListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"error"`` |
-| `listener` | [*OnErrorCallback*](../interfaces/onerrorcallback.md) |
+| `listener` | [OnErrorCallback](../interfaces/onerrorcallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.addListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **addListener**(`eventName`: ``"batteryLevel"``, `listener`: [*OnBatteryLeveCallback*](../interfaces/onbatterylevecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.addListener
+
+▸ **addListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"batteryLevel"`` |
-| `listener` | [*OnBatteryLeveCallback*](../interfaces/onbatterylevecallback.md) |
+| `listener` | [OnBatteryLeveCallback](../interfaces/onbatterylevecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.addListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **addListener**(`eventName`: ``"rssi"``, `listener`: [*OnRssiCallback*](../interfaces/onrssicallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.addListener
+
+▸ **addListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"rssi"`` |
-| `listener` | [*OnRssiCallback*](../interfaces/onrssicallback.md) |
+| `listener` | [OnRssiCallback](../interfaces/onrssicallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.addListener
+[NuimoControlDevice](nuimocontroldevice.md)
+
+#### Inherited from
+
+EventEmitter.addListener
 
 ___
 
 ### clearDisplay
 
-▸ **clearDisplay**(`transition?`: [*DisplayTransition*](../enums/displaytransition.md)): *Promise*<boolean\>
+▸ **clearDisplay**(`transition?`): `Promise`<boolean\>
 
 Clears the display
 
@@ -280,9 +348,11 @@ Clears the display
 
 | Name | Type |
 | :------ | :------ |
-| `transition?` | [*DisplayTransition*](../enums/displaytransition.md) |
+| `transition?` | [DisplayTransition](../enums/displaytransition.md) |
 
-**Returns:** *Promise*<boolean\>
+#### Returns
+
+`Promise`<boolean\>
 
 true if the display was cleared
 
@@ -290,27 +360,31 @@ ___
 
 ### connect
 
-▸ **connect**(): *Promise*<boolean\>
+▸ **connect**(): `Promise`<boolean\>
 
 Connects to the device, if not already connected.
 
-**Returns:** *Promise*<boolean\>
+#### Returns
+
+`Promise`<boolean\>
 
 ___
 
 ### disconnect
 
-▸ **disconnect**(): *void*
+▸ **disconnect**(): `void`
 
 Disconnects cleanly from the Nuimo device
 
-**Returns:** *void*
+#### Returns
+
+`void`
 
 ___
 
 ### displayGlyph
 
-▸ **displayGlyph**(`glyph`: [*Glyph*](glyph.md), `options?`: [*DisplayGlyphOptions*](../interfaces/displayglyphoptions.md)): *Promise*<boolean\>
+▸ **displayGlyph**(`glyph`, `options?`): `Promise`<boolean\>
 
 Displays a glyph on the Nuimo Control display
 
@@ -318,10 +392,12 @@ Displays a glyph on the Nuimo Control display
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `glyph` | [*Glyph*](glyph.md) | glyph to display |
-| `options?` | [*DisplayGlyphOptions*](../interfaces/displayglyphoptions.md) | - |
+| `glyph` | [Glyph](glyph.md) | glyph to display |
+| `options?` | [DisplayGlyphOptions](../interfaces/displayglyphoptions.md) | - |
 
-**Returns:** *Promise*<boolean\>
+#### Returns
+
+`Promise`<boolean\>
 
 true if the glyph was displayed
 
@@ -329,23 +405,27 @@ ___
 
 ### listenerCount
 
-▸ **listenerCount**(`type`: ``"error"`` \| ``"disconnect"`` \| ``"batteryLevel"`` \| ``"hover"`` \| ``"longTouch"`` \| ``"swipe"`` \| ``"rssi"`` \| ``"touch"`` \| SelectEvents \| SwipeEvents \| TouchEvents \| LongTouchEvents \| RotateEvents \| HoverSwipeEvents): *number*
+▸ **listenerCount**(`type`): `number`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `type` | ``"error"`` \| ``"disconnect"`` \| ``"batteryLevel"`` \| ``"hover"`` \| ``"longTouch"`` \| ``"swipe"`` \| ``"rssi"`` \| ``"touch"`` \| SelectEvents \| SwipeEvents \| TouchEvents \| LongTouchEvents \| RotateEvents \| HoverSwipeEvents |
+| `type` | ``"error"`` \| ``"disconnect"`` \| ``"batteryLevel"`` \| ``"hover"`` \| ``"longTouch"`` \| ``"swipe"`` \| ``"rssi"`` \| ``"touch"`` \| `SelectEvents` \| `SwipeEvents` \| `TouchEvents` \| `LongTouchEvents` \| `RotateEvents` \| `HoverSwipeEvents` |
 
-**Returns:** *number*
+#### Returns
 
-Inherited from: EventEmitter.listenerCount
+`number`
+
+#### Inherited from
+
+EventEmitter.listenerCount
 
 ___
 
 ### listeners
 
-▸ **listeners**(`eventName`: ``"hover"``): [*OnHoverCallback*](../interfaces/onhovercallback.md)[]
+▸ **listeners**(`eventName`): [OnHoverCallback](../interfaces/onhovercallback.md)[]
 
 #### Parameters
 
@@ -353,47 +433,63 @@ ___
 | :------ | :------ |
 | `eventName` | ``"hover"`` |
 
-**Returns:** [*OnHoverCallback*](../interfaces/onhovercallback.md)[]
+#### Returns
 
-Inherited from: EventEmitter.listeners
+[OnHoverCallback](../interfaces/onhovercallback.md)[]
 
-▸ **listeners**(`eventName`: ``"disconnect"`` \| SelectEvents \| SwipeEvents \| TouchEvents \| LongTouchEvents): [*OnEventCallback*](../interfaces/oneventcallback.md)[]
+#### Inherited from
 
-#### Parameters
+EventEmitter.listeners
 
-| Name | Type |
-| :------ | :------ |
-| `eventName` | ``"disconnect"`` \| SelectEvents \| SwipeEvents \| TouchEvents \| LongTouchEvents |
-
-**Returns:** [*OnEventCallback*](../interfaces/oneventcallback.md)[]
-
-Inherited from: EventEmitter.listeners
-
-▸ **listeners**(`eventName`: RotateEvents): [*OnRotateCallback*](../interfaces/onrotatecallback.md)[]
+▸ **listeners**(`eventName`): [OnEventCallback](../interfaces/oneventcallback.md)[]
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | RotateEvents |
+| `eventName` | ``"disconnect"`` \| `SelectEvents` \| `SwipeEvents` \| `TouchEvents` \| `LongTouchEvents` |
 
-**Returns:** [*OnRotateCallback*](../interfaces/onrotatecallback.md)[]
+#### Returns
 
-Inherited from: EventEmitter.listeners
+[OnEventCallback](../interfaces/oneventcallback.md)[]
 
-▸ **listeners**(`eventName`: HoverSwipeEvents): [*OnDirectionalSwipeGestureCallback*](../interfaces/ondirectionalswipegesturecallback.md)[]
+#### Inherited from
+
+EventEmitter.listeners
+
+▸ **listeners**(`eventName`): [OnRotateCallback](../interfaces/onrotatecallback.md)[]
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | HoverSwipeEvents |
+| `eventName` | `RotateEvents` |
 
-**Returns:** [*OnDirectionalSwipeGestureCallback*](../interfaces/ondirectionalswipegesturecallback.md)[]
+#### Returns
 
-Inherited from: EventEmitter.listeners
+[OnRotateCallback](../interfaces/onrotatecallback.md)[]
 
-▸ **listeners**(`eventName`: ``"swipe"``): [*OnSwipeGestureCallback*](../interfaces/onswipegesturecallback.md)[]
+#### Inherited from
+
+EventEmitter.listeners
+
+▸ **listeners**(`eventName`): [OnDirectionalSwipeGestureCallback](../interfaces/ondirectionalswipegesturecallback.md)[]
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `eventName` | `HoverSwipeEvents` |
+
+#### Returns
+
+[OnDirectionalSwipeGestureCallback](../interfaces/ondirectionalswipegesturecallback.md)[]
+
+#### Inherited from
+
+EventEmitter.listeners
+
+▸ **listeners**(`eventName`): [OnSwipeGestureCallback](../interfaces/onswipegesturecallback.md)[]
 
 #### Parameters
 
@@ -401,11 +497,15 @@ Inherited from: EventEmitter.listeners
 | :------ | :------ |
 | `eventName` | ``"swipe"`` |
 
-**Returns:** [*OnSwipeGestureCallback*](../interfaces/onswipegesturecallback.md)[]
+#### Returns
 
-Inherited from: EventEmitter.listeners
+[OnSwipeGestureCallback](../interfaces/onswipegesturecallback.md)[]
 
-▸ **listeners**(`eventName`: ``"longTouch"`` \| ``"touch"``): [*OnTouchGestureCallback*](../interfaces/ontouchgesturecallback.md)[]
+#### Inherited from
+
+EventEmitter.listeners
+
+▸ **listeners**(`eventName`): [OnTouchGestureCallback](../interfaces/ontouchgesturecallback.md)[]
 
 #### Parameters
 
@@ -413,11 +513,15 @@ Inherited from: EventEmitter.listeners
 | :------ | :------ |
 | `eventName` | ``"longTouch"`` \| ``"touch"`` |
 
-**Returns:** [*OnTouchGestureCallback*](../interfaces/ontouchgesturecallback.md)[]
+#### Returns
 
-Inherited from: EventEmitter.listeners
+[OnTouchGestureCallback](../interfaces/ontouchgesturecallback.md)[]
 
-▸ **listeners**(`eventName`: ``"error"``): [*OnErrorCallback*](../interfaces/onerrorcallback.md)[]
+#### Inherited from
+
+EventEmitter.listeners
+
+▸ **listeners**(`eventName`): [OnErrorCallback](../interfaces/onerrorcallback.md)[]
 
 #### Parameters
 
@@ -425,11 +529,15 @@ Inherited from: EventEmitter.listeners
 | :------ | :------ |
 | `eventName` | ``"error"`` |
 
-**Returns:** [*OnErrorCallback*](../interfaces/onerrorcallback.md)[]
+#### Returns
 
-Inherited from: EventEmitter.listeners
+[OnErrorCallback](../interfaces/onerrorcallback.md)[]
 
-▸ **listeners**(`eventName`: ``"batteryLevel"``): [*OnBatteryLeveCallback*](../interfaces/onbatterylevecallback.md)[]
+#### Inherited from
+
+EventEmitter.listeners
+
+▸ **listeners**(`eventName`): [OnBatteryLeveCallback](../interfaces/onbatterylevecallback.md)[]
 
 #### Parameters
 
@@ -437,11 +545,15 @@ Inherited from: EventEmitter.listeners
 | :------ | :------ |
 | `eventName` | ``"batteryLevel"`` |
 
-**Returns:** [*OnBatteryLeveCallback*](../interfaces/onbatterylevecallback.md)[]
+#### Returns
 
-Inherited from: EventEmitter.listeners
+[OnBatteryLeveCallback](../interfaces/onbatterylevecallback.md)[]
 
-▸ **listeners**(`eventName`: ``"rssi"``): [*OnRssiCallback*](../interfaces/onrssicallback.md)[]
+#### Inherited from
+
+EventEmitter.listeners
+
+▸ **listeners**(`eventName`): [OnRssiCallback](../interfaces/onrssicallback.md)[]
 
 #### Parameters
 
@@ -449,741 +561,961 @@ Inherited from: EventEmitter.listeners
 | :------ | :------ |
 | `eventName` | ``"rssi"`` |
 
-**Returns:** [*OnRssiCallback*](../interfaces/onrssicallback.md)[]
+#### Returns
 
-Inherited from: EventEmitter.listeners
+[OnRssiCallback](../interfaces/onrssicallback.md)[]
+
+#### Inherited from
+
+EventEmitter.listeners
 
 ___
 
 ### off
 
-▸ **off**(`eventName`: ``"hover"``, `listener`: [*OnHoverCallback*](../interfaces/onhovercallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+▸ **off**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"hover"`` |
-| `listener` | [*OnHoverCallback*](../interfaces/onhovercallback.md) |
+| `listener` | [OnHoverCallback](../interfaces/onhovercallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.off
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **off**(`eventName`: ``"disconnect"`` \| SelectEvents \| SwipeEvents \| TouchEvents \| LongTouchEvents, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
 
-#### Parameters
+EventEmitter.off
 
-| Name | Type |
-| :------ | :------ |
-| `eventName` | ``"disconnect"`` \| SelectEvents \| SwipeEvents \| TouchEvents \| LongTouchEvents |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
-
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
-
-Inherited from: EventEmitter.off
-
-▸ **off**(`eventName`: RotateEvents, `listener`: [*OnRotateCallback*](../interfaces/onrotatecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+▸ **off**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | RotateEvents |
-| `listener` | [*OnRotateCallback*](../interfaces/onrotatecallback.md) |
+| `eventName` | ``"disconnect"`` \| `SelectEvents` \| `SwipeEvents` \| `TouchEvents` \| `LongTouchEvents` |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.off
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **off**(`eventName`: HoverSwipeEvents, `listener`: [*OnDirectionalSwipeGestureCallback*](../interfaces/ondirectionalswipegesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.off
+
+▸ **off**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | HoverSwipeEvents |
-| `listener` | [*OnDirectionalSwipeGestureCallback*](../interfaces/ondirectionalswipegesturecallback.md) |
+| `eventName` | `RotateEvents` |
+| `listener` | [OnRotateCallback](../interfaces/onrotatecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.off
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **off**(`eventName`: ``"swipe"``, `listener`: [*OnSwipeGestureCallback*](../interfaces/onswipegesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.off
+
+▸ **off**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `eventName` | `HoverSwipeEvents` |
+| `listener` | [OnDirectionalSwipeGestureCallback](../interfaces/ondirectionalswipegesturecallback.md) |
+
+#### Returns
+
+[NuimoControlDevice](nuimocontroldevice.md)
+
+#### Inherited from
+
+EventEmitter.off
+
+▸ **off**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"swipe"`` |
-| `listener` | [*OnSwipeGestureCallback*](../interfaces/onswipegesturecallback.md) |
+| `listener` | [OnSwipeGestureCallback](../interfaces/onswipegesturecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.off
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **off**(`eventName`: ``"longTouch"`` \| ``"touch"``, `listener`: [*OnTouchGestureCallback*](../interfaces/ontouchgesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.off
+
+▸ **off**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"longTouch"`` \| ``"touch"`` |
-| `listener` | [*OnTouchGestureCallback*](../interfaces/ontouchgesturecallback.md) |
+| `listener` | [OnTouchGestureCallback](../interfaces/ontouchgesturecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.off
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **off**(`eventName`: ``"error"``, `listener`: [*OnErrorCallback*](../interfaces/onerrorcallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.off
+
+▸ **off**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"error"`` |
-| `listener` | [*OnErrorCallback*](../interfaces/onerrorcallback.md) |
+| `listener` | [OnErrorCallback](../interfaces/onerrorcallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.off
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **off**(`eventName`: ``"batteryLevel"``, `listener`: [*OnBatteryLeveCallback*](../interfaces/onbatterylevecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.off
+
+▸ **off**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"batteryLevel"`` |
-| `listener` | [*OnBatteryLeveCallback*](../interfaces/onbatterylevecallback.md) |
+| `listener` | [OnBatteryLeveCallback](../interfaces/onbatterylevecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.off
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **off**(`eventName`: ``"rssi"``, `listener`: [*OnRssiCallback*](../interfaces/onrssicallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.off
+
+▸ **off**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"rssi"`` |
-| `listener` | [*OnRssiCallback*](../interfaces/onrssicallback.md) |
+| `listener` | [OnRssiCallback](../interfaces/onrssicallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.off
+[NuimoControlDevice](nuimocontroldevice.md)
+
+#### Inherited from
+
+EventEmitter.off
 
 ___
 
 ### on
 
-▸ **on**(`eventName`: ``"hover"``, `listener`: [*OnHoverCallback*](../interfaces/onhovercallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+▸ **on**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"hover"`` |
-| `listener` | [*OnHoverCallback*](../interfaces/onhovercallback.md) |
+| `listener` | [OnHoverCallback](../interfaces/onhovercallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.on
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **on**(`eventName`: ``"disconnect"`` \| SelectEvents \| SwipeEvents \| TouchEvents \| LongTouchEvents, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
 
-#### Parameters
+EventEmitter.on
 
-| Name | Type |
-| :------ | :------ |
-| `eventName` | ``"disconnect"`` \| SelectEvents \| SwipeEvents \| TouchEvents \| LongTouchEvents |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
-
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
-
-Inherited from: EventEmitter.on
-
-▸ **on**(`eventName`: RotateEvents, `listener`: [*OnRotateCallback*](../interfaces/onrotatecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+▸ **on**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | RotateEvents |
-| `listener` | [*OnRotateCallback*](../interfaces/onrotatecallback.md) |
+| `eventName` | ``"disconnect"`` \| `SelectEvents` \| `SwipeEvents` \| `TouchEvents` \| `LongTouchEvents` |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.on
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **on**(`eventName`: HoverSwipeEvents, `listener`: [*OnDirectionalSwipeGestureCallback*](../interfaces/ondirectionalswipegesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.on
+
+▸ **on**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | HoverSwipeEvents |
-| `listener` | [*OnDirectionalSwipeGestureCallback*](../interfaces/ondirectionalswipegesturecallback.md) |
+| `eventName` | `RotateEvents` |
+| `listener` | [OnRotateCallback](../interfaces/onrotatecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.on
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **on**(`eventName`: ``"swipe"``, `listener`: [*OnSwipeGestureCallback*](../interfaces/onswipegesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.on
+
+▸ **on**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `eventName` | `HoverSwipeEvents` |
+| `listener` | [OnDirectionalSwipeGestureCallback](../interfaces/ondirectionalswipegesturecallback.md) |
+
+#### Returns
+
+[NuimoControlDevice](nuimocontroldevice.md)
+
+#### Inherited from
+
+EventEmitter.on
+
+▸ **on**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"swipe"`` |
-| `listener` | [*OnSwipeGestureCallback*](../interfaces/onswipegesturecallback.md) |
+| `listener` | [OnSwipeGestureCallback](../interfaces/onswipegesturecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.on
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **on**(`eventName`: ``"longTouch"`` \| ``"touch"``, `listener`: [*OnTouchGestureCallback*](../interfaces/ontouchgesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.on
+
+▸ **on**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"longTouch"`` \| ``"touch"`` |
-| `listener` | [*OnTouchGestureCallback*](../interfaces/ontouchgesturecallback.md) |
+| `listener` | [OnTouchGestureCallback](../interfaces/ontouchgesturecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.on
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **on**(`eventName`: ``"error"``, `listener`: [*OnErrorCallback*](../interfaces/onerrorcallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.on
+
+▸ **on**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"error"`` |
-| `listener` | [*OnErrorCallback*](../interfaces/onerrorcallback.md) |
+| `listener` | [OnErrorCallback](../interfaces/onerrorcallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.on
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **on**(`eventName`: ``"batteryLevel"``, `listener`: [*OnBatteryLeveCallback*](../interfaces/onbatterylevecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.on
+
+▸ **on**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"batteryLevel"`` |
-| `listener` | [*OnBatteryLeveCallback*](../interfaces/onbatterylevecallback.md) |
+| `listener` | [OnBatteryLeveCallback](../interfaces/onbatterylevecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.on
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **on**(`eventName`: ``"rssi"``, `listener`: [*OnRssiCallback*](../interfaces/onrssicallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.on
+
+▸ **on**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"rssi"`` |
-| `listener` | [*OnRssiCallback*](../interfaces/onrssicallback.md) |
+| `listener` | [OnRssiCallback](../interfaces/onrssicallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.on
+[NuimoControlDevice](nuimocontroldevice.md)
+
+#### Inherited from
+
+EventEmitter.on
 
 ___
 
 ### once
 
-▸ **once**(`eventName`: ``"hover"``, `listener`: [*OnHoverCallback*](../interfaces/onhovercallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+▸ **once**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"hover"`` |
-| `listener` | [*OnHoverCallback*](../interfaces/onhovercallback.md) |
+| `listener` | [OnHoverCallback](../interfaces/onhovercallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.once
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **once**(`eventName`: ``"disconnect"`` \| SelectEvents \| SwipeEvents \| TouchEvents \| LongTouchEvents, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
 
-#### Parameters
+EventEmitter.once
 
-| Name | Type |
-| :------ | :------ |
-| `eventName` | ``"disconnect"`` \| SelectEvents \| SwipeEvents \| TouchEvents \| LongTouchEvents |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
-
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
-
-Inherited from: EventEmitter.once
-
-▸ **once**(`eventName`: RotateEvents, `listener`: [*OnRotateCallback*](../interfaces/onrotatecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+▸ **once**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | RotateEvents |
-| `listener` | [*OnRotateCallback*](../interfaces/onrotatecallback.md) |
+| `eventName` | ``"disconnect"`` \| `SelectEvents` \| `SwipeEvents` \| `TouchEvents` \| `LongTouchEvents` |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.once
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **once**(`eventName`: HoverSwipeEvents, `listener`: [*OnDirectionalSwipeGestureCallback*](../interfaces/ondirectionalswipegesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.once
+
+▸ **once**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | HoverSwipeEvents |
-| `listener` | [*OnDirectionalSwipeGestureCallback*](../interfaces/ondirectionalswipegesturecallback.md) |
+| `eventName` | `RotateEvents` |
+| `listener` | [OnRotateCallback](../interfaces/onrotatecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.once
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **once**(`eventName`: ``"swipe"``, `listener`: [*OnSwipeGestureCallback*](../interfaces/onswipegesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.once
+
+▸ **once**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `eventName` | `HoverSwipeEvents` |
+| `listener` | [OnDirectionalSwipeGestureCallback](../interfaces/ondirectionalswipegesturecallback.md) |
+
+#### Returns
+
+[NuimoControlDevice](nuimocontroldevice.md)
+
+#### Inherited from
+
+EventEmitter.once
+
+▸ **once**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"swipe"`` |
-| `listener` | [*OnSwipeGestureCallback*](../interfaces/onswipegesturecallback.md) |
+| `listener` | [OnSwipeGestureCallback](../interfaces/onswipegesturecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.once
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **once**(`eventName`: ``"longTouch"`` \| ``"touch"``, `listener`: [*OnTouchGestureCallback*](../interfaces/ontouchgesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.once
+
+▸ **once**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"longTouch"`` \| ``"touch"`` |
-| `listener` | [*OnTouchGestureCallback*](../interfaces/ontouchgesturecallback.md) |
+| `listener` | [OnTouchGestureCallback](../interfaces/ontouchgesturecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.once
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **once**(`eventName`: ``"error"``, `listener`: [*OnErrorCallback*](../interfaces/onerrorcallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.once
+
+▸ **once**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"error"`` |
-| `listener` | [*OnErrorCallback*](../interfaces/onerrorcallback.md) |
+| `listener` | [OnErrorCallback](../interfaces/onerrorcallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.once
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **once**(`eventName`: ``"batteryLevel"``, `listener`: [*OnBatteryLeveCallback*](../interfaces/onbatterylevecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.once
+
+▸ **once**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"batteryLevel"`` |
-| `listener` | [*OnBatteryLeveCallback*](../interfaces/onbatterylevecallback.md) |
+| `listener` | [OnBatteryLeveCallback](../interfaces/onbatterylevecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.once
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **once**(`eventName`: ``"rssi"``, `listener`: [*OnRssiCallback*](../interfaces/onrssicallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.once
+
+▸ **once**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"rssi"`` |
-| `listener` | [*OnRssiCallback*](../interfaces/onrssicallback.md) |
+| `listener` | [OnRssiCallback](../interfaces/onrssicallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.once
+[NuimoControlDevice](nuimocontroldevice.md)
+
+#### Inherited from
+
+EventEmitter.once
 
 ___
 
 ### prependListener
 
-▸ **prependListener**(`eventName`: ``"hover"``, `listener`: [*OnHoverCallback*](../interfaces/onhovercallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+▸ **prependListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"hover"`` |
-| `listener` | [*OnHoverCallback*](../interfaces/onhovercallback.md) |
+| `listener` | [OnHoverCallback](../interfaces/onhovercallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.prependListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **prependListener**(`eventName`: ``"disconnect"`` \| SelectEvents \| SwipeEvents \| TouchEvents \| LongTouchEvents, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
 
-#### Parameters
+EventEmitter.prependListener
 
-| Name | Type |
-| :------ | :------ |
-| `eventName` | ``"disconnect"`` \| SelectEvents \| SwipeEvents \| TouchEvents \| LongTouchEvents |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
-
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
-
-Inherited from: EventEmitter.prependListener
-
-▸ **prependListener**(`eventName`: RotateEvents, `listener`: [*OnRotateCallback*](../interfaces/onrotatecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+▸ **prependListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | RotateEvents |
-| `listener` | [*OnRotateCallback*](../interfaces/onrotatecallback.md) |
+| `eventName` | ``"disconnect"`` \| `SelectEvents` \| `SwipeEvents` \| `TouchEvents` \| `LongTouchEvents` |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.prependListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **prependListener**(`eventName`: HoverSwipeEvents, `listener`: [*OnDirectionalSwipeGestureCallback*](../interfaces/ondirectionalswipegesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.prependListener
+
+▸ **prependListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | HoverSwipeEvents |
-| `listener` | [*OnDirectionalSwipeGestureCallback*](../interfaces/ondirectionalswipegesturecallback.md) |
+| `eventName` | `RotateEvents` |
+| `listener` | [OnRotateCallback](../interfaces/onrotatecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.prependListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **prependListener**(`eventName`: ``"swipe"``, `listener`: [*OnSwipeGestureCallback*](../interfaces/onswipegesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.prependListener
+
+▸ **prependListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `eventName` | `HoverSwipeEvents` |
+| `listener` | [OnDirectionalSwipeGestureCallback](../interfaces/ondirectionalswipegesturecallback.md) |
+
+#### Returns
+
+[NuimoControlDevice](nuimocontroldevice.md)
+
+#### Inherited from
+
+EventEmitter.prependListener
+
+▸ **prependListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"swipe"`` |
-| `listener` | [*OnSwipeGestureCallback*](../interfaces/onswipegesturecallback.md) |
+| `listener` | [OnSwipeGestureCallback](../interfaces/onswipegesturecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.prependListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **prependListener**(`eventName`: ``"longTouch"`` \| ``"touch"``, `listener`: [*OnTouchGestureCallback*](../interfaces/ontouchgesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.prependListener
+
+▸ **prependListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"longTouch"`` \| ``"touch"`` |
-| `listener` | [*OnTouchGestureCallback*](../interfaces/ontouchgesturecallback.md) |
+| `listener` | [OnTouchGestureCallback](../interfaces/ontouchgesturecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.prependListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **prependListener**(`eventName`: ``"error"``, `listener`: [*OnErrorCallback*](../interfaces/onerrorcallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.prependListener
+
+▸ **prependListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"error"`` |
-| `listener` | [*OnErrorCallback*](../interfaces/onerrorcallback.md) |
+| `listener` | [OnErrorCallback](../interfaces/onerrorcallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.prependListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **prependListener**(`eventName`: ``"batteryLevel"``, `listener`: [*OnBatteryLeveCallback*](../interfaces/onbatterylevecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.prependListener
+
+▸ **prependListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"batteryLevel"`` |
-| `listener` | [*OnBatteryLeveCallback*](../interfaces/onbatterylevecallback.md) |
+| `listener` | [OnBatteryLeveCallback](../interfaces/onbatterylevecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.prependListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **prependListener**(`eventName`: ``"rssi"``, `listener`: [*OnRssiCallback*](../interfaces/onrssicallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.prependListener
+
+▸ **prependListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"rssi"`` |
-| `listener` | [*OnRssiCallback*](../interfaces/onrssicallback.md) |
+| `listener` | [OnRssiCallback](../interfaces/onrssicallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.prependListener
+[NuimoControlDevice](nuimocontroldevice.md)
+
+#### Inherited from
+
+EventEmitter.prependListener
 
 ___
 
 ### prependOnceListener
 
-▸ **prependOnceListener**(`eventName`: ``"hover"``, `listener`: [*OnHoverCallback*](../interfaces/onhovercallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+▸ **prependOnceListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"hover"`` |
-| `listener` | [*OnHoverCallback*](../interfaces/onhovercallback.md) |
+| `listener` | [OnHoverCallback](../interfaces/onhovercallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.prependOnceListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **prependOnceListener**(`eventName`: ``"disconnect"`` \| SelectEvents \| SwipeEvents \| TouchEvents \| LongTouchEvents, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
 
-#### Parameters
+EventEmitter.prependOnceListener
 
-| Name | Type |
-| :------ | :------ |
-| `eventName` | ``"disconnect"`` \| SelectEvents \| SwipeEvents \| TouchEvents \| LongTouchEvents |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
-
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
-
-Inherited from: EventEmitter.prependOnceListener
-
-▸ **prependOnceListener**(`eventName`: RotateEvents, `listener`: [*OnRotateCallback*](../interfaces/onrotatecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+▸ **prependOnceListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | RotateEvents |
-| `listener` | [*OnRotateCallback*](../interfaces/onrotatecallback.md) |
+| `eventName` | ``"disconnect"`` \| `SelectEvents` \| `SwipeEvents` \| `TouchEvents` \| `LongTouchEvents` |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.prependOnceListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **prependOnceListener**(`eventName`: HoverSwipeEvents, `listener`: [*OnDirectionalSwipeGestureCallback*](../interfaces/ondirectionalswipegesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.prependOnceListener
+
+▸ **prependOnceListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | HoverSwipeEvents |
-| `listener` | [*OnDirectionalSwipeGestureCallback*](../interfaces/ondirectionalswipegesturecallback.md) |
+| `eventName` | `RotateEvents` |
+| `listener` | [OnRotateCallback](../interfaces/onrotatecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.prependOnceListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **prependOnceListener**(`eventName`: ``"swipe"``, `listener`: [*OnSwipeGestureCallback*](../interfaces/onswipegesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.prependOnceListener
+
+▸ **prependOnceListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `eventName` | `HoverSwipeEvents` |
+| `listener` | [OnDirectionalSwipeGestureCallback](../interfaces/ondirectionalswipegesturecallback.md) |
+
+#### Returns
+
+[NuimoControlDevice](nuimocontroldevice.md)
+
+#### Inherited from
+
+EventEmitter.prependOnceListener
+
+▸ **prependOnceListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"swipe"`` |
-| `listener` | [*OnSwipeGestureCallback*](../interfaces/onswipegesturecallback.md) |
+| `listener` | [OnSwipeGestureCallback](../interfaces/onswipegesturecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.prependOnceListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **prependOnceListener**(`eventName`: ``"longTouch"`` \| ``"touch"``, `listener`: [*OnTouchGestureCallback*](../interfaces/ontouchgesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.prependOnceListener
+
+▸ **prependOnceListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"longTouch"`` \| ``"touch"`` |
-| `listener` | [*OnTouchGestureCallback*](../interfaces/ontouchgesturecallback.md) |
+| `listener` | [OnTouchGestureCallback](../interfaces/ontouchgesturecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.prependOnceListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **prependOnceListener**(`eventName`: ``"error"``, `listener`: [*OnErrorCallback*](../interfaces/onerrorcallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.prependOnceListener
+
+▸ **prependOnceListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"error"`` |
-| `listener` | [*OnErrorCallback*](../interfaces/onerrorcallback.md) |
+| `listener` | [OnErrorCallback](../interfaces/onerrorcallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.prependOnceListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **prependOnceListener**(`eventName`: ``"batteryLevel"``, `listener`: [*OnBatteryLeveCallback*](../interfaces/onbatterylevecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.prependOnceListener
+
+▸ **prependOnceListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"batteryLevel"`` |
-| `listener` | [*OnBatteryLeveCallback*](../interfaces/onbatterylevecallback.md) |
+| `listener` | [OnBatteryLeveCallback](../interfaces/onbatterylevecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.prependOnceListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **prependOnceListener**(`eventName`: ``"rssi"``, `listener`: [*OnRssiCallback*](../interfaces/onrssicallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.prependOnceListener
+
+▸ **prependOnceListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"rssi"`` |
-| `listener` | [*OnRssiCallback*](../interfaces/onrssicallback.md) |
+| `listener` | [OnRssiCallback](../interfaces/onrssicallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.prependOnceListener
+[NuimoControlDevice](nuimocontroldevice.md)
+
+#### Inherited from
+
+EventEmitter.prependOnceListener
 
 ___
 
 ### removeListener
 
-▸ **removeListener**(`eventName`: ``"hover"``, `listener`: [*OnHoverCallback*](../interfaces/onhovercallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+▸ **removeListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"hover"`` |
-| `listener` | [*OnHoverCallback*](../interfaces/onhovercallback.md) |
+| `listener` | [OnHoverCallback](../interfaces/onhovercallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.removeListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **removeListener**(`eventName`: ``"disconnect"`` \| SelectEvents \| SwipeEvents \| TouchEvents \| LongTouchEvents, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
 
-#### Parameters
+EventEmitter.removeListener
 
-| Name | Type |
-| :------ | :------ |
-| `eventName` | ``"disconnect"`` \| SelectEvents \| SwipeEvents \| TouchEvents \| LongTouchEvents |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
-
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
-
-Inherited from: EventEmitter.removeListener
-
-▸ **removeListener**(`eventName`: RotateEvents, `listener`: [*OnRotateCallback*](../interfaces/onrotatecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+▸ **removeListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | RotateEvents |
-| `listener` | [*OnRotateCallback*](../interfaces/onrotatecallback.md) |
+| `eventName` | ``"disconnect"`` \| `SelectEvents` \| `SwipeEvents` \| `TouchEvents` \| `LongTouchEvents` |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.removeListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **removeListener**(`eventName`: HoverSwipeEvents, `listener`: [*OnDirectionalSwipeGestureCallback*](../interfaces/ondirectionalswipegesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.removeListener
+
+▸ **removeListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | HoverSwipeEvents |
-| `listener` | [*OnDirectionalSwipeGestureCallback*](../interfaces/ondirectionalswipegesturecallback.md) |
+| `eventName` | `RotateEvents` |
+| `listener` | [OnRotateCallback](../interfaces/onrotatecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.removeListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **removeListener**(`eventName`: ``"swipe"``, `listener`: [*OnSwipeGestureCallback*](../interfaces/onswipegesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.removeListener
+
+▸ **removeListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `eventName` | `HoverSwipeEvents` |
+| `listener` | [OnDirectionalSwipeGestureCallback](../interfaces/ondirectionalswipegesturecallback.md) |
+
+#### Returns
+
+[NuimoControlDevice](nuimocontroldevice.md)
+
+#### Inherited from
+
+EventEmitter.removeListener
+
+▸ **removeListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"swipe"`` |
-| `listener` | [*OnSwipeGestureCallback*](../interfaces/onswipegesturecallback.md) |
+| `listener` | [OnSwipeGestureCallback](../interfaces/onswipegesturecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.removeListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **removeListener**(`eventName`: ``"longTouch"`` \| ``"touch"``, `listener`: [*OnTouchGestureCallback*](../interfaces/ontouchgesturecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.removeListener
+
+▸ **removeListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"longTouch"`` \| ``"touch"`` |
-| `listener` | [*OnTouchGestureCallback*](../interfaces/ontouchgesturecallback.md) |
+| `listener` | [OnTouchGestureCallback](../interfaces/ontouchgesturecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.removeListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **removeListener**(`eventName`: ``"error"``, `listener`: [*OnErrorCallback*](../interfaces/onerrorcallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.removeListener
+
+▸ **removeListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"error"`` |
-| `listener` | [*OnErrorCallback*](../interfaces/onerrorcallback.md) |
+| `listener` | [OnErrorCallback](../interfaces/onerrorcallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.removeListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **removeListener**(`eventName`: ``"batteryLevel"``, `listener`: [*OnBatteryLeveCallback*](../interfaces/onbatterylevecallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.removeListener
+
+▸ **removeListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"batteryLevel"`` |
-| `listener` | [*OnBatteryLeveCallback*](../interfaces/onbatterylevecallback.md) |
+| `listener` | [OnBatteryLeveCallback](../interfaces/onbatterylevecallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.removeListener
+[NuimoControlDevice](nuimocontroldevice.md)
 
-▸ **removeListener**(`eventName`: ``"rssi"``, `listener`: [*OnRssiCallback*](../interfaces/onrssicallback.md)): [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Inherited from
+
+EventEmitter.removeListener
+
+▸ **removeListener**(`eventName`, `listener`): [NuimoControlDevice](nuimocontroldevice.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"rssi"`` |
-| `listener` | [*OnRssiCallback*](../interfaces/onrssicallback.md) |
+| `listener` | [OnRssiCallback](../interfaces/onrssicallback.md) |
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)
+#### Returns
 
-Inherited from: EventEmitter.removeListener
+[NuimoControlDevice](nuimocontroldevice.md)
+
+#### Inherited from
+
+EventEmitter.removeListener
 
 ___
 
 ### setRotationRange
 
-▸ **setRotationRange**(`min`: *number*, `max`: *number*, `value?`: *number*): *void*
+▸ **setRotationRange**(`min`, `max`, `value?`, `rotationCycles?`): `void`
 
 Sets the Nuimo dial rotation range and value
 
@@ -1191,8 +1523,11 @@ Sets the Nuimo dial rotation range and value
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `min` | *number* | minimum rotation value |
-| `max` | *number* | maximum rotation value |
-| `value?` | *number* | - |
+| `min` | `number` | minimum rotation value |
+| `max` | `number` | maximum rotation value |
+| `value` | `undefined` \| `number` | - |
+| `rotationCycles` | `number` | - |
 
-**Returns:** *void*
+#### Returns
+
+`void`

@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.1.0](../README.md) / DeviceDiscoveryManager
+[Rocket Nuimo - v1.2.0](../README.md) / DeviceDiscoveryManager
 
 # Class: DeviceDiscoveryManager
 
@@ -6,7 +6,7 @@ A device manager is the main entry for connecting to Nuimo devices. It offers de
 
 ## Hierarchy
 
-- *EventEmitter*
+- `EventEmitter`
 
   ↳ **DeviceDiscoveryManager**
 
@@ -40,7 +40,7 @@ A device manager is the main entry for connecting to Nuimo devices. It offers de
 
 ### defaultManager
 
-▪ `Static` **defaultManager**: [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+▪ `Static` **defaultManager**: [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 Default device discovery manager to manage discovery of one or more Nuimo devices
 
@@ -48,70 +48,86 @@ Default device discovery manager to manage discovery of one or more Nuimo device
 
 ### discoveredDevices
 
-• get **discoveredDevices**(): [*NuimoControlDevice*](nuimocontroldevice.md)[]
+• `get` **discoveredDevices**(): [NuimoControlDevice](nuimocontroldevice.md)[]
 
 All discovered devices by the device manager
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)[]
+#### Returns
+
+[NuimoControlDevice](nuimocontroldevice.md)[]
 
 ___
 
 ### discoveryState
 
-• get **discoveryState**(): [*DeviceDiscoveryState*](../enums/devicediscoverystate.md)
+• `get` **discoveryState**(): [DeviceDiscoveryState](../enums/devicediscoverystate.md)
 
 Active discovery state
 
-**Returns:** [*DeviceDiscoveryState*](../enums/devicediscoverystate.md)
+#### Returns
+
+[DeviceDiscoveryState](../enums/devicediscoverystate.md)
 
 ## Methods
 
 ### addListener
 
-▸ **addListener**(`eventName`: ``"device"``, `listener`: [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+▸ **addListener**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"device"`` |
-| `listener` | [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md) |
+| `listener` | [OnDeviceDiscoveredCallback](../interfaces/ondevicediscoveredcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.addListener
+[DeviceDiscoveryManager](devicediscoverymanager.md)
 
-▸ **addListener**(`eventName`: ``"error"``, `listener`: [*OnErrorCallback*](../interfaces/onerrorcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Inherited from
+
+EventEmitter.addListener
+
+▸ **addListener**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"error"`` |
-| `listener` | [*OnErrorCallback*](../interfaces/onerrorcallback.md) |
+| `listener` | [OnErrorCallback](../interfaces/onerrorcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.addListener
+[DeviceDiscoveryManager](devicediscoverymanager.md)
 
-▸ **addListener**(`eventName`: ``"started"`` \| ``"stopped"``, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Inherited from
+
+EventEmitter.addListener
+
+▸ **addListener**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"started"`` \| ``"stopped"`` |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.addListener
+[DeviceDiscoveryManager](devicediscoverymanager.md)
+
+#### Inherited from
+
+EventEmitter.addListener
 
 ___
 
 ### listenerCount
 
-▸ **listenerCount**(`type`: ``"error"`` \| ``"device"`` \| ``"started"`` \| ``"stopped"``): *number*
+▸ **listenerCount**(`type`): `number`
 
 #### Parameters
 
@@ -119,15 +135,19 @@ ___
 | :------ | :------ |
 | `type` | ``"error"`` \| ``"device"`` \| ``"started"`` \| ``"stopped"`` |
 
-**Returns:** *number*
+#### Returns
 
-Inherited from: EventEmitter.listenerCount
+`number`
+
+#### Inherited from
+
+EventEmitter.listenerCount
 
 ___
 
 ### listeners
 
-▸ **listeners**(`eventName`: ``"device"``): [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md)[]
+▸ **listeners**(`eventName`): [OnDeviceDiscoveredCallback](../interfaces/ondevicediscoveredcallback.md)[]
 
 #### Parameters
 
@@ -135,11 +155,15 @@ ___
 | :------ | :------ |
 | `eventName` | ``"device"`` |
 
-**Returns:** [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md)[]
+#### Returns
 
-Inherited from: EventEmitter.listeners
+[OnDeviceDiscoveredCallback](../interfaces/ondevicediscoveredcallback.md)[]
 
-▸ **listeners**(`eventName`: ``"error"``): [*OnErrorCallback*](../interfaces/onerrorcallback.md)[]
+#### Inherited from
+
+EventEmitter.listeners
+
+▸ **listeners**(`eventName`): [OnErrorCallback](../interfaces/onerrorcallback.md)[]
 
 #### Parameters
 
@@ -147,11 +171,15 @@ Inherited from: EventEmitter.listeners
 | :------ | :------ |
 | `eventName` | ``"error"`` |
 
-**Returns:** [*OnErrorCallback*](../interfaces/onerrorcallback.md)[]
+#### Returns
 
-Inherited from: EventEmitter.listeners
+[OnErrorCallback](../interfaces/onerrorcallback.md)[]
 
-▸ **listeners**(`eventName`: ``"started"`` \| ``"stopped"``): [*OnEventCallback*](../interfaces/oneventcallback.md)[]
+#### Inherited from
+
+EventEmitter.listeners
+
+▸ **listeners**(`eventName`): [OnEventCallback](../interfaces/oneventcallback.md)[]
 
 #### Parameters
 
@@ -159,273 +187,349 @@ Inherited from: EventEmitter.listeners
 | :------ | :------ |
 | `eventName` | ``"started"`` \| ``"stopped"`` |
 
-**Returns:** [*OnEventCallback*](../interfaces/oneventcallback.md)[]
+#### Returns
 
-Inherited from: EventEmitter.listeners
+[OnEventCallback](../interfaces/oneventcallback.md)[]
+
+#### Inherited from
+
+EventEmitter.listeners
 
 ___
 
 ### off
 
-▸ **off**(`eventName`: ``"device"``, `listener`: [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+▸ **off**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"device"`` |
-| `listener` | [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md) |
+| `listener` | [OnDeviceDiscoveredCallback](../interfaces/ondevicediscoveredcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.off
+[DeviceDiscoveryManager](devicediscoverymanager.md)
 
-▸ **off**(`eventName`: ``"error"``, `listener`: [*OnErrorCallback*](../interfaces/onerrorcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Inherited from
+
+EventEmitter.off
+
+▸ **off**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"error"`` |
-| `listener` | [*OnErrorCallback*](../interfaces/onerrorcallback.md) |
+| `listener` | [OnErrorCallback](../interfaces/onerrorcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.off
+[DeviceDiscoveryManager](devicediscoverymanager.md)
 
-▸ **off**(`eventName`: ``"started"`` \| ``"stopped"``, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Inherited from
+
+EventEmitter.off
+
+▸ **off**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"started"`` \| ``"stopped"`` |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.off
+[DeviceDiscoveryManager](devicediscoverymanager.md)
+
+#### Inherited from
+
+EventEmitter.off
 
 ___
 
 ### on
 
-▸ **on**(`eventName`: ``"device"``, `listener`: [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+▸ **on**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"device"`` |
-| `listener` | [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md) |
+| `listener` | [OnDeviceDiscoveredCallback](../interfaces/ondevicediscoveredcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.on
+[DeviceDiscoveryManager](devicediscoverymanager.md)
 
-▸ **on**(`eventName`: ``"error"``, `listener`: [*OnErrorCallback*](../interfaces/onerrorcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Inherited from
+
+EventEmitter.on
+
+▸ **on**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"error"`` |
-| `listener` | [*OnErrorCallback*](../interfaces/onerrorcallback.md) |
+| `listener` | [OnErrorCallback](../interfaces/onerrorcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.on
+[DeviceDiscoveryManager](devicediscoverymanager.md)
 
-▸ **on**(`eventName`: ``"started"`` \| ``"stopped"``, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Inherited from
+
+EventEmitter.on
+
+▸ **on**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"started"`` \| ``"stopped"`` |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.on
+[DeviceDiscoveryManager](devicediscoverymanager.md)
+
+#### Inherited from
+
+EventEmitter.on
 
 ___
 
 ### once
 
-▸ **once**(`eventName`: ``"device"``, `listener`: [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+▸ **once**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"device"`` |
-| `listener` | [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md) |
+| `listener` | [OnDeviceDiscoveredCallback](../interfaces/ondevicediscoveredcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.once
+[DeviceDiscoveryManager](devicediscoverymanager.md)
 
-▸ **once**(`eventName`: ``"error"``, `listener`: [*OnErrorCallback*](../interfaces/onerrorcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Inherited from
+
+EventEmitter.once
+
+▸ **once**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"error"`` |
-| `listener` | [*OnErrorCallback*](../interfaces/onerrorcallback.md) |
+| `listener` | [OnErrorCallback](../interfaces/onerrorcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.once
+[DeviceDiscoveryManager](devicediscoverymanager.md)
 
-▸ **once**(`eventName`: ``"started"`` \| ``"stopped"``, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Inherited from
+
+EventEmitter.once
+
+▸ **once**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"started"`` \| ``"stopped"`` |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.once
+[DeviceDiscoveryManager](devicediscoverymanager.md)
+
+#### Inherited from
+
+EventEmitter.once
 
 ___
 
 ### prependListener
 
-▸ **prependListener**(`eventName`: ``"device"``, `listener`: [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+▸ **prependListener**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"device"`` |
-| `listener` | [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md) |
+| `listener` | [OnDeviceDiscoveredCallback](../interfaces/ondevicediscoveredcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.prependListener
+[DeviceDiscoveryManager](devicediscoverymanager.md)
 
-▸ **prependListener**(`eventName`: ``"error"``, `listener`: [*OnErrorCallback*](../interfaces/onerrorcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Inherited from
+
+EventEmitter.prependListener
+
+▸ **prependListener**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"error"`` |
-| `listener` | [*OnErrorCallback*](../interfaces/onerrorcallback.md) |
+| `listener` | [OnErrorCallback](../interfaces/onerrorcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.prependListener
+[DeviceDiscoveryManager](devicediscoverymanager.md)
 
-▸ **prependListener**(`eventName`: ``"started"`` \| ``"stopped"``, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Inherited from
+
+EventEmitter.prependListener
+
+▸ **prependListener**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"started"`` \| ``"stopped"`` |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.prependListener
+[DeviceDiscoveryManager](devicediscoverymanager.md)
+
+#### Inherited from
+
+EventEmitter.prependListener
 
 ___
 
 ### prependOnceListener
 
-▸ **prependOnceListener**(`eventName`: ``"device"``, `listener`: [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+▸ **prependOnceListener**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"device"`` |
-| `listener` | [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md) |
+| `listener` | [OnDeviceDiscoveredCallback](../interfaces/ondevicediscoveredcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.prependOnceListener
+[DeviceDiscoveryManager](devicediscoverymanager.md)
 
-▸ **prependOnceListener**(`eventName`: ``"error"``, `listener`: [*OnErrorCallback*](../interfaces/onerrorcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Inherited from
+
+EventEmitter.prependOnceListener
+
+▸ **prependOnceListener**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"error"`` |
-| `listener` | [*OnErrorCallback*](../interfaces/onerrorcallback.md) |
+| `listener` | [OnErrorCallback](../interfaces/onerrorcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.prependOnceListener
+[DeviceDiscoveryManager](devicediscoverymanager.md)
 
-▸ **prependOnceListener**(`eventName`: ``"started"`` \| ``"stopped"``, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Inherited from
+
+EventEmitter.prependOnceListener
+
+▸ **prependOnceListener**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"started"`` \| ``"stopped"`` |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.prependOnceListener
+[DeviceDiscoveryManager](devicediscoverymanager.md)
+
+#### Inherited from
+
+EventEmitter.prependOnceListener
 
 ___
 
 ### removeListener
 
-▸ **removeListener**(`eventName`: ``"device"``, `listener`: [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+▸ **removeListener**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"device"`` |
-| `listener` | [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md) |
+| `listener` | [OnDeviceDiscoveredCallback](../interfaces/ondevicediscoveredcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.removeListener
+[DeviceDiscoveryManager](devicediscoverymanager.md)
 
-▸ **removeListener**(`eventName`: ``"error"``, `listener`: [*OnErrorCallback*](../interfaces/onerrorcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Inherited from
+
+EventEmitter.removeListener
+
+▸ **removeListener**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"error"`` |
-| `listener` | [*OnErrorCallback*](../interfaces/onerrorcallback.md) |
+| `listener` | [OnErrorCallback](../interfaces/onerrorcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.removeListener
+[DeviceDiscoveryManager](devicediscoverymanager.md)
 
-▸ **removeListener**(`eventName`: ``"started"`` \| ``"stopped"``, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Inherited from
+
+EventEmitter.removeListener
+
+▸ **removeListener**(`eventName`, `listener`): [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"started"`` \| ``"stopped"`` |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+#### Returns
 
-Inherited from: EventEmitter.removeListener
+[DeviceDiscoveryManager](devicediscoverymanager.md)
+
+#### Inherited from
+
+EventEmitter.removeListener
 
 ___
 
 ### startDiscoverySession
 
-▸ **startDiscoverySession**(`options?`: [*DeviceDiscoverySessionOptions*](../interfaces/devicediscoverysessionoptions.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+▸ **startDiscoverySession**(`options?`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 Start a new discovery session to discover Nuimo devices
 
@@ -433,9 +537,11 @@ Start a new discovery session to discover Nuimo devices
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options?` | [*DeviceDiscoverySessionOptions*](../interfaces/devicediscoverysessionoptions.md) | discovery session options |
+| `options?` | [DeviceDiscoverySessionOptions](../interfaces/devicediscoverysessionoptions.md) | discovery session options |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
+
+[DeviceDiscoverySession](devicediscoverysession.md)
 
 Session object initialized based on options and to observe discovery events on
 
@@ -443,17 +549,19 @@ ___
 
 ### stopDiscovery
 
-▸ **stopDiscovery**(): *void*
+▸ **stopDiscovery**(): `void`
 
 Stops _all_ discovery sessions in progress
 
-**Returns:** *void*
+#### Returns
+
+`void`
 
 ___
 
 ### stopDiscoverySession
 
-▸ **stopDiscoverySession**(`session`: [*DeviceDiscoverySession*](devicediscoverysession.md)): *void*
+▸ **stopDiscoverySession**(`session`): `void`
 
 Stops and removes a session from the list of managed sessions.
 When all session have been removed discovery will cease.
@@ -462,6 +570,8 @@ When all session have been removed discovery will cease.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `session` | [*DeviceDiscoverySession*](devicediscoverysession.md) | session to remove |
+| `session` | [DeviceDiscoverySession](devicediscoverysession.md) | session to remove |
 
-**Returns:** *void*
+#### Returns
+
+`void`

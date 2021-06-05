@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.1.0](../README.md) / OnRssiCallback
+[Rocket Nuimo - v1.2.0](../README.md) / OnRssiCallback
 
 # Interface: OnRssiCallback
 
@@ -6,7 +6,9 @@ Callback for 'rssi' events
 
 ## Callable
 
-▸ **OnRssiCallback**(`rssi`: *number*): *void*
+### OnRssiCallback
+
+▸ **OnRssiCallback**(`rssi`): `void`
 
 Callback for 'rssi' events
 
@@ -14,6 +16,8 @@ Callback for 'rssi' events
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `rssi` | *number* | BT signal strenght in db |
+| `rssi` | `number` | BT signal strenght in db |
 
-**Returns:** *void*
+#### Returns
+
+`void`

@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.1.0](../README.md) / OnTouchGestureCallback
+[Rocket Nuimo - v1.2.0](../README.md) / OnTouchGestureCallback
 
 # Interface: OnTouchGestureCallback
 
@@ -6,7 +6,9 @@ Callback for `touch` and `longTouch` gesture events
 
 ## Callable
 
-▸ **OnTouchGestureCallback**(`area`: [*TouchGestureArea*](../enums/touchgesturearea.md)): *void*
+### OnTouchGestureCallback
+
+▸ **OnTouchGestureCallback**(`area`): `void`
 
 Callback for `touch` and `longTouch` gesture events
 
@@ -14,6 +16,8 @@ Callback for `touch` and `longTouch` gesture events
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `area` | [*TouchGestureArea*](../enums/touchgesturearea.md) | touch area on device |
+| `area` | [TouchGestureArea](../enums/touchgesturearea.md) | touch area on device |
 
-**Returns:** *void*
+#### Returns
+
+`void`

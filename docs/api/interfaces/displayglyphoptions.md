@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.1.0](../README.md) / DisplayGlyphOptions
+[Rocket Nuimo - v1.2.0](../README.md) / DisplayGlyphOptions
 
 # Interface: DisplayGlyphOptions
 
@@ -18,7 +18,7 @@ Options used when calling displayGlyph
 
 ### alignment
 
-• `Optional` **alignment**: [*GlyphAlignment*](../enums/glyphalignment.md)
+• `Optional` **alignment**: [GlyphAlignment](../enums/glyphalignment.md)
 
 For glyphs smaller or larger than the 9x9 screen, the alignment to render the glyph with
 Default is GlyphAlignment.Center
@@ -27,7 +27,7 @@ ___
 
 ### brightness
 
-• `Optional` **brightness**: *number*
+• `Optional` **brightness**: `number`
 
 Display brightness
 Does not affect device brightness level already set
@@ -36,7 +36,7 @@ ___
 
 ### compositionMode
 
-• `Optional` **compositionMode**: [*Invert*](../enums/displaycomposition.md#invert)
+• `Optional` **compositionMode**: [Invert](../enums/displaycomposition.md#invert)
 
 Display composition mode
 
@@ -44,7 +44,7 @@ ___
 
 ### timeoutMs
 
-• `Optional` **timeoutMs**: *number*
+• `Optional` **timeoutMs**: `number`
 
 Timeout, in milliseconds before the glyph disappears
 
@@ -54,6 +54,6 @@ ___
 
 ### transition
 
-• `Optional` **transition**: [*DisplayTransition*](../enums/displaytransition.md)
+• `Optional` **transition**: [DisplayTransition](../enums/displaytransition.md)
 
 Transition effect between glyph displays

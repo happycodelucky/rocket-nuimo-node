@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.1.0](../README.md) / DeviceDiscoverySessionOptions
+[Rocket Nuimo - v1.2.0](../README.md) / DeviceDiscoverySessionOptions
 
 # Interface: DeviceDiscoverySessionOptions
 
@@ -15,7 +15,7 @@ Options given when starting a new discovery session for Nuimo devices
 
 ### deviceIds
 
-• `Optional` **deviceIds**: *string*[]
+• `Optional` **deviceIds**: `string`[]
 
 List of know device IDs to discover
 When specified only those devices white listed will be evented
@@ -24,6 +24,6 @@ ___
 
 ### timeoutMs
 
-• `Optional` **timeoutMs**: *number*
+• `Optional` **timeoutMs**: `number`
 
 Timeout in milliseconds before auto-stopping discovery

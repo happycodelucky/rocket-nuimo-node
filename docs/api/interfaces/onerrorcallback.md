@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.1.0](../README.md) / OnErrorCallback
+[Rocket Nuimo - v1.2.0](../README.md) / OnErrorCallback
 
 # Interface: OnErrorCallback
 
@@ -6,7 +6,9 @@ Callback for all `error` events
 
 ## Callable
 
-▸ **OnErrorCallback**(`error`: [*NuimoError*](../classes/nuimoerror.md)): *void*
+### OnErrorCallback
+
+▸ **OnErrorCallback**(`error`): `void`
 
 Callback for all `error` events
 
@@ -14,6 +16,8 @@ Callback for all `error` events
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `error` | [*NuimoError*](../classes/nuimoerror.md) | Evented error |
+| `error` | [NuimoError](../classes/nuimoerror.md) | Evented error |
 
-**Returns:** *void*
+#### Returns
+
+`void`

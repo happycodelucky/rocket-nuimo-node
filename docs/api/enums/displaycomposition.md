@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.1.0](../README.md) / DisplayComposition
+[Rocket Nuimo - v1.2.0](../README.md) / DisplayComposition
 
 # Enumeration: DisplayComposition
 
@@ -14,6 +14,6 @@ Composition mode when display a glyph
 
 ### Invert
 
-• **Invert**: = 0
+• **Invert** = 0
 
 Inverts the displayed glyph

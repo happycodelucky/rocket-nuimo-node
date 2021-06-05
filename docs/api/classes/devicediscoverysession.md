@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.1.0](../README.md) / DeviceDiscoverySession
+[Rocket Nuimo - v1.2.0](../README.md) / DeviceDiscoverySession
 
 # Class: DeviceDiscoverySession
 
@@ -8,7 +8,7 @@ Do not create a session manually, instead use DeviceDiscoveryManager to start di
 
 ## Hierarchy
 
-- *EventEmitter*
+- `EventEmitter`
 
   ↳ **DeviceDiscoverySession**
 
@@ -45,24 +45,24 @@ Do not create a session manually, instead use DeviceDiscoveryManager to start di
 
 ### constructor
 
-\+ **new DeviceDiscoverySession**(`manager`: [*DeviceDiscoveryManager*](devicediscoverymanager.md), `options?`: [*DeviceDiscoverySessionOptions*](../interfaces/devicediscoverysessionoptions.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+• **new DeviceDiscoverySession**(`manager`, `options?`)
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `manager` | [*DeviceDiscoveryManager*](devicediscoverymanager.md) | vending discovery manager |
-| `options?` | [*DeviceDiscoverySessionOptions*](../interfaces/devicediscoverysessionoptions.md) | - |
+| `manager` | [DeviceDiscoveryManager](devicediscoverymanager.md) | vending discovery manager |
+| `options?` | [DeviceDiscoverySessionOptions](../interfaces/devicediscoverysessionoptions.md) | - |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Overrides
 
-Overrides: EventEmitter.constructor
+EventEmitter.constructor
 
 ## Properties
 
 ### deviceManager
 
-• `Readonly` **deviceManager**: [*DeviceDiscoveryManager*](devicediscoverymanager.md)
+• `Readonly` **deviceManager**: [DeviceDiscoveryManager](devicediscoverymanager.md)
 
 Vending device manager
 
@@ -70,70 +70,86 @@ Vending device manager
 
 ### discoveredDevices
 
-• get **discoveredDevices**(): [*NuimoControlDevice*](nuimocontroldevice.md)[]
+• `get` **discoveredDevices**(): [NuimoControlDevice](nuimocontroldevice.md)[]
 
 All discovered devices by the device manager
 
-**Returns:** [*NuimoControlDevice*](nuimocontroldevice.md)[]
+#### Returns
+
+[NuimoControlDevice](nuimocontroldevice.md)[]
 
 ___
 
 ### discoveryState
 
-• get **discoveryState**(): [*DeviceDiscoveryState*](../enums/devicediscoverystate.md)
+• `get` **discoveryState**(): [DeviceDiscoveryState](../enums/devicediscoverystate.md)
 
 Discovery state for the session
 
-**Returns:** [*DeviceDiscoveryState*](../enums/devicediscoverystate.md)
+#### Returns
+
+[DeviceDiscoveryState](../enums/devicediscoverystate.md)
 
 ## Methods
 
 ### addListener
 
-▸ **addListener**(`eventName`: ``"device"``, `listener`: [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+▸ **addListener**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"device"`` |
-| `listener` | [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md) |
+| `listener` | [OnDeviceDiscoveredCallback](../interfaces/ondevicediscoveredcallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.addListener
+[DeviceDiscoverySession](devicediscoverysession.md)
 
-▸ **addListener**(`eventName`: ``"timeout"``, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Inherited from
+
+EventEmitter.addListener
+
+▸ **addListener**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"timeout"`` |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.addListener
+[DeviceDiscoverySession](devicediscoverysession.md)
 
-▸ **addListener**(`eventName`: ``"done"``, `listener`: [*OnDiscoveryDoneCallback*](../interfaces/ondiscoverydonecallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Inherited from
+
+EventEmitter.addListener
+
+▸ **addListener**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"done"`` |
-| `listener` | [*OnDiscoveryDoneCallback*](../interfaces/ondiscoverydonecallback.md) |
+| `listener` | [OnDiscoveryDoneCallback](../interfaces/ondiscoverydonecallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.addListener
+[DeviceDiscoverySession](devicediscoverysession.md)
+
+#### Inherited from
+
+EventEmitter.addListener
 
 ___
 
 ### listenerCount
 
-▸ **listenerCount**(`type`: ``"device"`` \| ``"timeout"`` \| ``"done"``): *number*
+▸ **listenerCount**(`type`): `number`
 
 #### Parameters
 
@@ -141,15 +157,19 @@ ___
 | :------ | :------ |
 | `type` | ``"device"`` \| ``"timeout"`` \| ``"done"`` |
 
-**Returns:** *number*
+#### Returns
 
-Inherited from: EventEmitter.listenerCount
+`number`
+
+#### Inherited from
+
+EventEmitter.listenerCount
 
 ___
 
 ### listeners
 
-▸ **listeners**(`eventName`: ``"device"``): [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md)[]
+▸ **listeners**(`eventName`): [OnDeviceDiscoveredCallback](../interfaces/ondevicediscoveredcallback.md)[]
 
 #### Parameters
 
@@ -157,11 +177,15 @@ ___
 | :------ | :------ |
 | `eventName` | ``"device"`` |
 
-**Returns:** [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md)[]
+#### Returns
 
-Inherited from: EventEmitter.listeners
+[OnDeviceDiscoveredCallback](../interfaces/ondevicediscoveredcallback.md)[]
 
-▸ **listeners**(`eventName`: ``"timeout"``): [*OnEventCallback*](../interfaces/oneventcallback.md)[]
+#### Inherited from
+
+EventEmitter.listeners
+
+▸ **listeners**(`eventName`): [OnEventCallback](../interfaces/oneventcallback.md)[]
 
 #### Parameters
 
@@ -169,11 +193,15 @@ Inherited from: EventEmitter.listeners
 | :------ | :------ |
 | `eventName` | ``"timeout"`` |
 
-**Returns:** [*OnEventCallback*](../interfaces/oneventcallback.md)[]
+#### Returns
 
-Inherited from: EventEmitter.listeners
+[OnEventCallback](../interfaces/oneventcallback.md)[]
 
-▸ **listeners**(`eventName`: ``"done"``): [*OnDiscoveryDoneCallback*](../interfaces/ondiscoverydonecallback.md)[]
+#### Inherited from
+
+EventEmitter.listeners
+
+▸ **listeners**(`eventName`): [OnDiscoveryDoneCallback](../interfaces/ondiscoverydonecallback.md)[]
 
 #### Parameters
 
@@ -181,283 +209,361 @@ Inherited from: EventEmitter.listeners
 | :------ | :------ |
 | `eventName` | ``"done"`` |
 
-**Returns:** [*OnDiscoveryDoneCallback*](../interfaces/ondiscoverydonecallback.md)[]
+#### Returns
 
-Inherited from: EventEmitter.listeners
+[OnDiscoveryDoneCallback](../interfaces/ondiscoverydonecallback.md)[]
+
+#### Inherited from
+
+EventEmitter.listeners
 
 ___
 
 ### off
 
-▸ **off**(`eventName`: ``"device"``, `listener`: [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+▸ **off**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"device"`` |
-| `listener` | [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md) |
+| `listener` | [OnDeviceDiscoveredCallback](../interfaces/ondevicediscoveredcallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.off
+[DeviceDiscoverySession](devicediscoverysession.md)
 
-▸ **off**(`eventName`: ``"timeout"``, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Inherited from
+
+EventEmitter.off
+
+▸ **off**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"timeout"`` |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.off
+[DeviceDiscoverySession](devicediscoverysession.md)
 
-▸ **off**(`eventName`: ``"done"``, `listener`: [*OnDiscoveryDoneCallback*](../interfaces/ondiscoverydonecallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Inherited from
+
+EventEmitter.off
+
+▸ **off**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"done"`` |
-| `listener` | [*OnDiscoveryDoneCallback*](../interfaces/ondiscoverydonecallback.md) |
+| `listener` | [OnDiscoveryDoneCallback](../interfaces/ondiscoverydonecallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.off
+[DeviceDiscoverySession](devicediscoverysession.md)
+
+#### Inherited from
+
+EventEmitter.off
 
 ___
 
 ### on
 
-▸ **on**(`eventName`: ``"device"``, `listener`: [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+▸ **on**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"device"`` |
-| `listener` | [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md) |
+| `listener` | [OnDeviceDiscoveredCallback](../interfaces/ondevicediscoveredcallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.on
+[DeviceDiscoverySession](devicediscoverysession.md)
 
-▸ **on**(`eventName`: ``"timeout"``, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Inherited from
+
+EventEmitter.on
+
+▸ **on**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"timeout"`` |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.on
+[DeviceDiscoverySession](devicediscoverysession.md)
 
-▸ **on**(`eventName`: ``"done"``, `listener`: [*OnDiscoveryDoneCallback*](../interfaces/ondiscoverydonecallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Inherited from
+
+EventEmitter.on
+
+▸ **on**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"done"`` |
-| `listener` | [*OnDiscoveryDoneCallback*](../interfaces/ondiscoverydonecallback.md) |
+| `listener` | [OnDiscoveryDoneCallback](../interfaces/ondiscoverydonecallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.on
+[DeviceDiscoverySession](devicediscoverysession.md)
+
+#### Inherited from
+
+EventEmitter.on
 
 ___
 
 ### once
 
-▸ **once**(`eventName`: ``"device"``, `listener`: [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+▸ **once**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"device"`` |
-| `listener` | [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md) |
+| `listener` | [OnDeviceDiscoveredCallback](../interfaces/ondevicediscoveredcallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.once
+[DeviceDiscoverySession](devicediscoverysession.md)
 
-▸ **once**(`eventName`: ``"timeout"``, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Inherited from
+
+EventEmitter.once
+
+▸ **once**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"timeout"`` |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.once
+[DeviceDiscoverySession](devicediscoverysession.md)
 
-▸ **once**(`eventName`: ``"done"``, `listener`: [*OnDiscoveryDoneCallback*](../interfaces/ondiscoverydonecallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Inherited from
+
+EventEmitter.once
+
+▸ **once**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"done"`` |
-| `listener` | [*OnDiscoveryDoneCallback*](../interfaces/ondiscoverydonecallback.md) |
+| `listener` | [OnDiscoveryDoneCallback](../interfaces/ondiscoverydonecallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.once
+[DeviceDiscoverySession](devicediscoverysession.md)
+
+#### Inherited from
+
+EventEmitter.once
 
 ___
 
 ### prependListener
 
-▸ **prependListener**(`eventName`: ``"device"``, `listener`: [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+▸ **prependListener**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"device"`` |
-| `listener` | [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md) |
+| `listener` | [OnDeviceDiscoveredCallback](../interfaces/ondevicediscoveredcallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.prependListener
+[DeviceDiscoverySession](devicediscoverysession.md)
 
-▸ **prependListener**(`eventName`: ``"timeout"``, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Inherited from
+
+EventEmitter.prependListener
+
+▸ **prependListener**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"timeout"`` |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.prependListener
+[DeviceDiscoverySession](devicediscoverysession.md)
 
-▸ **prependListener**(`eventName`: ``"done"``, `listener`: [*OnDiscoveryDoneCallback*](../interfaces/ondiscoverydonecallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Inherited from
+
+EventEmitter.prependListener
+
+▸ **prependListener**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"done"`` |
-| `listener` | [*OnDiscoveryDoneCallback*](../interfaces/ondiscoverydonecallback.md) |
+| `listener` | [OnDiscoveryDoneCallback](../interfaces/ondiscoverydonecallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.prependListener
+[DeviceDiscoverySession](devicediscoverysession.md)
+
+#### Inherited from
+
+EventEmitter.prependListener
 
 ___
 
 ### prependOnceListener
 
-▸ **prependOnceListener**(`eventName`: ``"device"``, `listener`: [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+▸ **prependOnceListener**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"device"`` |
-| `listener` | [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md) |
+| `listener` | [OnDeviceDiscoveredCallback](../interfaces/ondevicediscoveredcallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.prependOnceListener
+[DeviceDiscoverySession](devicediscoverysession.md)
 
-▸ **prependOnceListener**(`eventName`: ``"timeout"``, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Inherited from
+
+EventEmitter.prependOnceListener
+
+▸ **prependOnceListener**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"timeout"`` |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.prependOnceListener
+[DeviceDiscoverySession](devicediscoverysession.md)
 
-▸ **prependOnceListener**(`eventName`: ``"done"``, `listener`: [*OnDiscoveryDoneCallback*](../interfaces/ondiscoverydonecallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Inherited from
+
+EventEmitter.prependOnceListener
+
+▸ **prependOnceListener**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"done"`` |
-| `listener` | [*OnDiscoveryDoneCallback*](../interfaces/ondiscoverydonecallback.md) |
+| `listener` | [OnDiscoveryDoneCallback](../interfaces/ondiscoverydonecallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.prependOnceListener
+[DeviceDiscoverySession](devicediscoverysession.md)
+
+#### Inherited from
+
+EventEmitter.prependOnceListener
 
 ___
 
 ### removeListener
 
-▸ **removeListener**(`eventName`: ``"device"``, `listener`: [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+▸ **removeListener**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"device"`` |
-| `listener` | [*OnDeviceDiscoveredCallback*](../interfaces/ondevicediscoveredcallback.md) |
+| `listener` | [OnDeviceDiscoveredCallback](../interfaces/ondevicediscoveredcallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.removeListener
+[DeviceDiscoverySession](devicediscoverysession.md)
 
-▸ **removeListener**(`eventName`: ``"timeout"``, `listener`: [*OnEventCallback*](../interfaces/oneventcallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Inherited from
+
+EventEmitter.removeListener
+
+▸ **removeListener**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"timeout"`` |
-| `listener` | [*OnEventCallback*](../interfaces/oneventcallback.md) |
+| `listener` | [OnEventCallback](../interfaces/oneventcallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.removeListener
+[DeviceDiscoverySession](devicediscoverysession.md)
 
-▸ **removeListener**(`eventName`: ``"done"``, `listener`: [*OnDiscoveryDoneCallback*](../interfaces/ondiscoverydonecallback.md)): [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Inherited from
+
+EventEmitter.removeListener
+
+▸ **removeListener**(`eventName`, `listener`): [DeviceDiscoverySession](devicediscoverysession.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | ``"done"`` |
-| `listener` | [*OnDiscoveryDoneCallback*](../interfaces/ondiscoverydonecallback.md) |
+| `listener` | [OnDiscoveryDoneCallback](../interfaces/ondiscoverydonecallback.md) |
 
-**Returns:** [*DeviceDiscoverySession*](devicediscoverysession.md)
+#### Returns
 
-Inherited from: EventEmitter.removeListener
+[DeviceDiscoverySession](devicediscoverysession.md)
+
+#### Inherited from
+
+EventEmitter.removeListener
 
 ___
 
 ### stop
 
-▸ **stop**(): *void*
+▸ **stop**(): `void`
 
 Stop device discover for this session
 
-**Returns:** *void*
+#### Returns
+
+`void`
 
 ___
 
 ### waitForFirstDevice
 
-▸ **waitForFirstDevice**(`autoStop?`: *boolean*): *Promise*<[*NuimoControlDevice*](nuimocontroldevice.md)\>
+▸ **waitForFirstDevice**(`autoStop?`): `Promise`<[NuimoControlDevice](nuimocontroldevice.md)\>
 
 Waits for a single (first) device or until time out, if specified when creating the session
 
@@ -467,6 +573,8 @@ Waits for a single (first) device or until time out, if specified when creating 
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `autoStop` | *boolean* | true |
+| `autoStop` | `boolean` | true |
 
-**Returns:** *Promise*<[*NuimoControlDevice*](nuimocontroldevice.md)\>
+#### Returns
+
+`Promise`<[NuimoControlDevice](nuimocontroldevice.md)\>
