@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.2.0](../README.md) / SwipeGestureDirection
+[Rocket Nuimo - v1.2.1](../README.md) / SwipeGestureDirection
 
 # Enumeration: SwipeGestureDirection
 

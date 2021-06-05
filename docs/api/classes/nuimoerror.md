@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.2.0](../README.md) / NuimoError
+[Rocket Nuimo - v1.2.1](../README.md) / NuimoError
 
 # Class: NuimoError
 

@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.2.0](../README.md) / OnDiscoveryDoneCallback
+[Rocket Nuimo - v1.2.1](../README.md) / OnDiscoveryDoneCallback
 
 # Interface: OnDiscoveryDoneCallback
 

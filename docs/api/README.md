@@ -1,6 +1,6 @@
-Rocket Nuimo - v1.2.0
+Rocket Nuimo - v1.2.1
 
-# Rocket Nuimo - v1.2.0
+# Rocket Nuimo - v1.2.1
 
 ## Table of contents
 

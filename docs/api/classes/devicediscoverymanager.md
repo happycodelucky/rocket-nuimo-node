@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.2.0](../README.md) / DeviceDiscoveryManager
+[Rocket Nuimo - v1.2.1](../README.md) / DeviceDiscoveryManager
 
 # Class: DeviceDiscoveryManager
 

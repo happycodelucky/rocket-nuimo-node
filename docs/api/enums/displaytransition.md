@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.2.0](../README.md) / DisplayTransition
+[Rocket Nuimo - v1.2.1](../README.md) / DisplayTransition
 
 # Enumeration: DisplayTransition
 

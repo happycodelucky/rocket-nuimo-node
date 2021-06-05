@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.2.0](../README.md) / TouchGestureArea
+[Rocket Nuimo - v1.2.1](../README.md) / TouchGestureArea
 
 # Enumeration: TouchGestureArea
 

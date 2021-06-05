@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.2.0](../README.md) / OnEventCallback
+[Rocket Nuimo - v1.2.1](../README.md) / OnEventCallback
 
 # Interface: OnEventCallback
 

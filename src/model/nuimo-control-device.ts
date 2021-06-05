@@ -104,10 +104,10 @@ export enum RotationMode {
      Clamped,
 
     /**
-     * Causes rotation to be continous. When in this mode there will be no
+     * Causes rotation to be continuous. When in this mode there will be no
      * rotation value returned or evented. You must rely on the delta rotation only
      */
-    Continous,
+    Continuous,
 }
 
 type HoverEvents = 'hover'
@@ -455,7 +455,7 @@ export class NuimoControlDevice extends EventEmitter {
 
     /** @internal */
     private onRotate(delta: number) {
-        if (this.rotationMode === RotationMode.Continous) {
+        if (this.rotationMode === RotationMode.Continuous) {
             if (delta > 0) {
                 this.emit('rotateLeft', delta, DEFAULT_ROTATION)
                 this.emit('rotate', delta, DEFAULT_ROTATION)

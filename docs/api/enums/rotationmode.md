@@ -1,4 +1,4 @@
-[Rocket Nuimo - v1.2.0](../README.md) / RotationMode
+[Rocket Nuimo - v1.2.1](../README.md) / RotationMode
 
 # Enumeration: RotationMode
 
@@ -9,7 +9,7 @@ Modes for rotation support
 ### Enumeration members
 
 - [Clamped](rotationmode.md#clamped)
-- [Continous](rotationmode.md#continous)
+- [Continuous](rotationmode.md#continuous)
 
 ## Enumeration members
 
@@ -23,9 +23,9 @@ No events will be fired when at the ends of a set rotation range
 
 ___
 
-### Continous
+### Continuous
 
-• **Continous** = 1
+• **Continuous** = 1
 
-Causes rotation to be continous. When in this mode there will be no
+Causes rotation to be continuous. When in this mode there will be no
 rotation value returned or evented. You must rely on the delta rotation only
