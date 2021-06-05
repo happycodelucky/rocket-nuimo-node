@@ -98,7 +98,7 @@ export interface DisplayGlyphOptions {
 export enum RotationMode {
     /**
      * Causes rotation to be clamped to a max and minimum.
-     * 
+     *
      * No events will be fired when at the ends of a set rotation range
      */
      Clamped,
@@ -107,7 +107,7 @@ export enum RotationMode {
      * Causes rotation to be continous. When in this mode there will be no
      * rotation value returned or evented. You must rely on the delta rotation only
      */
-    Continous
+    Continous,
 }
 
 type HoverEvents = 'hover'
@@ -119,24 +119,28 @@ type TouchEvents = 'touchTop' | 'touchLeft' | 'touchRight' | 'touchBottom'
 type LongTouchEvents = 'longTouchLeft' | 'longTouchRight' | 'longTouchBottom'
 
 /**
+ * Default rotation
  * @internal
  */
-let DEFAULT_ROTATION = 0
+const DEFAULT_ROTATION = 0
 
 /**
+ * Default min clamp for rotation
  * @internal
  */
-let DEFAULT_MIN_ROTATION = 0
+const DEFAULT_MIN_ROTATION = 0
 
 /**
+ * Default max clamp for rotation
  * @internal
  */
- let DEFAULT_MAX_ROTATION = 1
+const DEFAULT_MAX_ROTATION = 1
 
  /**
- * @internal
- */
-  let DEFAULT_ROTATION_CYCLES = 1
+  * Default rotation cycles
+  * @internal
+  */
+const DEFAULT_ROTATION_CYCLES = 1
 
 /**
  * A Nuimo Control device client for interacting with BT Nuimo Control peripheral
@@ -181,7 +185,7 @@ export class NuimoControlDevice extends EventEmitter {
      * Number of rotation cycles supported by the rotation range
      * @internal
      */
-     private internalRotationCycles = DEFAULT_ROTATION_CYCLES    
+     private internalRotationCycles = DEFAULT_ROTATION_CYCLES
 
     /**
      * @internal
@@ -463,10 +467,10 @@ export class NuimoControlDevice extends EventEmitter {
             const rotation = this.rotation
 
             // Setting rotation is clamped
-            let spread = this.maxRotation - this.minRotation
-            let cycleDelta = (delta * spread) / this.internalRotationCycles
+            const spread = this.maxRotation - this.minRotation
+            const cycleDelta = (delta * spread) / this.internalRotationCycles
             this.rotation = rotation + cycleDelta
-    
+
             if (this.rotation !== rotation) {
                 if (delta > 0) {
                     this.emit('rotateLeft', cycleDelta, this.rotation)
