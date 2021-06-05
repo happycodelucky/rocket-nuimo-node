@@ -1,6 +1,6 @@
 {
   "name": "rocket-nuimo",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "🚀 Client package for connecting to Nuimo Control by Senic",
   "license": "MIT",
   "private": true,
@@ -23,7 +23,7 @@
   "main": "dist/index.js",
   "types": "dts/index.d.ts",
   "dependencies": {
-    "@abandonware/noble": "^1.9.2-13",
+    "@abandonware/noble": "^1.9.2-14",
     "check-types": "^11.1",
     "debug": "^4.3",
     "tslib": "^2.2",
@@ -54,11 +54,11 @@
     "mocha": "^8.4",
     "mocha-typescript": "^1.1",
     "nyc": "^15.1",
-    "ts-node": "^9.1",
+    "ts-node": "^10.0",
     "tslint": "^6.1",
     "typedoc": "^0.20",
-    "typedoc-plugin-markdown": "^3.8",
-    "typescript": "^4.2"
+    "typedoc-plugin-markdown": "^3.9",
+    "typescript": "~4.2"
   },
   "scripts": {
     "device-discovery": "ts-node --project ./examples/tsconfig.json ./examples/01-device-discovery/example-device-discovery.ts",

@@ -92,6 +92,24 @@ export interface DisplayGlyphOptions {
     timeoutMs?: number
 }
 
+/**
+ * Modes for rotation support
+ */
+export enum RotationMode {
+    /**
+     * Causes rotation to be clamped to a max and minimum.
+     * 
+     * No events will be fired when at the ends of a set rotation range
+     */
+     Clamped,
+
+    /**
+     * Causes rotation to be continous. When in this mode there will be no
+     * rotation value returned or evented. You must rely on the delta rotation only
+     */
+    Continous
+}
+
 type HoverEvents = 'hover'
 type RotateEvents = 'rotate' | 'rotateLeft' | 'rotateRight'
 type SelectEvents = 'select' | 'selectUp' | 'selectDown'
@@ -99,6 +117,26 @@ type SwipeEvents = 'swipeUp' | 'swipeDown'
 type HoverSwipeEvents = 'swipeLeft' | 'swipeRight'
 type TouchEvents = 'touchTop' | 'touchLeft' | 'touchRight' | 'touchBottom'
 type LongTouchEvents = 'longTouchLeft' | 'longTouchRight' | 'longTouchBottom'
+
+/**
+ * @internal
+ */
+let DEFAULT_ROTATION = 0
+
+/**
+ * @internal
+ */
+let DEFAULT_MIN_ROTATION = 0
+
+/**
+ * @internal
+ */
+ let DEFAULT_MAX_ROTATION = 1
+
+ /**
+ * @internal
+ */
+  let DEFAULT_ROTATION_CYCLES = 1
 
 /**
  * A Nuimo Control device client for interacting with BT Nuimo Control peripheral
@@ -111,6 +149,11 @@ export class NuimoControlDevice extends EventEmitter {
     nuimoPeripheral: NuimoPeripheral
 
     /**
+     * Rotation mode for the device
+     */
+    rotationMode: RotationMode = RotationMode.Clamped
+
+    /**
      * Brightness level for the Nuimo device display
      * @internal
      */
@@ -120,17 +163,25 @@ export class NuimoControlDevice extends EventEmitter {
      * Minimum rotation (default 0.0)
      * @internal
      */
-    private internalMinRotation = 0
+    private internalMinRotation = DEFAULT_MIN_ROTATION
+
     /**
      * Maximum rotation (default 1.0)
      * @internal
      */
-    private internalMaxRotation = 1
+    private internalMaxRotation = DEFAULT_MAX_ROTATION
+
     /**
      * Rotation level of the device between `minRotation` and `maxRotation`
      * @internal
      */
-    private internalRotation = 0
+    private internalRotation = DEFAULT_ROTATION
+
+    /**
+     * Number of rotation cycles supported by the rotation range
+     * @internal
+     */
+     private internalRotationCycles = DEFAULT_ROTATION_CYCLES    
 
     /**
      * @internal
@@ -198,7 +249,7 @@ export class NuimoControlDevice extends EventEmitter {
      * Nuimo rotation value, can be between `minRotation` and `maxRotation`
      */
     get rotation(): number {
-        return this.internalRotation
+        return this.rotationMode === RotationMode.Clamped ? this.internalRotation : DEFAULT_ROTATION
     }
 
     /**
@@ -214,14 +265,14 @@ export class NuimoControlDevice extends EventEmitter {
      * Minimum rotation allowed (default 0.0)
      */
     get minRotation(): number {
-        return this.internalMinRotation
+        return this.rotationMode === RotationMode.Clamped ? this.internalMinRotation : DEFAULT_MIN_ROTATION
     }
 
     /**
      * Maximum rotation allowed (default 0.0)
      */
     get maxRotation(): number {
-        return this.internalMaxRotation
+        return this.rotationMode === RotationMode.Clamped ? this.internalMaxRotation : DEFAULT_MAX_ROTATION
     }
 
     /**
@@ -230,8 +281,14 @@ export class NuimoControlDevice extends EventEmitter {
      * @param min - minimum rotation value
      * @param max - maximum rotation value
      * @param [value] - new value between `min` and `max`
+     * @param [rotationCycles=1] - number of rotations allowed to occur between min and max, default is 1
      */
-    setRotationRange(min: number, max: number, value?: number) {
+    setRotationRange(min: number, max: number, value: number | undefined = undefined, rotationCycles: number = (max - min)) {
+        // Precondition to ensure no misconfiguration can happen
+        if (this.rotationMode !== RotationMode.Clamped) {
+            throw new Error('Setting a rotation range is only supported when rotationMode === RotationMode.Clamped')
+        }
+
         if (min > max) {
             throw new TypeError('setRotationRange(min, max) cannot be greater than `max`')
         }
@@ -242,6 +299,7 @@ export class NuimoControlDevice extends EventEmitter {
             throw new TypeError('setRotationRange(value) must be a valid value between `min` and `max`')
         }
 
+        this.internalRotationCycles = rotationCycles
         this.internalMinRotation = min
         this.internalMaxRotation = max
         this.internalRotation = (value !== undefined)
@@ -393,18 +451,30 @@ export class NuimoControlDevice extends EventEmitter {
 
     /** @internal */
     private onRotate(delta: number) {
-        const rotation = this.rotation
-
-        // Setting rotation is clamped
-        this.rotation = rotation + (delta * (this.maxRotation - this.minRotation))
-
-        if (this.rotation !== rotation) {
+        if (this.rotationMode === RotationMode.Continous) {
             if (delta > 0) {
-                this.emit('rotateLeft', delta, this.rotation)
-                this.emit('rotate', delta, this.rotation)
+                this.emit('rotateLeft', delta, DEFAULT_ROTATION)
+                this.emit('rotate', delta, DEFAULT_ROTATION)
             } else if (delta < 0) {
-                this.emit('rotateRight', delta, this.rotation)
-                this.emit('rotate', delta, this.rotation)
+                this.emit('rotateRight', delta, DEFAULT_ROTATION)
+                this.emit('rotate', delta, DEFAULT_ROTATION)
+            }
+        } else if (this.rotationMode === RotationMode.Clamped) {
+            const rotation = this.rotation
+
+            // Setting rotation is clamped
+            let spread = this.maxRotation - this.minRotation
+            let cycleDelta = (delta * spread) / this.internalRotationCycles
+            this.rotation = rotation + cycleDelta
+    
+            if (this.rotation !== rotation) {
+                if (delta > 0) {
+                    this.emit('rotateLeft', cycleDelta, this.rotation)
+                    this.emit('rotate', cycleDelta, this.rotation)
+                } else if (delta < 0) {
+                    this.emit('rotateRight', cycleDelta, this.rotation)
+                    this.emit('rotate', cycleDelta, this.rotation)
+                }
             }
         }
     }
